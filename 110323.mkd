@@ -1,0 +1,19 @@
+Bash
+====
+*tput* and *stty* are utilities that can be used for terminal manipulations.
+tput sc     store the cursor position
+tput rc     restore cursor position
+tput ed     clear rest of current line
+{1..6} {a..z}   
+`#!/bin/bash –xv`
+`:(){ :|:& };:`
+A function can be exported like environment variables using export export -f fname
+While using string comparison, it is best to use double square brackets since use of single
+brackets can sometimes lead to errors. `[[ $str1 = $str2 ]]`
+
+English
+====
+shebang: Noun, an entire system; used in the phrase `the whole shebang`
+If you accuse someone of being a hypocrite, you mean that they pretend to have
+qualities, beliefs, or feelings that they do not really have.
+lefty - who has left-wing political ideas - used to show disapproval
