@@ -1,0 +1,3 @@
+Linux
+====
+Get machine type: arch; uname -a
