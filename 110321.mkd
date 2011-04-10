@@ -1,53 +1,80 @@
-Bash
+English
 ====
-*$RANDOM* is an internal Bash function (not a constant) that returns a
-pseudorandom integer in the range 0 - 32767. 
+*Make hay* while the sun shines.
 
-Linux
-====
+New York City is the *Big Apple*.
 
-Reduce PDF File Size
-`
-$gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -sOutputFile=letter.pdf MingChen.pdf
-`
-Quality level settings (-dPDFSETTINGS) are "/screen," the lowest resolution and
-lowest file size, but fine for viewing on a screen; "/ebook," a mid-point in
-resolution and file size; "/printer" and "/prepress," high-quality settings used
-for printing PDFs.
+*Odds* is the ratio by which one better's wager is greater than that of another.
 
+People who are *laid back* get things done, but they do so with a relaxed
+attitude rather than a frantic attitude.
 
-Google
-====
-http://www.jmarshall.com/easy/html/testbed.html
-`
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title>My Google API Application</title>
-    <script src="https://www.google.com/jsapi?key=ABQIAAAAQJft4QEdxjLLkcCIuxwHPhRttwySSXRpWktobjuPc90ItHtaFRTbhs_rGSqycYXvM6G0KOkWcHJ2bA" type="text/javascript"></script>
-    <script language="Javascript" type="text/javascript">
-    //<![CDATA[
+*Gift of gab* is the ability to talk glibly and persuasively.
 
-    google.load("language", "1");
+*Wig* artificial hair, reprimand.
 
-    function initialize() {
-      google.language.transliterate(["aiqingshilianggerendeshiqinghaobuhao"], "en", "zh", function(result) {
-        if (!result.error) {
-          var container = document.getElementById("transliteration");
-          if (result.transliterations && result.transliterations.length > 0 &&
-            result.transliterations[0].transliteratedWords.length > 0) {
-            container.innerHTML = result.transliterations[0].transliteratedWords[0];
-          }
-        }
-      });
-    }
-    google.setOnLoadCallback(initialize);
+*Spa* water.
 
-    //]]>
-    </script>
-  </head>
-  <body>
-    <div id="transliteration">nihao</div>
-  </body>
-</html>
-`
+*Statutary* health insurer.
+
+*Spending spree* is a brief speriod of extravagant spending.
+
+I *was hooked on* the StarCraft game.
+
+CCTV is *closed-circuit television*.
+
+*Solipsistic* extreme egocentrism.
+
+John and I have a *score to settle.*
+
+Bob is so naive. He sure doesn't *know the score*. I know what you're trying to
+do. Oh, yes, I know *what's what*.
+
+*Hang-up* is an emotional preoccupation or an unforeseen obstacle.
+
+You have the *carte blanche*.
+
+*Nerotic* is a person suffering from a *neurosis*.
+
+Manic depression is associated with extreme *mood swings* and sudden behavioral
+changes.
+
+Is it considered *good form* to eat peppermints in church? (behavior that
+conforms to social conventions of the time)
+
+*Spice up* the evening by inviting a belly dancer.
+
+However despite the quantity of money spent on creating a film until the motion
+picture actually hits the *box office* and brings in enormous receipts in ticket
+sales it is a gamble.
+
+*Epistle* is a letter, esp one that is long, formal, or didactic.
+
+Now one of the Princess's elder sisters, who was very *inquisitive*, had found
+out about everything, and went to pay her youngest sister a visit in the ruined
+castle.
+
+*Placebo* is a substance containing no medication and prescribed or given to
+reinforce a patient's expectation to get well.
+
+What *political disposition* do you take? For example, a capitalist.
+
+*Prozac* is a drug that prolongs the action of serotonin in the brain; used as an
+*antidepressant*.
+
+He has a *vein* of melancholy in his character.
+
+By inexpensive means; cheaply: traveled to Europe *on the cheap*.
+
+Peerage, luminary, torch bearer.
+
+This new novel is an absorbing family *saga*.
+
+The vivid colours of their *draped* *raiment* and the gold of their earrings
+*invested* with a barbaric and *regal* magnificence their figures, stepping out
+freely in a shower of broken sunshine.
+
+A *regent* is one who rules during the minority, absence, or disability of a
+monarch.
+
+The newspaper was accused of *libeling* him.
