@@ -1,0 +1,15 @@
+Emacs
+====
+M-x find-dired
+
+Linux
+====
+creat account
+`
+useradd loginname
+passwd loginname
+`
+move home dir
+`
+usermod -d /search/chenming -m chenming
+`
