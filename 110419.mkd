@@ -1,0 +1,24 @@
+English
+====
+The *morbidity* rate associated with tonsillectomy is 2% to 4% due to
+post-operative bleeding; the *mortality* rate is 1 in 15,000, due to bleeding,
+airway obstruction, or anesthesia.
+
+Tonsillectomy may be indicated when the patient has multiple bouts of
+peritonsillar abscess.
+
+One case of tonsillity, even severe, is generally not enough for most surgeons
+to decide tonsillectomy is necessary.
+
+Cohort is a group of people who share a common feature or aspect of behaviour or
+(disapproving) a member of a group of people who support another person:
+
+Linux
+====
+View groups user belongs to 
+`
+usermod -G groupname username
+groups username
+id username
+vim /etc/group
+`
