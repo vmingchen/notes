@@ -1,0 +1,8 @@
+Linux
+====
+Cross-compiling 
+
+    ./configure --help
+    --build=BUILD     configure for building on BUILD [guessed]
+    --host=HOST       cross-compile to build programs to run on HOST [BUILD]
+    --target=TARGET   configure for building compilers for TARGET [HOST]

@@ -1,0 +1,10 @@
+Linux
+====
+Search package
+
+    apt-cache search package_regex
+
+convert rpm to deb
+
+    sudo apt-get install alien
+    sudo alien -i /path/to/file.rpm
