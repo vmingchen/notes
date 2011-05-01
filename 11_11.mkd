@@ -29,8 +29,10 @@ Bash process password
 English
 ====
 NPR reporters in northern and central Japan said staple foods were hard to _come
-by_ and in some areas gasoline was scarce.  Unlike, say svn status, git status
-runs _nigh-instantly_ even on large projects. 
+by_ and in some areas gasoline was scarce.
+
+Unlike, say svn status, git status runs _nigh-instantly_ even on large projects. 
+
 
 Vim
 ====
@@ -45,3 +47,4 @@ Set vim environment
 Vim plugin
 
     surround plugin
+

@@ -1,3 +1,32 @@
+Vim
+====
+Commands
+
+    X  	    Delete characters before the cursor
+    viB/vi{ Select content within curly brace
+    vib     Select content within parenthesis
+    vi"     Select content within ""
+    vi'     Select content within ''
+    '.      jump back to last edited line.
+
+
+Bash
+====
+*tput* and *stty* are utilities that can be used for terminal manipulations.
+
+    tput sc     store the cursor position
+    tput rc     restore cursor position
+    tput ed     clear rest of current line
+
+    {1..6} {a..z}
+    `#!/bin/bash –xv`
+    `:(){ :|:& };:`
+
+A function can be exported like environment variables using export export -f fname
+While using string comparison, it is best to use double square brackets since use of single
+brackets can sometimes lead to errors. `[[ $str1 = $str2 ]]`
+
+
 English
 ====
 *Make hay* while the sun shines.
@@ -77,4 +106,18 @@ freely in a shower of broken sunshine.
 A *regent* is one who rules during the minority, absence, or disability of a
 monarch.
 
-The newspaper was accused of *libeling* him.
+shebang: Noun, an entire system; used in the phrase `the whole shebang`
+If you accuse someone of being a hypocrite, you mean that they pretend to have
+qualities, beliefs, or feelings that they do not really have.
+lefty - who has left-wing political ideas - used to show disapproval
+
+Linux
+====
+The ex command *:g/re/p* (grep) was the way they documented how to "globally"
+"print" lines containing a "regular expression" (re). 
+
+*:... g* is a prefix for "globally" applying a subsequent command to all lines
+which match a pattern (regular expression) while *:... v* applies such a command
+too all lines which do NOT match the given pattern ("v" from "conVerse").
+
+
