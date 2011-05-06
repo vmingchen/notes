@@ -1,0 +1,8 @@
+Hadoop
+====
+Use hostname in conf files. Hostname like `zw_139_171` is illegal, do not
+contain `_`. 
+
+English
+====
+Obama to lay wreath at Ground Zero.

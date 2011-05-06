@@ -1,0 +1,45 @@
+English
+====
+Beijing is bulging as its population has exceeded 17 million, only 1 million to
+go to reach the ceiling the city government has set for 2020. The figure breaks
+down into 12.04 million holders of Beijing "hukou", or *household registration
+certificates*, and 5.1 million *floating population*, sources with the Ministry
+of Public Security said at Monday's workshop on the country's management of
+migrants.
+
+The ministry also called for simplified procedures for migrants to get their
+*temporary residency permits*.
+
+German Chancellor Angela Merkel *put President Vladimir Putin on the spot* on
+Saturday, asking if the former KGB spy had cooked breakfast for his wife
+Lyudmila to celebrate International Women's Day. 
+
+Russians are also celebrating the end of winter with *Pancake week*, a
+pre-Christian carnival of revelry across Russia.
+
+
+Bash
+====
+Keep eyes on pipeline:
+
+    weights=(1 2 3)     # global variable
+
+    function setweights() { 
+        local i=0 
+        echo "$1" | tr ',' '\n' | while read type; do  
+            weights[$i]="$type"; 
+            echo "weights[$i]: ${weights[$i]}" 
+            let ++i; 
+        done 
+    }
+
+    function setweights() { 
+        tmp=`mktemp`
+        echo "$1" | tr ',' '\n' > $tmp
+        while read type; do 
+            weights[$i]="$type";
+            echo "${weights[$i]}"
+            let ++i;
+        done < $tmp
+        rm -f $tmp
+    }
