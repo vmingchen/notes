@@ -1,0 +1,37 @@
+Bash
+====
+tty is a Unix device file that handles input and output for your terminal, window, etc.
+
+    % tty
+    /dev/tty07
+
+create and delete temp file or dir
+
+    TMPDIR=`mktemp -d`
+    trap "rm -rf $TMPDIR" EXIT
+
+
+Linux
+====
+Identifying Open Ports
+
+    $ grep port /etc/services
+    $ grep 2432 /etc/services
+
+Few quick methods/programs that we can use to find out running processes and
+associated ports
+
+    $ netstat -tulpn
+
+fuser to view process occupying given port
+
+    $ fuser port_num/tcp_or_udp
+    $ fuser 50075/tcp
+    50075/tcp:            7535
+
+
+English
+====
+"Armed with this information, public-health officials should now be *in a better
+position to* encourage behavior changes likely to improve the health of
+middle-aged and older people," the researchers wrote.
