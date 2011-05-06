@@ -1,0 +1,20 @@
+English
+====
+Holonym is a word that names the whole of which a given word is a part; "'hat'
+is a holonym for 'brim' and 'crown'".
+
+Meronym is a word that names a part of a larger whole; "'brim' and 'crown' are
+meronyms of 'hat'" .
+
+Nidus is a nest in which spiders or insects deposit their eggs.
+
+Wordspider
+====
+
+Linux
+====
+Ubuntu, hold down the alt key and click and drag anywhere in the window to move
+it so that all the buttons are visible
+
+Checking out a git repository from a remote to your local storage
+` git clone git@github.com:brianchenming/notes.git `
