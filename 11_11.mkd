@@ -14,6 +14,9 @@ Bash arrays
     $ echo "Apple costs ${fruits_value[apple]}"
     Apple costs 100 dollars
 
+    $ declare -a MYRA
+    $ MYRA=($(ls -ld DIR))
+
 Bash process password
 
     #!/bin/sh
