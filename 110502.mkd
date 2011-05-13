@@ -1,0 +1,108 @@
+Git
+====
+git .gitignore
+
+    # a comment - this is ignored
+    *.a       # no .a files
+    !lib.a    # but do track lib.a, even though you're ignoring .a files above
+    /TODO     # only ignore the root TODO file, not subdir/TODO
+    build/    # ignore all files in the build/ directory
+    doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
+
+If you want to see what you've staged that will go into your next commit, you
+can use git diff --staged. 
+
+It's important to note that git diff by itself doesn't show all changes made
+since your last commit — only changes that are still unstaged.
+
+Providing the -a option to the git commit command makes Git automatically stage
+every file that is already tracked before doing the commit, letting you skip the
+git add part
+
+Another useful thing you may want to do is to keep the file in your working tree
+but remove it from your staging area. In other words, you may want to keep the
+file on your hard drive but not have Git track it anymore. This is particularly
+useful if you forgot to add something to your .gitignore file and accidentally
+added it, like a large log file or a bunch of .a compiled files. To do this, use
+the --cached option:
+
+    $ git rm --cached readme.txt
+
+You can pass files, directories, and file-glob patterns to the git rm command.
+That means you can do things such as
+
+    $ git rm log/\*.log
+
+Note the backslash (\) in front of the \*. This is necessary because Git does its
+own filename expansion in addition to your shell's filename expansion. This
+command removes all files that have the .log extension in the log/ directory.
+
+git log
+
+    git log -n          # show the last n commits. 
+    git log -p          # shows the diff introduced in each commit
+    git log --stat      # summarizing info
+    git log --pretty    # beautify output
+
+However, the time-limiting options such as --since and --until are very useful.
+You can also filter the list to commits that match some search criteria. The
+--author option allows you to filter on a specific author, and the --grep option
+lets you search for keywords in the commit messages. (Note that if you want to
+specify both author and grep options, you have to add --all-match or the command
+will match commits with either.)
+
+    $ git log --pretty=format:"%h - %an, %ar : %s"
+    ca82a6d - Scott Chacon, 11 months ago : changed the version number
+    085bb3b - Scott Chacon, 11 months ago : removed unnecessary test code
+    a11bef0 - Scott Chacon, 11 months ago : first commit
+    Option	Description of Output
+    %H	Commit hash
+    %h	Abbreviated commit hash
+    %T	Tree hash
+    %t	Abbreviated tree hash
+    %P	Parent hashes
+    %p	Abbreviated parent hashes
+    %an	Author name
+    %ae	Author e-mail
+    %ad	Author date (format respects the –date= option)
+    %ar	Author date, relative
+    %cn	Committer name
+    %ce	Committer email
+    %cd	Committer date
+    %cr	Committer date, relative
+    %s	Subject
+
+The last really useful option to pass to git log as a filter is a path. If you
+specify a directory or file name, you can limit the log output to commits that
+introduced a change to those files. This is always the last option and is
+generally preceded by double dashes (--) to separate the paths from the options.
+
+    $ git log --pretty="%h - %s" --author=gitster --since="2008-10-01" \
+       --before="2008-11-01" --no-merges -- t/
+    5610e3b - Fix testcase failure when extended attribute
+    acd3b9e - Enhance hold_lock_file_for_{update,append}()
+    f563754 - demonstrate breakage of detached checkout wi
+    d1a43f2 - reset --hard/read-tree --reset -u: remove un
+    51a94af - Fix "checkout --track -b newbranch" on detac
+    b0ad11e - pull: allow "git pull origin $something:$cur
+
+
+English
+====
+There is no age gap virtually between us preventing from crossing *germane* to
+the challenging issues concerned to China and the world.
+
+You see me, positive and optimistic as always, simply because negative and
+pessimistic won't bring you anything valuable but perhaps *procrastinate* and
+even destroy for the success.
+
+Hitch had never helped playboys or *scoundrels* whose purpose is merely to
+seduce women for *a lay*.
+
+He follows Hitch's plan and acts as if he were Allegra's close friend, staying
+with here like a *pea and carrot*.
+
+Allegra is *way out of* Albert's league.
+
+Nero fiddled while Rome burned.
+Nero fiddled, but Collidge only snored.

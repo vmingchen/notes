@@ -1,6 +1,0 @@
-Vim
-====
-Vim setting for a particular file:
-`:help 'modeline'`
-put the following modeline near the top or bottom of that file:
-`# vim: set foldmethod=marker:`
