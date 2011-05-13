@@ -1,0 +1,25 @@
+Linux
+====
+Don't have a terminal with multiple windows or another terminal close to your
+desk? You can get the same result by using rlogin, su or telnet to log in to
+your host again from the same terminal. 
+
+    % vi .cshrc 
+    ...Make edits to the file...
+    % rlogin localhost 
+    ...Logs you in to your same account...
+    An error message 
+    % logout 
+    Connection closed.
+    % vi .cshrc 
+    ...Edit to fix mistake...
+
+Grep
+
+    $ grep -v        # reVersed, find items without pattern
+    $ grep -q        # quiet, answer found or not by $?
+    $ grep -h        # do not print filename 
+    $ grep -l        # just print filename 
+    $ zgrep regex xxx.gz    # search compressed file
+    $ zcat                  # cat compressed file
+    $ rm -i $(grep -l 'This file is obsolete' * )

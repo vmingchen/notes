@@ -1,0 +1,40 @@
+Linux
+====
+To make `usermod` take effect, the user involved should logout and re-login
+
+    # groupadd -g 503 ime
+    # usermod -g 'init_login_gid' -G 'group1, group2' loginname
+    # usermod -g ime -G ime,root chenming
+    # chown -R chenming:ime /home/chenming
+    # id chenming
+
+Bourne-type shells, such as bash , usually have $ in the prompt. The C shell
+uses % (but tcsh users often use `>`). 
+
+The shell doesn't start a separate process to run internal commands (such as
+cd). External commands require the shell to fork and exec (such as ls) a
+new subprocess.
+
+Valgrind
+
+    valgrind --tool=memcheck myprgm param 
+    valgrind check-leak=yes myprgm param
+
+Gnuplot, using column 1 as X-axis and column 2 as Y-axis
+
+    gnuplot> set output 'figure.png'
+    gnuplot> set term png size 1200, 900
+    gnuplot> set output 'figure.png' 
+    gnuplot> set title 'Distribution of Length of Webpy Query'
+    gnuplot> plot 'data.txt' using 1:2 with lines
+
+
+
+English
+====
+As you can guess, the Picture tab allows you to upload an image, which will
+appear next to your user name in *lieu* of the default and nondescript bird
+silhouette icon that Twitter assigns you when you create your account.
+
+Come off is to succeed; triumph. John *came off* with flying colors in his final
+exams at college.

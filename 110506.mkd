@@ -29,6 +29,11 @@ fuser to view process occupying given port
     $ fuser 50075/tcp
     50075/tcp:            7535
 
+SVN change username. Most Subversion commands take the --username option to
+specify the username you want to use to the repository.
+
+    $ svn commit -m 'comments' --username chenming 
+
 
 English
 ====
