@@ -1,0 +1,7 @@
+Linux
+====
+View CPU information
+
+    $ less /proc/cpuinfo
+    $ pstree
+    $ ps -u chenming
