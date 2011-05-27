@@ -1,0 +1,23 @@
+Linux
+====
+date
+
+    $ refdate="2007-09-03"
+    $ sec=`date -d "$refdate" +s`
+    $ let sec=$((sec - N*24*60*60))
+    $ date -d "1970-01-01 UTC $sec seconds" +'%Y%m%d'
+    $ date -d "$refdate $N day ago" +'%Y%m%d'   
+
+    function prevdate() {
+        local ref="$1"
+        local num="${2:-1}"
+        local refdate=`date -d "${ref}" +'%Y-%m-%d'`
+        date -d "$refdate $num days ago" +'%Y%m%d'
+    }
+
+Python
+====
+select nsmallest
+
+    import heapq
+    heapq.nsmallest(N, iterable)

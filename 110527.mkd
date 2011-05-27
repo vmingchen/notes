@@ -1,0 +1,18 @@
+Linux
+====
+gprof
+
+    $ ./configure --enable-static --enable-profile
+    $ echo "prg_LDFLAGS=-static-libtool-libs" >> Makefile.am
+    $ make
+    $ ./prg params
+    $ gprof ./prg gmon.out > profile.txt
+
+Exit shell immediately if a simple command exits with a nonzero exit value.
+
+    $ set -e    
+
+Vim 
+
+    $ vim +num file     # open file at a specified line
+    $ vim -t main       # open file at a specified tag (ctags)
