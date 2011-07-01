@@ -2,7 +2,7 @@ Linux
 ====
 gprof
 
-    $ ./configure --enable-static --enable-profile
+    $ ./configure --enable-static --enable-profile --enable-debug
     $ echo "prg_LDFLAGS=-static-libtool-libs" >> Makefile.am
     $ make
     $ ./prg params
