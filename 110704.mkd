@@ -1,0 +1,55 @@
+English
+====
+A *dollop* of romance now and then is good for everybody.
+
+One showed her wearing sunglasses and leaning on the hood of a white Maserati.
+Another revealed her closetful of Hermès handbags. Yet a third showed her
+sipping a drink in a business-class cabin on an airline flight. None of it was
+outrageous by the standards of China's *nouveau riche*. 
+
+At the same time, she posted photos and entries detailing her jet-set life,
+   writing of the orange Lamborghini she drove in the south and the white
+   Maserati she had in Beijing . 
+
+*Paparazzi*-style photographs showed her arriving in the Beijing airport on June
+27 from Shenzhen, where she also lives, and rushing off in a private *sedan*. 
+
+Linux
+====
+locale 
+
+    $locale -a  # list all locale
+    $LC_ALL=zh_CN.utf8 locale -ck LC_TIME
+
+regular expression, BRE(\{n,m\} \(\) \n), ERE ({n,m} + ? | ())
+
+sed
+
+    $ echo "Tolstoy reads well. Tolstoy writes well." > example.txt
+    $ sed 's/Tolstoy/Camus/2' < example.txt     # only subs the 2nd Tolstoy
+    Tolstoy reads well. Camus writes well.
+    $ sed 's/Tolstoy/Lucy/; s//Lily/' < example.txt 
+    Lucy reads well. Lily writes well.
+    $ sed -n '10,40p' foo.xml           # print lines between 10 and 40
+    $ sed '/foo/,/bar/ s/baz/quuz/g'    # do subs between foo and bar 
+    $ grep chm /etc/passwd
+    chm:x:1000:1000:test,,,:/home/chm:/bin/bash
+    # any other char beside '/' can be used for pattern search with a leading \
+    $ sed -n '\,chm, s::CHM:p' /etc/passwd      
+    CHM:x:1000:1000:test,,,:/home/chm:/bin/bash
+    $ echo abc | sed 's/b*/1/'
+    1abc
+    $ echo abc | sed 's/b*/1/g'
+    1a1b1c
+
+
+sort and output unique key
+
+    $ cat example.txt
+    1 2 3
+    1 2 2
+    1 3 4
+    $ sort -u -k2,2n example.txt 
+    1 2 3
+    1 3 4
+
