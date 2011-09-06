@@ -1,0 +1,12 @@
+# Misc
+Gmail address:
+
+    <a
+    href="http://www.google.com/recaptcha/mailhide/d?k=01JfyuMdzOCAVlGRdRWkXeUg==&amp;c=-ug8l2Au4B4rBFdoNQTaG-JimMPFWOEK_4uOQ8WeP6U="
+    onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501JfyuMdzOCAVlGRdRWkXeUg\75\75\46c\75-ug8l2Au4B4rBFdoNQTaG-JimMPFWOEK_4uOQ8WeP6U\075',
+    '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300');
+    return false;" title="Reveal this e-mail address">...</a>@gmail.com
+
+Valgrind
+
+    $ valgrind --tool=memcheck .libs/lt-webpyServer
