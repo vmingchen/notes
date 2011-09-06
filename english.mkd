@@ -1,26 +1,38 @@
-# English
-## Words
+# Words
+You could *meander* the archive of scripts for days, and they (usually) work no
+matter what OS you run Vim on.
 
-*Make hay* while the sun shines.
+A *missionary* is a person who is sent to a foreign country to teach people about
+Christianity. She spoke about her new project with *missionary zeal* (= with
+great enthusiasm).
 
-New York City is the *Big Apple*.
+Overboard: throw sb/sth overboard to get rid of sb/sth that you think is useless
+over the side of a boat or a ship into the water.  Huge waves washed him
+overboard.  He threw all his old friends overboard once he was promoted.
+*go overboard* (informal) to be too excited or enthusiastic about sth or about
+doing
+
+Runaway: vehicle or animal is out of control, happening very easily or quickly,
+and not able to be controlled.  The film was a *runaway* success.
+
+*Holonym* is a word that names the whole of which a given word is a part; "'hat'
+is a holonym for 'brim' and 'crown'".
+
+*Meronym* is a word that names a part of a larger whole; "'brim' and 'crown' are
+meronyms of 'hat'" .
+
+*Nidus* is a nest in which spiders or insects deposit their eggs.
 
 *Odds* is the ratio by which one better's wager is greater than that of another.
 
 People who are *laid back* get things done, but they do so with a relaxed
 attitude rather than a frantic attitude.
 
-*Gift of gab* is the ability to talk glibly and persuasively.
-
 *Wig* artificial hair, reprimand.
 
 *Spa* water.
 
 *Statutary* health insurer.
-
-I *was hooked on* the StarCraft game.
-
-CCTV is *closed-circuit television*.
 
 *Solipsistic* extreme egocentrism.
 
@@ -35,7 +47,7 @@ You have the *carte blanche*.
 
 *Nerotic* is a person suffering from a *neurosis*.
 
-Manic depression is associated with extreme *mood swings* and sudden behavioral
+*Manic* depression is associated with extreme *mood swings* and sudden behavioral
 changes.
 
 Is it considered *good form* to eat peppermints in church? (behavior that
@@ -58,8 +70,8 @@ reinforce a patient's expectation to get well.
 
 What *political disposition* do you take? For example, a capitalist.
 
-*Prozac* is a drug that prolongs the action of serotonin in the brain; used as an
-*antidepressant*.
+*Prozac* is a drug that prolongs the action of *serotonin* in the brain; used as
+an *antidepressant*.
 
 He has a *vein* of melancholy in his character.
 
@@ -81,6 +93,32 @@ If you accuse someone of being a hypocrite, you mean that they pretend to have
 qualities, beliefs, or feelings that they do not really have.
 lefty - who has left-wing political ideas - used to show disapproval
 
-## Phrase
+*Nany* is similar to female baby-sitter.
+
+*Seagal* indicates bad movie.
+
+Fear spread through the crowd like a *contagion*, ie quickly and harmfully.
+
+*Dissemination* is the act of disseminating, or the state of being disseminated;
+diffusion for propagation and permanence; a scattering or spreading abroad, as
+of ideas, beliefs, etc.
+
+# Phrase
+NPR reporters in northern and central Japan said staple foods were hard to *come
+by* and in some areas gasoline was scarce.
+
+Unlike, say svn status, git status runs *nigh-instantly* even on large projects. 
 
 *Spending spree* is a brief speriod of extravagant spending.
+
+*Bells and whistles* are attractive extra features.
+
+*Make hay* while the sun shines.
+
+New York City is the *Big Apple*.
+
+*Gift of gab* is the ability to talk glibly and persuasively.
+
+I *was hooked on* the StarCraft game.
+
+CCTV is *closed-circuit television*.

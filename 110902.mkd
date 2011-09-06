@@ -1,0 +1,42 @@
+# English
+A *leap of faith*, in its most commonly used meaning, is the act of believing in
+or accepting something intangible or unprovable, or without empirical evidence.
+
+His house is an *eclectic* mixture of the antique and the modern.
+
+An *innate* knowledge of right and wrong.
+
+*Nomenclature* is a system of naming things, especially in science.
+
+# OS
+convert the unsigned word in AX to an unsigned double word in EAX.
+
+    movzx eax, ax ; extends ax into eax
+
+# Bioinformatics
+In bioinformatics, Basic Local Alignment Search Tool, or *BLAST*, is an
+algorithm for comparing primary biological sequence information, such as the
+amino-acid sequences of different proteins or the nucleotides of DNA sequences. 
+
+The *Smith-Waterman algorithm* is a well-known algorithm for performing local
+sequence alignment; that is, for determining similar regions between two
+*nucleotide* or protein sequences.
+
+*Helicases* are a class of enzymes vital to all living organisms. They are motor
+proteins that move directionally along a nucleic acid phosphodiester backbone,
+separating two annealed nucleic acid strands (i.e., DNA, RNA, or RNA-DNA
+hybrid) using energy derived from ATP hydrolysis.
+
+*Primers*, which are short single strands of RNA, are synthesized by a protein
+complex called *primase* and latch on to specific positions in the newly opened
+strands, providing an anchor for the next step.
+
+A DNA *polymerase*, a molecular machine, binds to each freshly separated
+template strand of the DNA. DNA helicase separates strands, DNA polymerase
+ensures proper complementarity of bases. 
+
+Proteins form enzymes that perform biochemical reactions, send signals to other
+cells, form the body's major components, like keratin in our skin.
+
+They worked with the bread mold *Neurospora*, which can survive by consuming very
+simple nutrients like *sucrose* and salt.

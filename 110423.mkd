@@ -1,8 +1,0 @@
-Linux
-=====
-Verify that Google Public DNS can resolve the selected hostname
-`dig @8.8.8.8 hostname
-nslookup -debug hostname 8.8.8.8
-host hostname
-cat /etc/resolv.conf
-`

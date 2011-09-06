@@ -1,0 +1,88 @@
+# English
+You will be sent email requesting confirmation, to prevent others from
+*gratuitously* subscribing you.
+
+Deoxyribonucleic acid is a *nucleic* acid that contains the genetic instructions
+used in the development and functioning of all known living organisms (with the
+exception of RNA viruses).
+
+Along with RNA and proteins, DNA is one of the three major *macromolecules* that
+are essential for all known forms of life.
+
+DNA consists of two long *polymers* of simple units called *nucleotides*, with
+backbones made of sugars and *phosphate* groups joined by *ester* bonds.
+
+Too often an English teacher may allow overpronounce, perhaps thinking that
+*colloquial* English is unsophisticated. 
+
+firmament: (old use or literary) the sky: (figurative) a rising star in the
+literary *firmament*
+
+In some books, *tense vowels* are called long and *lax vowels* are called short. 
+
+He is not allowed solid food yet, only *fluids*; (formal) (of a situation) likely
+to change, not fixed: a fluid political situation
+
+# OS
+You can use the plain old Ext2 filesystem if you don't have specific needs. You
+might switch to Ext3 if you want to avoid lengthy filesystem checks after a
+system crash. If you'll have to deal with many small files, the ReiserFS
+filesystem is likely to be the best choice.
+
+When a file is created by a process, its owner ID is the UID of the process. Its
+owner user group ID can be either the process group ID of the creator process or
+the user group ID of the parent directory, depending on the value of the sgid
+flag of the parent directory.
+
+Several processes may concurrently open the same file. In this case, the
+filesystem assigns a separate file descriptor to each file, along with a
+separate open file object. When this occurs, the Unix filesystem does not
+provide any kind of synchronization among the I/O operations issued by the
+processes on the same file. However, several system calls such as flock( ) are
+available to allow processes to synchronize themselves on the entire file or on
+portions of it. 
+
+Actually, some CPUs can have more than two execution states. For instance, the
+80 x 86 microprocessors have four different execution states. But all standard
+Unix kernels use only Kernel Mode and User Mode.
+
+A naive implementation of the fork() would require both the parent's data and
+the parent's code to be duplicated and the copies assigned to the child. This
+would be quite time consuming. Current kernels that can rely on hardware paging
+units follow the Copy-On-Write approach, which defers page duplication until the
+last moment. 
+
+Elevator algorithm is the algorithm used in hard disk.
+
+Internal interrupts are raised from within the CPU, either from an error or the
+interrupt instruction. Error interrupts are also called traps. Many interrupt
+handlers return control back to the interrupted program when they finish. Traps
+generally do not return. Often they abort the program.
+
+Page replacement algorithms were a hot topic of research and debate in the 1960s
+and 1970s. That mostly ended with the development of sophisticated *LRU*
+approximations and working set algorithms.
+
+A *journaling file system* is a file system that keeps track of the changes that
+will be made in a journal before committing them to the main file system. In the
+event of a system crash or power failure, such file systems are quicker to bring
+back online and less likely to become corrupted.
+
+Peter Denning (1968) defines "the *working set* of information W(t,τ) of a process
+at time t to be the collection of information referenced by the process during
+the process time interval (t − τ,t)". Typically the units of information in
+question are considered to be memory pages.
+
+The *working set model* states that a process can be in RAM if and only if all of
+the pages that it is currently using (often approximated by the most recently
+        used pages) can be in RAM. The model is an all or nothing model, meaning
+if the pages it needs to use increases, and there is no room in RAM, the process
+is swapped out of memory to free the memory for other processes to use.
+
+The *working set* of a process is the set of pages expected to be used by that
+process during some time interval.
+
+In computer storage, *Belady's anomaly* proves that it is possible to have more
+page faults when increasing the number of page frames while using the First in
+First Out (FIFO) page replacement algorithm. Laszlo Belady demonstrated this in
+1969.

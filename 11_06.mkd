@@ -1,3 +1,164 @@
+English
+====
+Jukebox is a machine in a pub, bar, etc. that plays music when you put coins
+into it. Their favourite song was playing on the *jukebox*.
+
+Lore is knowledge and information related to a particular subject, especially
+when this is not written down; the stories and traditions of a particular group
+of people.  Tribal *lore* and custom have been passed down orally.
+
+svelte: (approving) (of a person, especially a woman) thin in a graceful and
+attractive way.
+
+
+
+Bash
+====
+Change relative path to absolute path
+
+    $ abpath=`readlink -m $1`
+
+Linux
+====
+Emacs dired
+
+    j: go to file
+    +newolder: create newfolder
+    m: mark files
+    R newfolder: move marked files into newfolder
+    d: delete file
+    x: execute delete
+    !: execute bash cmd
+
+Screen
+
+    C-a Z   # clear screen 
+Linux
+====
+Automake, Autotools
+
+    reducer_dist_LDFLAGS=-static-libtool-libs   # Makefile.am
+    --enable-static --enable-profile --enable-debug --disable-optimize
+
+autoconf copies the contents of 'configure.in' to 'configure', expanding macros
+as they occur in the input.
+
+
+Make. Target rules start at the beginning of a line and are followed by a colon.
+Following the colon is a whitespace separated list of dependencies. A series of
+lines follow which contain shell commands to be run by a sub-shell. Each of
+these lines must be prefixed by a horizontal tab character.
+
+These commands may be prefixed by an '@' character to prevent make from echoing
+the command line prior to executing it. 
+
+They may also optionally be prefixed by a '-' character to allow the rule to
+continue if the command returns a non-zero exit code.
+
+`$@` represent the names of the target
+
+`$<` the first dependency 
+
+    $ cat Makefile
+    all: dummy
+        @echo "$@ depends on dummy"
+    dummy:
+        touch $@
+    $ make
+    touch dummy
+    all depends on dummy
+
+Makefile's suffix rule:
+
+    $.c.o:
+        $(CC) $(CFLAGS) -c $< -o $@
+
+Unless a more specific rule matches the target being sought, this rule will
+match any target that ends in '.o'. These files are said to always be dependent
+on '.c'. 
+Linux
+====
+Useful commands:
+
+    $ shopt -s extglob
+    $ mkdir ~/.vim/{plugin,doc,syntax} -p
+    $ help shopt    # set shell option
+    $ arch          # view machine arch
+    $ uname         # view system info
+    $ hostname
+    $ dd            # convert and format data
+    $ od -An -j4 -N4 -t 4d  # view binary data
+    $ hexdump -n 16 -s [byte_to_skip] -e '4/4 "%d\n"' bin
+    $ help compgen  # complete, autocomplete bash, complete globbing
+
+GDB, set exec-wrapper wrapper. When 'exec-wrapper' is set, the specified wrapper
+is used to launch programs for debugging. gdb starts your program with a shell
+command of the form exec wrapper program. Quoting is added to program and its
+arguments, but not to wrapper, so you should add quotes if appropriate for your
+shell. The wrapper runs until it executes your program, and then gdb takes
+control.
+
+You can use any program that eventually calls execve with its arguments as a
+wrapper. Several standard Unix utilities do this, e.g. env and nohup. Any Unix
+shell script ending with exec "$@" will also work.
+
+For example, you can use env to pass an environment variable to the debugged
+program, without setting the variable in your shell's environment:
+
+    (gdb) set exec-wrapper env 'LD_PRELOAD=libtest.so'
+    (gdb) run
+    (gdb) where     # where
+    (gdb) finish    # finish
+
+SVN add external package dependency
+
+    $ svn propedit svn:externals 
+
+Program information, linker and loader
+
+    $ ldd *.so
+    $ nm *.obj
+    $ ranlib archive
+    $ ar archive
+    /etc/ld.so.cache
+    ldconfig
+
+Vim
+====
+Vim windows
+
+    $ vim -O file1 file2    # split window vertically
+    $ vim -o file1 file2    # split window horizontally
+    $ vimdiff -o file1 file2
+
+    CTRL-W s    
+    :sp
+    CTRL-W v
+    :vs
+    CTRL-W n
+    :new
+    CTRL-W j    # move cursor to window below
+    CTRL-W k    # move cursor to window above
+    CTRL-W h    # move cursor to window left
+    CTRL-W l    # move cursor to window right
+    CTRL-W t    # move cursor to top-left window
+    CTRL-W b    # move cursor to bottom-right window
+    CTRL-W p    # go to previsou window
+    CTRL-W o    # make current window the only one
+    :hid        # quit current window
+    :sv         # split and view (readonly)
+    :sf {file}  # search for file in 'path' and split if found
+    :h \_p      # any printable character including newline
+    ;           # next f, F, t, T command
+    ,           # next f, F, t, T command in opposite direction
+    @:          # next command-mode command
+    CTRL-a      # inc number
+    CTRL-x      # dec number
+    *,#         # find word under cursor
+    ["x]S       # delete [into register x] and start insert, same to cc
+    gD          # go to global definition
+    C-d, C-t    # indent in insert mode, very useful
+    C-w         # delete previous word in insert mode
 Linux
 ====
 get largest line length

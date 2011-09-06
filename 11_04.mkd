@@ -1,3 +1,27 @@
+English
+====
+The *morbidity* rate associated with tonsillectomy is 2% to 4% due to
+post-operative bleeding; the *mortality* rate is 1 in 15,000, due to bleeding,
+airway obstruction, or anesthesia.
+
+Tonsillectomy may be indicated when the patient has multiple bouts of
+peritonsillar abscess.
+
+One case of tonsillity, even severe, is generally not enough for most surgeons
+to decide tonsillectomy is necessary.
+
+Cohort is a group of people who share a common feature or aspect of behaviour or
+(disapproving) a member of a group of people who support another person:
+
+Linux
+====
+View groups user belongs to 
+`
+usermod -G groupname username
+groups username
+id username
+vim /etc/group
+`
 Python
 ====
 Profile python scripts
@@ -54,3 +78,68 @@ than wind up as a distraction that keeps you from running your business.
 This is just the beginning, of course, but through the use of Twitter,
 you tend to gain that coveted *fly on the wall* proximity to see and
 hear what others are saying about you, your business, and your products.
+Emacs
+====
+M-x find-dired
+
+Linux
+====
+creat account
+`
+useradd loginname
+passwd loginname
+`
+move home dir
+`
+usermod -d /search/chenming -m chenming
+`
+Linux
+=====
+Verify that Google Public DNS can resolve the selected hostname
+`dig @8.8.8.8 hostname
+nslookup -debug hostname 8.8.8.8
+host hostname
+cat /etc/resolv.conf
+`
+English
+=====
+In this reporter's humble opinion, perhaps it is a *portent* of things to come.
+(portent of sth) sign or warning of a future (often unpleasant) event; omen
+
+The Wangs have surnames *tied up* in China.
+
+All of this, since the beginning, has been some kind of personal *vendetta*?
+English
+=====
+If you're an early stage *venture capitalist* or *angel investor* there is no
+time like the present to declare a bubble, say valuations are out of control and
+predict the demise of the tech industry in the very near future.
+
+
+SVN
+====
+change host of svn 
+svn switch --relocate 
+change path of svn in the same host
+svn switch target_url
+`
+svn propset -R svn:mime-type 'text/plain; charset=utf-8' .
+`
+Linux
+====
+Search package
+
+    apt-cache search package_regex
+
+convert rpm to deb
+
+    sudo apt-get install alien
+    sudo alien -i /path/to/file.rpm
+Linux
+====
+Cross-compiling 
+
+    ./configure --help
+    --build=BUILD     configure for building on BUILD [guessed]
+    --host=HOST       cross-compile to build programs to run on HOST [BUILD]
+    --target=TARGET   configure for building compilers for TARGET [HOST]

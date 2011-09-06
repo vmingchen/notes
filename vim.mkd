@@ -1,0 +1,39 @@
+# setting
+Vim setting for a particular file:
+put the following modeline near the top or bottom of that file:
+
+    :help 'modeline'
+    e.g. vim: set foldmethod=marker:
+    :help :syn-include
+    set runtimepath+=$HOME/My\ Documents/Dropbox/vim/
+
+Build help index
+
+    :helptags ~/.vim/doc/
+
+# selection 
+
+    viB/vi{ Select content within curly brace
+    vib     Select content within parenthesis
+    vi"     Select content within ""
+    vi'     Select content within ''
+
+# movement
+
+    :ju(mps) : list of your movements {{help|jump-motions}}
+    gk      : move up screen line
+    '.      jump back to last edited line.
+
+# edit
+
+    X  	    Delete characters before the cursor
+    guu     : lowercase line
+    gUU     : uppercase line
+
+# display
+
+    ga      : display hex, ascii value of character under cursor
+    g8      : display hex value of utf-8 character under cursor
+
+# plugin
+surround plugin

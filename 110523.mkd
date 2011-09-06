@@ -1,5 +1,0 @@
-Python
-====
-Get min value and index
-
-    min_index, min_value = min(enumerate(values), key=operator.itemgetter(1))

@@ -1,0 +1,22 @@
+# Bioinformatics
+Chargaff rule describes the adenine-to-thymine and guanine-to-cytosine
+relationshhip in DNA.
+
+Eukaryotic cells encapsulate their DNA in a nucleus and prokaryotics do not. All
+multicellular organisms are eukaryotic while most unicellular organisms are
+prokaryotics. 
+
+# Enlisth
+Our bodies constantly *metabolize* the food we eat.
+
+The only existing treatment for severe combined immunodeficiency (SCID) is bone
+*marrow* transplantation. 
+
+# Algorithm
+Halting Problem cannot be solved by any computer.
+
+Whether a 3-CNF (conjunctive normal form) is satisfiable is NPC. 
+
+Stated in a way that has more relevance to NP-completeness, if we can provide
+evidence that a decision problem is hard, we also provide evidence that its
+related optimization problem is hard.

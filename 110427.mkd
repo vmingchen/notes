@@ -1,9 +1,0 @@
-SVN
-====
-change host of svn 
-svn switch --relocate 
-change path of svn in the same host
-svn switch target_url
-`
-svn propset -R svn:mime-type 'text/plain; charset=utf-8' .
-`

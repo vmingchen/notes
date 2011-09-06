@@ -1,0 +1,151 @@
+English
+====
+A *dollop* of romance now and then is good for everybody.
+
+One showed her wearing sunglasses and leaning on the hood of a white Maserati.
+Another revealed her closetful of Hermès handbags. Yet a third showed her
+sipping a drink in a business-class cabin on an airline flight. None of it was
+outrageous by the standards of China's *nouveau riche*. 
+
+At the same time, she posted photos and entries detailing her jet-set life,
+   writing of the orange Lamborghini she drove in the south and the white
+   Maserati she had in Beijing . 
+
+*Paparazzi*-style photographs showed her arriving in the Beijing airport on June
+27 from Shenzhen, where she also lives, and rushing off in a private *sedan*. 
+
+Linux
+====
+locale 
+
+    $locale -a  # list all locale
+    $LC_ALL=zh_CN.utf8 locale -ck LC_TIME
+
+regular expression, BRE(\{n,m\} \(\) \n), ERE ({n,m} + ? | ())
+
+sed
+
+    $ echo "Tolstoy reads well. Tolstoy writes well." > example.txt
+    $ sed 's/Tolstoy/Camus/2' < example.txt     # only subs the 2nd Tolstoy
+    Tolstoy reads well. Camus writes well.
+    $ sed 's/Tolstoy/Lucy/; s//Lily/' < example.txt 
+    Lucy reads well. Lily writes well.
+    $ sed -n '10,40p' foo.xml           # print lines between 10 and 40
+    $ sed '/foo/,/bar/ s/baz/quuz/g'    # do subs between foo and bar 
+    $ grep chm /etc/passwd
+    chm:x:1000:1000:test,,,:/home/chm:/bin/bash
+    # any other char beside '/' can be used for pattern search with a leading \
+    $ sed -n '\,chm, s::CHM:p' /etc/passwd      
+    CHM:x:1000:1000:test,,,:/home/chm:/bin/bash
+    $ echo abc | sed 's/b*/1/'
+    1abc
+    $ echo abc | sed 's/b*/1/g'
+    1a1b1c
+
+
+sort and output unique key
+
+    $ cat example.txt
+    1 2 3
+    1 2 2
+    1 3 4
+    $ sort -u -k2,2n example.txt 
+    1 2 3
+    1 3 4
+
+# Linux
+
+    # Fix iBus issues (maybe will need to manually add to startup)
+    echo '
+    # fix iBus issues on start
+    export GTK_IM_MODULE=ibus
+    export XMODIFIERS=@im=ibus
+    export QT_IM_MODULE=ibus' >> ~/.bashrc
+
+    # create auto-start for iBus
+    mkdir -p ~/.config/autostart/
+    echo '
+    [Desktop Entry]
+    Type=Application
+    Exec=ibus-daemon -d
+    Hidden=false
+    NoDisplay=false
+    X-GNOME-Autostart-enabled=true
+    Name[en_US]=iBus
+    Name=iBus
+    Comment[en_US]=
+    Comment=
+    ' > ~/.config/autostart/ibus-daemon.desktop
+# Vim
+
+To define a funcref variable, use the following command:
+
+    :let Myfuncrefvar = function("Myfunction")
+    :echo Myfuncrefvar()
+
+Notice that the variable name starts with a capital letter. This is because all
+user-defined function names in Vim need to have a capital first letter in the
+name, and hence all variables that can be executed as functions should have the
+same restriction.
+
+If you define a variable in Vim without specifying which scope it belongs to,
+then it belongs to the global scope by default—unless it is defined in a
+function, which causes it to only be available in the function itself. The
+following eight scopes are available:
+
+    v: Vim predefined global scope
+    g: Global scope
+    b: Buffer scope—only available in the buffer where it was defined
+    t: Tab scope—only available in the Vim tab where it was defined
+    w: Window scope—only available to the current Vim window (viewport)
+    l: Function scope—local to the function it is defined in
+    s: Sourced file scope—local to a Vim script loaded using :source
+    a: Argument scope—used in arguments for functions
+
+Convert vim screen to html `%:TOhtml`
+
+    $ vi +/pattern file     # open and place cursor at pattern
+    cH, dH, yH      # delete to top of screen 
+    enter           # go to first char of next line
+    2c), 2d), 2y)   # delete to second sentence following
+    d/pattern       # delete to next pattern match
+    ci"             # change content in "" 
+    ci[             # change content in []
+    ci(             # change content in ()
+    :g/pattern      # find the last occurence of pattern
+    :g!/pattern/nu  # find all lines not contain pattern and show line number
+    ~               # pre pattern if just search /The, /~n will search /Then
+    :%s/Foo/&, Bar  # same to :%s/Foo/Foo, Bar
+
+# Python
+autocompletion in python
+
+    $python
+    Python 2.6.5 (r265:79063, Apr 16 2010, 13:09:56) 
+    [GCC 4.4.3] on linux2
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import sys
+    >>> import rlcompleter
+    >>> import readline
+    >>> readline.parse_and_bind("tab: complete")
+    >>> sys.std
+    sys.stderr  sys.stdin   sys.stdout  
+    >>> 
+# Lunix
+list processes using a file and kill processes using a file
+
+    $ fuser -m
+    $ fuser -k 
+
+list open file
+
+    $ lsof
+    $ ls /proc/pid/fd
+
+# GDB
+
+    gdb> ptype type_name
+    gdb> set args
+    gdb> set var=value
+    gdb> info args
+
