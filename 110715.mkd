@@ -1,4 +1,0 @@
-# Vim
-The uppercase and lowercase letter designate the same register, but the
-lowercase letter is used to overwrite the previous register contents, while the
-uppercase letter is used to append to the previous register contents.

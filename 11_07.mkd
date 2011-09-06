@@ -1,5 +1,4 @@
-English
-====
+# English
 A *dollop* of romance now and then is good for everybody.
 
 One showed her wearing sunglasses and leaning on the hood of a white Maserati.
@@ -7,15 +6,14 @@ Another revealed her closetful of Hermès handbags. Yet a third showed her
 sipping a drink in a business-class cabin on an airline flight. None of it was
 outrageous by the standards of China's *nouveau riche*. 
 
-At the same time, she posted photos and entries detailing her jet-set life,
-   writing of the orange Lamborghini she drove in the south and the white
-   Maserati she had in Beijing . 
+At the same time, she posted photos and entries detailing her *jet-set* life,
+writing of the orange Lamborghini she drove in the south and the white
+Maserati she had in Beijing . 
 
 *Paparazzi*-style photographs showed her arriving in the Beijing airport on June
 27 from Shenzhen, where she also lives, and rushing off in a private *sedan*. 
 
-Linux
-====
+# Linux
 locale 
 
     $locale -a  # list all locale
@@ -168,7 +166,9 @@ performance: bandwith (throughput), latency (round-trip time)
 The uppercase and lowercase letter designate the same register, but the
 lowercase letter is used to overwrite the previous register contents, while the
 uppercase letter is used to append to the previous register contents.
+
 # Misc
+
 Gmail address:
 
     <a

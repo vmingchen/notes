@@ -6,6 +6,8 @@ A *missionary* is a person who is sent to a foreign country to teach people abou
 Christianity. She spoke about her new project with *missionary zeal* (= with
 great enthusiasm).
 
+Unlike, say svn status, git status runs *nigh-instantly* even on large projects. 
+
 Overboard: throw sb/sth overboard to get rid of sb/sth that you think is useless
 over the side of a boat or a ship into the water.  Huge waves washed him
 overboard.  He threw all his old friends overboard once he was promoted.
@@ -24,9 +26,6 @@ meronyms of 'hat'" .
 *Nidus* is a nest in which spiders or insects deposit their eggs.
 
 *Odds* is the ratio by which one better's wager is greater than that of another.
-
-People who are *laid back* get things done, but they do so with a relaxed
-attitude rather than a frantic attitude.
 
 *Wig* artificial hair, reprimand.
 
@@ -121,4 +120,10 @@ New York City is the *Big Apple*.
 
 I *was hooked on* the StarCraft game.
 
+NPR reporters in northern and central Japan said staple foods were hard to *come
+by* and in some areas gasoline was scarce.
+
 CCTV is *closed-circuit television*.
+
+People who are *laid back* get things done, but they do so with a relaxed
+attitude rather than a frantic attitude.
