@@ -149,3 +149,34 @@ list open file
     gdb> set var=value
     gdb> info args
 
+Network
+====
+link type: point-to-point link, multiple-access link and switched network
+switched network: circuit-switched (telephone), packet-switched
+switch: implement network by connecting nodes
+router (gateway): compose internetwork by connecting networks
+route type: unicast, multicast, broadcast
+SDTM: synchronous time-division multiplexing
+FDM: frequency-division multiplexing
+SAN, LAN, MAN, WAN
+types of channels: request/reply (RRP, eg. FTP), message stream (MSP, eg. VoD)
+performance: bandwith (throughput), latency (round-trip time)
+
+- Foundation
+    - Requirements
+# Vim
+The uppercase and lowercase letter designate the same register, but the
+lowercase letter is used to overwrite the previous register contents, while the
+uppercase letter is used to append to the previous register contents.
+# Misc
+Gmail address:
+
+    <a
+    href="http://www.google.com/recaptcha/mailhide/d?k=01JfyuMdzOCAVlGRdRWkXeUg==&amp;c=-ug8l2Au4B4rBFdoNQTaG-JimMPFWOEK_4uOQ8WeP6U="
+    onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501JfyuMdzOCAVlGRdRWkXeUg\75\75\46c\75-ug8l2Au4B4rBFdoNQTaG-JimMPFWOEK_4uOQ8WeP6U\075',
+    '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300');
+    return false;" title="Reveal this e-mail address">...</a>@gmail.com
+
+Valgrind
+
+    $ valgrind --tool=memcheck .libs/lt-webpyServer
