@@ -107,8 +107,7 @@ brackets can sometimes lead to errors. `[[ $str1 = $str2 ]]`
 Ubuntu, hold down the alt key and click and drag anywhere in the window to move
 it so that all the buttons are visible
 
-# Git
-Checking out a git repository from a remote to your local storage
+# Thinkpad trackpoint settings:
 
-    git clone git@github.com:brianchenming/notes.git
-
+    # echo "255" > /sys/devices/platform/i8042/serio1/sensitivity 
+    # echo "250" > /sys/devices/platform/i8042/serio1/speed

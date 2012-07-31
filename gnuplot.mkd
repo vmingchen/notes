@@ -1,0 +1,38 @@
+# Draw multiple plots 
+ 
+    set terminal postscript eps enhanced color
+    set ylabel "Performance (#files / unit)"
+    set xlabel "Time unit (1 unit is 5 seconds)" 
+
+    # comment to enable autoscale
+    set yrange [20:45]                          
+
+    set output "sysid_4threads.eps"
+    set size 1, 1
+    set origin 0, 0
+
+    set multiplot
+
+    set size 0.5, 0.5
+    set origin 0, 0
+    set title "Performance in SYSID (1st run, 4 threads)" 
+    plot "constant_sysid.txt" using 1 with line
+
+    set size 0.5, 0.5
+    set origin 0, 0.5
+    set title "Performance in SYSID (2nd run, 4 threads)" 
+    plot "constant_sysid.txt" using 2 with line
+
+    set size 0.5, 0.5
+    set origin 0.5, 0
+    set title "Performance in SYSID (3rd run, 4 threads)" 
+    plot "constant_sysid.txt" using 3 with line
+
+    set size 0.5, 0.5
+    set origin 0.5, 0.5
+    set title "Performance in SYSID (average, 4 threads)" 
+    plot "constant_sysid.txt" using 4 with line
+
+    # to continue other plots, we should unset previous multiplot first
+    unset multiplot
+

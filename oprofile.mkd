@@ -1,0 +1,13 @@
+# Oprofile install
+
+    $./configure --help
+    $./configure --disable-gui --without-java
+    $make
+    $sudo make install
+
+# Oprofile get started
+
+    $sudo opcontrol --no-vmlinux --session-dir=/home/mchen/tmp/opsession/
+    $sudo opcontrol --start --session-dir=/home/mchen/tmp/opsession/
+    $sudo opreport -l --session-dir=/home/mchen/tmp/opsession --demangle=smart
+    $sudo opcontrol --shutdown
