@@ -1,0 +1,8 @@
+# checkout CVS
+
+    export CVSROOT=user@cvs.fsl.cs.sunysb.edu:/scm/cvsroot/
+    cvs checkout gos
+
+Or
+
+    cvs -d user@cvs.fsl.cs.sunysb.edu:/scm/cvsroot co gos

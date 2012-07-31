@@ -111,3 +111,24 @@ it so that all the buttons are visible
 
     # echo "255" > /sys/devices/platform/i8042/serio1/sensitivity 
     # echo "250" > /sys/devices/platform/i8042/serio1/speed
+
+# sgid
+The sgid permission for directory means that files created in it the directory
+will inherit its group affiliation from the directory, rather than inheriting
+it from user.
+
+# inspect hardware
+
+    dmidecode        # get Machine info 
+    lsb_release -a   # get Linux distribution info
+    hal
+    hdparm           # get disks
+
+# make sync clock
+> Sometimes when i execute make command, i am getting Clock Skew detected error
+> (your build may be incomplete).
+
+This is a classic problem with VMs: it's hard to get an accurate clock when
+it's virtual. If this happens, run the following command from time to time:
+
+    /sbin/service ntpd restart
