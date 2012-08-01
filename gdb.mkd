@@ -1,0 +1,11 @@
+# debug kernel panic caused by module
+Debug what causes kernel panic after take screenshot of the console, which
+contains stacktrace information
+
+    $ gdb module.ko
+    (gdb) list *(symbol_name + hex_address)
+
+For example
+
+    $ gdb dm-green.ko
+    (gdb) list *(green_map + 0x34)

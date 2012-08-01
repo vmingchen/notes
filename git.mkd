@@ -1,0 +1,27 @@
+# Git
+Checking out a git repository from a remote to your local storage
+
+    $git clone git@github.com:brianchenming/notes.git
+
+This also works for local git repo
+
+    $git clone path/to/local/git/repo
+
+# Setup remote git repo using ssh
+ref: http://blog.opsb.co.uk/instant-remote-git-repository-using-ssh
+Remote
+
+    cd folder/to/repository.git
+    git init --bare
+
+Local
+
+    cd folder/to/become/local/repository
+    git init
+    git remote add remote_name
+    ssh://$username@remote.hostname/folder/to/repository.git
+    git pull remote_name master
+
+# Undo git add before commit
+
+    git reset FILE_TO_UNDO
