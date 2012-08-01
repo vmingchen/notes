@@ -1,0 +1,175 @@
+# DM
+Once you have a Linux 2.6 kernel with dm-crypt support on your machine, you need
+to activate device-mapper and dm-crypt in your kernel.  You can find both
+config options under Device Drivers/Multi-device support (RAID and LVM). Both
+can be compiled statically or as modules (code which you can insert and
+        remove from the kernel at runtime).  The config options are also
+called CONFIG_BLK_DEV_DM and CONFIG_DM_CRYPT.
+
+    linux/include/linux/device-mapper.h
+
+Disable warning of unused variables
+
+    #ifdef UNUSED
+    #elif defined(__GNUC__)
+    #define UNUSED(x) UNUSED_ ## x __attribute__((unused))
+    #elif defined(__LCLINT__)
+    #define UNUSED(x) /*@unused@*/ x
+    #else
+    #define UNUSED(x) x
+    #endif
+
+    void dcc_mon_siginfo_handler(int UNUSED(whatsig)) 
+
+# Linux
+Each respective driver will allocate an available major and minor number to each
+newly discovered and properly identified device and on the 2.6 kernel, udev will
+create an appropriate node name for each device.
+
+    /proc/crypto contains supported crypto modes
+    /proc/scsi/scsi list scsi devices
+
+System call
+
+    int sys_foo(args...)
+    {
+        struct file *f1, *f2;
+        void *buf;
+        int err;
+
+        // initial checks
+        f1 = filp_open(...);
+        if (failed to open f1) {
+            err = -errno;
+            goto out_ok;
+        }
+
+        f2 = filp_open(...);
+        if (failed to open f2) {
+            err = -errno;
+            goto out_close1;
+        }
+
+        buf = kmalloc(...);
+        if (buf == NULL) {
+            err = -ENOMEM;
+            goto out_close2;
+        }
+
+        // main body
+        if (error in the middle of your work) {
+            err = -errno;
+            goto out_cleanup_partial_file;
+        }
+        goto out_kfree;
+
+        // cleanup
+
+    out_cleanup_partial_file:
+        call cleanup_partial_file(...); 
+    out_kfree:
+        kfree(buf);
+    out_close2:
+        close f2;
+    out_close1:
+        close f1;
+    out_ok:
+        printk("exiting %s with err=%d\n", __func__, err);
+    }
+
+
+    int sys_foo_good2
+    {
+        struct file *f1 = NULL, *f2 = NULL;
+        void *buf = NULL;
+        int err = 0;
+
+        // initial checks
+        f1 = filp_open(...);
+        if (failed to open f1) {
+            err = -errno;
+            goto out;
+        }
+
+        f2 = filp_open(...);
+        if (failed to open f2) {
+            err = -errno;
+            goto out;
+        }
+
+        buf = kmalloc(...);
+        if (buf == NULL) {
+            err = -ENOMEM;
+            goto out;
+        }
+
+        // main body
+        if (error in the middle of your work) {
+            err = -errno;
+            goto out_cleanup_partial_file;
+        }
+        goto out;
+
+        // cleanup
+
+    out_cleanup_partial_file:
+        call cleanup_partial_file(...); 
+    out:
+        if (buf)
+            kfree(buf);
+        if (f2)
+            close f2;
+        if (f1)
+            close f1;
+        printk("exiting %s with err=%d\n", __func__, err);
+        return err;
+    }
+
+    #define MAX 4096
+    int sys_foo3(...)
+    {
+    #ifdef BAD
+        void buf[MAX];
+        // bad: kstack size is 4K to 8K
+    #else
+        void *buf = NULL; // kmalloc/kfree
+    #endif
+    }
+
+    // !!! study function, DO NOT assume !!!
+    int sys_foo4()
+    {
+        // kmalloc: 0 on failure, !0 on success
+        // some return 0 (ok), 1 (bad)
+        // some return 1 (ok), 0 (bad)
+        f1 = filp_open(...);
+        if (IS_ERR(f1)) {
+            err = PTR_ERR(f1);  // 
+            goto ...;
+        }
+    }
+
+Write portable code
+
+    #define PRIsize_t "zu"
+    printk("dm_task_create: malloc(%" PRIsize_t ") failed", sizeof(x));
+
+Hook for system call.
+
+    // static kernel code
+
+    $ echo "250" > /sys/devices/platform/i8042/serio1/speed
+    $ echo "255" > /sys/devices/platform/i8042/serio1/sensitivity
+
+
+
+## Debugging kernel
+1. printk: messages go to console, logged in syslog and then go to /var/log/all,
+    dmesg(8)
+
+2. ASSERT
+    BUG_ON(ptr == NULL);
+    WARN_ON(cond);  // prints kernel stack if cond is TRUE
+    dump_stack(); 
+    WARN_ON_ONCE(cond);
+

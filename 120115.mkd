@@ -1,0 +1,5 @@
+# Linux
+Detailed information can be obtained from ld by passing it the --verbose flag.
+For example, an `ld --verbose | grep SEARCH` will illustrate the current search
+paths and their order.
+

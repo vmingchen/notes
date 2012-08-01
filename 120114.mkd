@@ -1,0 +1,12 @@
+# Linux
+Running `make -n` permits previewing the build process, as it prints out all the
+commands that would be triggered by a make, without actually executing them. 
+
+You would normally invoke xmkmf with the -a argument, to automatically do a make
+Makefiles, make includes, and make depend.
+
+In any case, you should run a 'signature check' (against the MD5 checksum) on
+the package, rpm --checksig packagename.rpm, before installing. Likewise highly
+recommended is running rpm -K --nopgp packagename.rpm. The corresponding
+commands for deb packages are dpkg -I | --info packagename.deb and dpkg -e |
+--control packagename.deb. 

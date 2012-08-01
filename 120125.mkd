@@ -1,0 +1,179 @@
+# OS
+Buffer Cache: a device driver cache for I/O blocks, nowdays merged with page
+cache.
+
+Disk Cache: Physical cache in disk.
+
+Use `make help` in your toplevel kernel directory for instructions about how to
+convert it into your favourite format. Example: make htmldocs.
+
+By the way, if you want to see which system calls a program uses, run `strace
+<arguments>`.
+
+Get current UID and check if it is root `if (current_euid()==0)`. 
+
+Under the current kernel API, pass NULL for the root of procfs. Also, instead of
+`create_proc_entry`, you should use `proc_create()` with a proper `const struct
+file_operations *`.
+
+    remove_proc_entry(PROC_ENTRY_FILENAME, &proc_root); /* out of date */
+    remove_proc_entry(PROC_ENTRY_FILENAME, NULL); /* NULL for root of /proc */
+
+Linux kernel use GNU C, which supports inline functions. An inline function is
+defined with `static` and `inline`. Kernel developers use inline functions for
+small time-critical functions. Making large functions inline, especially those
+that are used more than once or are not time critical, is frowned upon by the
+kernel developers.
+
+    static inline void dog(unsigned long tail_size)
+
+The function declaration must precede any usage, or else the compiler cannot
+make the function inline. Common practice is to place inline functions in header
+files. Because they are marked static, an exported function is not created.
+
+
+The gcc C compiler has a built-in directive that optimizes conditional branches
+as either very likely taken or very unlikely taken. The compiler uses the
+directive to appropriately optimize the branch. The kernel wraps the directive
+in very easy-to-use macros, likely() and unlikely(). You should only use these
+directives when the branch direction is overwhelmingly a known priori or when
+you want to optimize a specific case at the cost of the other case.
+
+    /* we predict foo is nearly always zero ... */
+    if (unlikely(foo)) {
+        /* ... */
+    }
+
+The maximum value `pid_t` is only 32,768 by default (changeable) for backward
+compatibility with earlier Unix and Linux versions. You may increase it in
+`/proc/sys/kernel/pid_max`.
+
+All processes are descendants of the init process, whose PID is one.The kernel
+starts init in the last step of the boot process.The init process, in turn,
+       reads the system initscripts and executes more programs, eventually
+       completing the boot process.
+
+PID namespaces
+
+    ..._nr()
+        These operate with the so called "global" PIDs. Global PIDs are the
+        numbers that are unique in the whole system, just like the old PIDs
+        were. E.g. pid_nr(pid) will tell you the global PID of the given struct
+        pid. These are only useful when the PID value is not going to leave the
+        kernel. For example, some code needs to save the PID and then find the
+        task by it. However, in this case saving the direct pointer on the
+        struct pid is more preferable as global PIDs are going be used in kernel
+        logs only. 
+
+
+    ..._vnr()
+        These helpers work with the "virtual" PID, i.e. with the ID as seen by a
+        process. For example, task_pid_vnr(tsk) will tell you the PID of a task,
+        as this task sees it (with sys_getpid()). Note that this value will most
+        likely be useless if you're working in another namespace, so these are
+        always used when working with the current task, since all tasks always
+        see their virtual PIDs.
+
+    ..._nr_ns()
+        These work with the PIDs as seen from the specified namespace. If you
+        want to get some task's PID (for example, to report it to the userspace
+                and find this task later), you may call task_pid_nr_ns(tsk,
+                    current->nsproxy->pid_ns) to get the number, and then find
+                the task using find_task_by_pid_ns(pid,
+                        current->nsproxy->pid_ns). These are used in system
+                calls, when the PID comes from the user space. In this case one
+                task may address another which exists in another namespace.
+
+Look for /sys/class/misc/device-mapper or look in /proc/devices for a
+device-mapper entry to see if it is enabled.
+
+Linux list: 
+
+    struct fox {
+        unsigned long   tail_length;
+        unsigned long   weight;
+        bool            is_fantastic;
+        struct list_head    list;
+    };
+
+    struct fox red_fox = {
+        .tail_length = 40,
+        .weight = 6,
+        .list = LIST_HEAD_INIT(red_fox.list),
+    };
+
+    list_add(&f->list, &fox_list);
+    list_add_tail(struct list_head *new, struct list_head *head);
+
+    struct list_head *p;
+    struct fox *f;
+    list_for_each(p, &fox_list) {
+        /* f points to the structure in which the list is embedded */
+        f = list_entry(p, struct fox, list);
+    }
+
+    list_for_each_entry(f, &fox_list, list) {
+        /* on each iteration, ‘f’ points to the next fox structure ... */
+    }
+
+    void inotify_inode_is_dead(struct inode *inode)
+    {
+        struct inotify_watch *watch, *next;
+        mutex_lock(&inode->inotify_mutex);
+        list_for_each_entry_safe(watch, next, &inode->inotify_watches, i_list) {
+            struct inotify_handle *ih = watch->ih;
+            mutex_lock(&ih->mutex);
+            inotify_remove_watch_locked(ih, watch); /* deletes watch */
+            mutex_unlock(&ih->mutex);
+        }
+        mutex_unlock(&inode->inotify_mutex);
+    }
+
+
+As shown in the code below, `__builtin_return_address` takes an argument called
+level. The argument defines the level of the call stack for which you want to
+obtain the return address. For example, if you specify a level of 0, you are
+requesting the return address of the current function. If you specify a level of
+1, you are requesting the return address of the calling function (and so on).
+
+    void * __builtin_return_address( unsigned int level );
+
+    #define roundup_pow_of_two(n)           \
+        (                       \
+            __builtin_constant_p(n) ? (     \
+                        (n == 1) ? 1 :          \
+                        (1UL << (ilog2((n) - 1) + 1))
+                \
+                                   ) :      \
+            __roundup_pow_of_two(n)         \
+        )
+
+
+
+# Networking
+Open network configuration file
+
+    $ sudo vi /etc/network/interfacesOR$ sudo nano /etc/network/interfaces
+
+Append new network settings:
+
+    iface eth0 inet static
+    address 192.168.1.100
+    netmask 255.255.255.0
+    network 192.168.1.0
+    broadcast 192.168.1.255
+    gateway 192.168.1.254
+
+Or
+
+    auto eth0
+    iface eth0 inet dhcp
+
+Save and close the file. Restart the network:
+
+    $ sudo /etc/init.d/networking restart
+
+# English
+Throughout the Linux kernel community, patches are the *lingua franca* of
+communication. 
+
