@@ -132,3 +132,10 @@ This is a classic problem with VMs: it's hard to get an accurate clock when
 it's virtual. If this happens, run the following command from time to time:
 
     /sbin/service ntpd restart
+
+# shutdown server
+Use -h option, which requests that the system be either halted or powered off
+after it has been brought down, with the  choice  as to which left up to the
+system.
+
+    shutdown -h now 
