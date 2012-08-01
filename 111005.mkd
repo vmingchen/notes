@@ -1,0 +1,4 @@
+# Linux
+Generate random string 
+
+    < /dev/urandom tr -dc A-Za-z0-9_ | head -c 100000 > random.txt

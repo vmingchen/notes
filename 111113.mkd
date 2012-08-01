@@ -1,0 +1,5 @@
+# GDB
+
+    $ gdb -tui
+    $ gdb
+    (gdb)       # press Ctrl-X-A

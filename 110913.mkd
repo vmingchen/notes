@@ -1,0 +1,5 @@
+# Linux
+imagemagick
+
+    $ convert rose.jpg -resize 50% rose.png  # resize
+    $ convert rose.jpg -rotate 180 rose.png     

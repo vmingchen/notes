@@ -2,7 +2,7 @@
 '''
 File: merge_note.py
 Author: Ming Chen
-Description: merge multiple notes to s single one 
+Description: merge multiple notes to single one 
 Change Log:
   v0.1, 01/05/11 23:02:02, initial version
   v0.2, 08/05/11 21:27:22, fix bug of losing last line

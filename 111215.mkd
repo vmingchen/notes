@@ -1,0 +1,21 @@
+# OS
+
+There are 3 kind of "timestamps":
+
+* Access - the last time the file was read
+* Modify - the last time the file was modified (content has been modified)
+* Change - the last time meta data of the file was changed (e.g. permissions)
+
+
+When a filesystem is mounted on a directory, the contents of the directory in
+the parent filesystem are no longer accessible, because every pathname,
+    including the mount point, will refer to the mounted filesystem.
+    However, the original directory's content shows up again when the
+    filesystem is unmounted. This somewhat surprising feature of Unix
+    filesystems is used by system administrators to hide files; they simply
+    mount a filesystem on the directory containing the files to be hidden.
+
+CPU average load
+
+    $cat /proc/loadavg 
+    0.80 0.84 0.81 1/351 31903

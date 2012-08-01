@@ -1,0 +1,47 @@
+# English
+*Pharos* is a tower with a light that gives warning of shoals to passing ships.
+
+The leading man got *laryngitis* but his understudy stepped into the breach and
+gave an excellent performance.
+
+The *pancreas* can produce substances which help in the digestion of food.
+
+*Synapse* is a connection between two nerve cells.
+
+*Ventricular* is anything of or relating to a *ventricle* (of the heart or
+brain).
+
+Rats (Chinese Zodiac) are creative individuals who excel in positions that allow
+them to *call their own shots*. (to make the decisions)
+
+If you're *talking through your hat*, you're talking about something without
+knowing much about it, or you claim something is true when it isn't.
+
+Ten years and a day after the terrorist attack at the World Trade Center, a
+memorial opens to the public. The memorial at Ground Zero in New York has
+waterfalls that spill into the footprints of the Twin Towers and the names of
+the more than 2,900 killed etched into bronze walls along the perimeter.
+
+A gasoline pipeline running through a *slum* in Kenya's capital has exploded
+killing at least 61 people. A local official says he believes the death toll 
+from Monday's blast will rise. A hospital official in Nairobi says that at least
+112 people burnt victims have arrived there.
+
+The only member of a Russian Hockey Team to survive a *ferry* plane crash has
+died of his injuries in a Moscow hospital. Alexander Galimov died Monday of
+severe burns that cover 90% of his body.The only other person to survive,a
+member of the fight crew is undergoing treatment in Moscow.
+
+And it would be a *match-up* of tennis giants at tonight's US open final. Top
+seed *Novak Djokovic* faced second seed *Rafael Nadal*. The men's final has been
+held today at the US Open because of the last week's *torrential* rain.
+
+# OS
+Linux uses lightweight processes to offer better support for multithreaded
+applications. A straightforward way to implement multithreaded applications is
+to associate a lightweight process with each thread. In this way, the threads
+can access the same set of application data structures by simply sharing the
+same memory address space, the same set of open files, and so on; at the same
+time, each thread can be scheduled independently by the kernel so that one may
+sleep while another remains runnable.
+

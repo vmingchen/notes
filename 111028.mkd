@@ -1,0 +1,8 @@
+# CPP
+Debug Macro
+
+    #define LOG(...)                        // disabled
+    #define LOG(...) cprintf(__VA_ARGS__)   // enabled
+
+    #define DEBUG(...) cprintf("%d (%d): ", __FILE__, __LINE__); \\
+            cprintf(__VA_ARGS__);

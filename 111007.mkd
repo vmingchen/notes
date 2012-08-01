@@ -1,0 +1,70 @@
+# Linux
+To see what you've changed but not yet staged, type git diff with no other
+arguments: Git clone and ignore. 
+
+If you want to see what you've staged that will go into your next commit, you
+can use 'git diff --staged'. It's important to note that git diff by itself
+doesn't show all changes made since your last commit — only changes that are
+still unstaged. This can be confusing, because if you've staged all of your
+changes, git diff will give you no output. 
+
+    $ git clone git://github.com/schacon/grit.git mygrit
+    $ git clone user@server:/path.git 
+    $ git clone http(s)://github.com/grit.git
+        
+    $ cat .gitignore
+    # a comment - this is ignored in .gitignore
+    *.a       # no .a files
+    !lib.a    # but do track lib.a, even though you're ignoring .a files above
+    /TODO     # only ignore the root TODO file, not subdir/TODO
+    build/    # ignore all files in the build/ directory
+    doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
+    *~
+
+Note the backslash (\) in front of the \*. This is
+necessary because Git does its own filename expansion in addition to your
+shell's filename expansion. 
+
+    $ git rm log/\*.log     
+
+Another useful thing you may want to do is to keep the file in your working tree
+but remove it from your staging area. 
+
+    $ git rm --cached readme.txt
+
+Git log
+
+    $ git log               // show commits
+    $ git log -p            // show difference
+    $ git log --stat        // show stat info of commits
+    $ git log --pretty=oneline      // oneline log
+    $ git log --pretty=format:"%h - %an, %ar : %s"  // format
+    $ git log --pretty=format:"%h %s" --graph
+    $ git log --since=2.weeks
+    $ git log --grep        // search pattern in commit comments
+
+The last really useful option to pass to git log as a filter is a path. If you
+specify a directory or file name, you can limit the log output to commits that
+introduced a change to those files. This is always the last option and is
+generally preceded by double dashes (--) to separate the paths from the options.
+
+Redo commit
+
+    $ git commit --amend
+
+Unstage file
+
+    $ git reset HEAD filename
+
+Remote. Now you can use the string pb on the command line in lieu of the whole URL.
+
+    $ git remote -v
+    $ git remote add pb git://github.com/paulboone/ticgit.git
+
+When you have your project at a point that you want to share, you have to push
+it upstream. The command for this is simple: git push remote-name branch-name.
+
+    $ git push origin master
+
+
+

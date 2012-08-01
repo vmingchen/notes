@@ -1,0 +1,4 @@
+# Bioinformatics
+The *transcriptome* is the set of all RNA molecules, including mRNA, rRNA, tRNA,
+    and other non-coding RNA produced in one or a population of cells.
+

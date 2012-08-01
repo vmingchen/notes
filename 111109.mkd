@@ -1,0 +1,8 @@
+# Linux
+Git 
+
+    $cat .gitignore     #ignore executable and object files
+    *
+    !*.*
+    *.o
+    $ git archive master | bzip2 > ~/Dropbox/bio/project.tgz

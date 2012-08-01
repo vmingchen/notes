@@ -1,4 +1,7 @@
 # Words
+Both Haskell and SML have pattern matching which makes describing a recursive
+algorithm a *cinch*.
+
 You could *meander* the archive of scripts for days, and they (usually) work no
 matter what OS you run Vim on.
 

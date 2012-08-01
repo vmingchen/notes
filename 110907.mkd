@@ -1,0 +1,92 @@
+# English
+Riley and Vasarely are two noteable artists who made contributions in the
+illusory world of *op art*. A style with graphic abstraction and
+pattern-oriented optical effects (mid-20th century). 
+
+The boxer suffered from many blows in the *boxer ring*. 
+
+*Ginseng* is a medicine made from the root of a Chinese plant, that some people
+think keeps you young and healthy. 
+
+A period of life characterized by physiological and psychic change that marks
+the end of the reproductive capacity of women and terminates with the completion
+of *menopause*. 
+
+Squat is often used in negative sentences for emphasis. He had a job that
+paid him *squat*.
+
+The mother was all *on edge* when her son was having a blood test.
+
+Contrary to Bill Clinton's claim that he never got special favors, his uncle
+*pulled strings* and ran a "concerted lobbying campaign" that helped the
+Democratic presidential candidate dodge the Vietnam draft, the Los Angeles Times
+reported yesterday.
+
+The other day when I was sitting in my basement with Nate and this female I had
+to *third wheel* it. 
+
+*High seas* are the open seas of the world outside the territorial waters of any
+nation. 
+
+# OS
+## interrupts 
+synchronous: caused by CPU (Divide by zero, System call, Bad pointer derefernce)
+asynchronous: caused by an external event (device I/0, timer ticks)
+
+## Intel nomenclature
+Interrupt: asynchronous interrupts
+Exception: synchronous interrupts
+
+## x86 interrupts
+
+interrupts types (0-255): 
+
+* Type 0-31 are for processor interrupts, fixed by intel
+* Type 13 general protection fault (An unauthorized int instruction) 
+* Type 14 always for page faults
+* Type 32-255 are software configured
+* Type 32-47 are for device interrupts (IRQ) in JOS
+* Type 0x80 interrupts for system call in Linux
+* Control jump to kernel. Kernel code runs and handles the interrupt.
+* The register state of the program (sometimes extra info in CPU registers E.g.,
+page faults store the address that caused the fault in the cr2 register) is
+dumped on the kernel's stack. 
+* When handler completes, program resume (see iret instr.)
+
+# Powershell
+
+    netsh int ip set address name="Lan" source=static add=172.16.5.41 \
+        mask=255.255.255.0 gateway=172.16.5.254;
+    netsh int ip set dns name="Lan" static 219.232.48.61;
+
+# Misc
+
+    host www.google.com
+    www.google.com is an alias for www.l.google.com.
+    www.l.google.com has address 64.233.189.104
+    www.l.google.com has address 64.233.189.147
+    www.l.google.com has address 64.233.189.99
+    www.l.google.com has address 64.233.189.103
+    www.google.com has address 74.125.115.147
+
+# Bioinformatics
+The four letters of the DNA alphabet are adenine, thymine, guanine, and
+cytosine. 
+
+A gene is a DNA sequence which acts as a template for building a specific
+protein.
+
+The genome of a bacteria is typically about 1 million base pairs long.
+
+Viruses are simplest organisms which require a living host. Its genome is about
+10,000 base pairs long. 
+
+The human genome is about 3 billion base pairs long. 
+
+The homology between genes in different organisms is a natural consequence of
+evolution. 
+
+PCR stands for polymerase chain reaction. 
+
+Gel electrophoresis separates DNA fragments by the lengths of DNA sequence based
+on their movement speed in electrically charged Gel.

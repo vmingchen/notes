@@ -1,0 +1,188 @@
+# OS
+Two’s complement: In general, to extend an unsigned number, one makes all the
+new bits of the expanded number 0.
+
+x86 Real mode (state at boot; 20-bit address, no virtual memory; no paging)
+
+x86 Protected mode (VM, segmentation and paging)
+
+x86 Long mode
+
+Ring 0: os operation mode
+
+cr3 (control register 3) point to current paging table
+
+Page flags: 3 bits for OS to use
+
+TLB (Translation Lookaside Buffer) is not coherent with memory (tlb_invalidate)
+
+To paraphrase Parkinson's law, "Programs expand to fill the memory available to
+hold them."
+# English
+A *leap of faith*, in its most commonly used meaning, is the act of believing in
+or accepting something intangible or unprovable, or without empirical evidence.
+
+His house is an *eclectic* mixture of the antique and the modern.
+
+An *innate* knowledge of right and wrong.
+
+*Nomenclature* is a system of naming things, especially in science.
+
+# OS
+convert the unsigned word in AX to an unsigned double word in EAX.
+
+    movzx eax, ax ; extends ax into eax
+
+# Bioinformatics
+In bioinformatics, Basic Local Alignment Search Tool, or *BLAST*, is an
+algorithm for comparing primary biological sequence information, such as the
+amino-acid sequences of different proteins or the nucleotides of DNA sequences. 
+
+The *Smith-Waterman algorithm* is a well-known algorithm for performing local
+sequence alignment; that is, for determining similar regions between two
+*nucleotide* or protein sequences.
+
+*Helicases* are a class of enzymes vital to all living organisms. They are motor
+proteins that move directionally along a nucleic acid phosphodiester backbone,
+separating two annealed nucleic acid strands (i.e., DNA, RNA, or RNA-DNA
+hybrid) using energy derived from ATP hydrolysis.
+
+*Primers*, which are short single strands of RNA, are synthesized by a protein
+complex called *primase* and latch on to specific positions in the newly opened
+strands, providing an anchor for the next step.
+
+A DNA *polymerase*, a molecular machine, binds to each freshly separated
+template strand of the DNA. DNA helicase separates strands, DNA polymerase
+ensures proper complementarity of bases. 
+
+Proteins form enzymes that perform biochemical reactions, send signals to other
+cells, form the body's major components, like keratin in our skin.
+
+They worked with the bread mold *Neurospora*, which can survive by consuming very
+simple nutrients like *sucrose* and salt.
+# OS
+Floppy and hard disks for PCs are divided into 512 byte regions called
+*sectors*.  A sector is the disk's minimum transfer granularity: each read or
+write operation must be one or more sectors in size and aligned on a sector
+boundary.
+
+When you compile and link a C program, the compiler transforms each C source
+('.c') file into an object ('.o') file containing assembly language instructions
+encoded in the binary format expected by the hardware. The linker then combines
+all of the compiled object files into a single binary image, which in this case
+is a binary in the ELF format, which stands for "Executable and Linkable
+Format". 
+# Bioinformatics
+Chargaff rule describes the adenine-to-thymine and guanine-to-cytosine
+relationshhip in DNA.
+
+Eukaryotic cells encapsulate their DNA in a nucleus and prokaryotics do not. All
+multicellular organisms are eukaryotic while most unicellular organisms are
+prokaryotics. 
+
+# Enlisth
+Our bodies constantly *metabolize* the food we eat.
+
+The only existing treatment for severe combined immunodeficiency (SCID) is bone
+*marrow* transplantation. 
+
+# Algorithm
+Halting Problem cannot be solved by any computer.
+
+Whether a 3-CNF (conjunctive normal form) is satisfiable is NPC. 
+
+Stated in a way that has more relevance to NP-completeness, if we can provide
+evidence that a decision problem is hard, we also provide evidence that its
+related optimization problem is hard.
+# English
+Riley and Vasarely are two noteable artists who made contributions in the
+illusory world of *op art*. A style with graphic abstraction and
+pattern-oriented optical effects (mid-20th century). 
+
+The boxer suffered from many blows in the *boxer ring*. 
+
+*Ginseng* is a medicine made from the root of a Chinese plant, that some people
+think keeps you young and healthy. 
+
+A period of life characterized by physiological and psychic change that marks
+the end of the reproductive capacity of women and terminates with the completion
+of *menopause*. 
+
+Squat is often used in negative sentences for emphasis. He had a job that
+paid him *squat*.
+
+The mother was all *on edge* when her son was having a blood test.
+
+Contrary to Bill Clinton's claim that he never got special favors, his uncle
+*pulled strings* and ran a "concerted lobbying campaign" that helped the
+Democratic presidential candidate dodge the Vietnam draft, the Los Angeles Times
+reported yesterday.
+
+The other day when I was sitting in my basement with Nate and this female I had
+to *third wheel* it. 
+
+*High seas* are the open seas of the world outside the territorial waters of any
+nation. 
+
+# OS
+## interrupts 
+synchronous: caused by CPU (Divide by zero, System call, Bad pointer derefernce)
+asynchronous: caused by an external event (device I/0, timer ticks)
+
+## Intel nomenclature
+Interrupt: asynchronous interrupts
+Exception: synchronous interrupts
+
+## x86 interrupts
+
+interrupts types (0-255): 
+
+* Type 0-31 are for processor interrupts, fixed by intel
+* Type 13 general protection fault (An unauthorized int instruction) 
+* Type 14 always for page faults
+* Type 32-255 are software configured
+* Type 32-47 are for device interrupts (IRQ) in JOS
+* Type 0x80 interrupts for system call in Linux
+* Control jump to kernel. Kernel code runs and handles the interrupt.
+* The register state of the program (sometimes extra info in CPU registers E.g.,
+page faults store the address that caused the fault in the cr2 register) is
+dumped on the kernel's stack. 
+* When handler completes, program resume (see iret instr.)
+
+# Powershell
+
+    netsh int ip set address name="Lan" source=static add=172.16.5.41 \
+        mask=255.255.255.0 gateway=172.16.5.254;
+    netsh int ip set dns name="Lan" static 219.232.48.61;
+
+# Misc
+
+    host www.google.com
+    www.google.com is an alias for www.l.google.com.
+    www.l.google.com has address 64.233.189.104
+    www.l.google.com has address 64.233.189.147
+    www.l.google.com has address 64.233.189.99
+    www.l.google.com has address 64.233.189.103
+    www.google.com has address 74.125.115.147
+
+# Bioinformatics
+The four letters of the DNA alphabet are adenine, thymine, guanine, and
+cytosine. 
+
+A gene is a DNA sequence which acts as a template for building a specific
+protein.
+
+The genome of a bacteria is typically about 1 million base pairs long.
+
+Viruses are simplest organisms which require a living host. Its genome is about
+10,000 base pairs long. 
+
+The human genome is about 3 billion base pairs long. 
+
+The homology between genes in different organisms is a natural consequence of
+evolution. 
+
+PCR stands for polymerase chain reaction. 
+
+Gel electrophoresis separates DNA fragments by the lengths of DNA sequence based
+on their movement speed in electrically charged Gel.

@@ -1,0 +1,15 @@
+# English
+ The dog kept a <em>vigilant</em> guard over the house.
+
+# Algorithm
+## 3-partition problem
+NP-complete. 
+Whether a given multiset of integers can be partitioned into triples that all
+have the same sum. More precisely, given a multiset S of n = 3 m positive
+integers, can S be partitioned into m subsets S1, S2, …, Sm such that the sum
+of the numbers in each subset is equal? The subsets S1, S2, …, Sm must form a
+partition of S in the sense that they are disjoint and they cover S. Let B
+denote the (desired) sum of each subset Si, or equivalently, let the total sum
+of the numbers in S be m B. The 3-partition problem remains NP-complete when
+every integer in S is strictly between B/4 and B/2. In this case, each subset
+Si is forced to consist of exactly three elements (a triple).

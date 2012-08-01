@@ -1,0 +1,7 @@
+# OS
+The kernel handles interrupts by delivering to the current process one of the
+signals familiar to every Unix programmer; handles exceptions to recover from
+the anomalous condition, such as a Page Fault or a requestvia an assembly
+language instruction such as int or sysenter for a kernel service.
+
+
