@@ -1,0 +1,7 @@
+# Get source code from Git
+
+    git clone git://filebench.git.sourceforge.net/gitroot/filebench/filebench 
+
+# Disable randomization
+
+    #echo 0 > /proc/sys/kernel/randomize_va_space

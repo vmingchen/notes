@@ -167,3 +167,14 @@ update initramfs using
 # Cool linux tools
 http://kkovacs.eu/cool-but-obscure-unix-tools
 http://coolshell.cn/articles/7829.html
+
+# Extract file script
+git://github.com/lzap/dancepill.git
+
+# Wajig
+Wajig is a simplified wrapper to Debian's package management tools including
+dpkg and APT. Wajig provides the functionality of apt-get, dpkg, dpkg-deb,
+apt-cache and other tools. These tools launch as a subprocess. Wajig also
+provides extra functionality beyond that of the stock apt and dpkg tools.  For
+example, the command wajig sizes provides a listing of all installed packages
+and the amount of disk space they require, from smallest to largest.

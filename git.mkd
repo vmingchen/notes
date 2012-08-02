@@ -146,3 +146,6 @@ Create alias
     git config --global alias.gl "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
     git gl
 
+# Set core edit
+
+    git config core.editor vim
