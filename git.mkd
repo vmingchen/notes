@@ -128,4 +128,21 @@ generally preceded by double dashes (--) to separate the paths from the options.
     51a94af - Fix "checkout --track -b newbranch" on detac
     b0ad11e - pull: allow "git pull origin $something:$cur
 
+# Git pretty log
+From http://coolshell.cn/articles/7755.html. 
+
+    git log --pretty=oneline
+    git log --pretty=format:"%h - %an, %ar : %s"
+    git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
+Create alias 
+
+    git config --global alias.ll "log --pretty=oneline"
+    git ll
+
+    git config --global alias.pl "log --pretty=format:'%h - %an, %ar : %s'"
+    git pl
+
+    git config --global alias.gl "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+    git gl
 

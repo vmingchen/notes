@@ -164,3 +164,6 @@ update initramfs using
     03:07.0 Ethernet controller: Intel Corporation 82541GI Gigabit Ethernet
     Controller (rev 05)
 
+# Cool linux tools
+http://kkovacs.eu/cool-but-obscure-unix-tools
+http://coolshell.cn/articles/7829.html

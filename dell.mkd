@@ -4,3 +4,6 @@ Solution: going into BIOS, disable OS Install Mode.
 # Press F1 to retry (continue) and F2 to setup
 To ignore this message and boot into system, disable unused ports (e.g., SATA
 port) in BIOS.
+
+# Compile new kernel on chevron8
+Select drives for Intel 1000+ network card and the SATA controller.
