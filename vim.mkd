@@ -39,3 +39,8 @@ Build help index
 ctags
 crefs
 surround plugin
+surroundit
+
+# View current filetype
+
+	:set filetype?

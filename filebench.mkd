@@ -5,3 +5,35 @@
 # Disable randomization
 
     #echo 0 > /proc/sys/kernel/randomize_va_space
+
+# eventrate
+See
+http://mail.opensolaris.org/pipermail/perf-discuss/2008-November/001813.html
+
+	eventrate rate=2
+
+give you 2 Megabytes a second total I/O bandwidth maximum.
+
+As for how it works, each time an I/O is issued FileBench updates  a global
+megabytes counter. Rate limit compares the value from the  last time it was
+executed with the current value, then checks to see  if there are enough new
+events to allow more I/O. If not, it waits  until more events are generated.
+This is a different sort of blocking  than blocking vs. non blocking I/O. Yes,
+you may have blocking I/O, in  which case you will only be issuing one I/O at a
+time, but if your  storage device is fast enough, you can still read / write
+many  megabytes per second. If the eventgen rate is set to 1 (for example)
+though, you will still only see 1 Megabyte per second of I/O issued at  most,
+no mater how speedy the storage device is.
+
+# prealloc
+http://sourceforge.net/apps/mediawiki/filebench/index.php?title=Workload_Model_Language#prealloc
+
+	prealloc=100
+
+The files defined by the file or fileset entities can either exist as potential
+files or actual ones. As a potential one, information about them is kept by the
+file or fileset entity, but the do not occupy disk space or exist in a
+directory. If they do not exist they can be created later with the creatfile
+flowop. When used with a file, the prealloc attribute specifies that the file
+should actually exist. When used with a fileset, it specifies the percentage of
+files that should actually exist, with a default value of 100%. 

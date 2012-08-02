@@ -178,3 +178,12 @@ apt-cache and other tools. These tools launch as a subprocess. Wajig also
 provides extra functionality beyond that of the stock apt and dpkg tools.  For
 example, the command wajig sizes provides a listing of all installed packages
 and the amount of disk space they require, from smallest to largest.
+
+# View Linux distribution
+
+	$ cat /etc/*-release
+	$ lsb_release -a
+
+# hdparm, get disk information
+
+	$ hdparm -I
