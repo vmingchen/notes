@@ -1,0 +1,6 @@
+# Install screen
+Get screen source code.
+
+    sudo apt-get install libncurses5-dev
+    ./configure && make
+    sudo make install

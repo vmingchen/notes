@@ -1,0 +1,6 @@
+# Amount of Available memory limited to 256MB
+Solution: going into BIOS, disable OS Install Mode.
+
+# Press F1 to retry (continue) and F2 to setup
+To ignore this message and boot into system, disable unused ports (e.g., SATA
+port) in BIOS.

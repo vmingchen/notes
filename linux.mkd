@@ -139,3 +139,28 @@ after it has been brought down, with the  choice  as to which left up to the
 system.
 
     shutdown -h now 
+
+# CentOS Compile New Kernel 
+When compile new kernel from old version of CentOS, it is possible that the new
+kernel complains about no hard drives found. To solve this, enable the
+following two options in kernel config:
+
+    CONFIG_SYSFS_DEPRECATED=y
+    CONFIG_SYSFS_DEPRECATED_V2=y
+
+# Ubuntu compile new kernel
+After make menuconfig, make, make modules_install, and make install, also
+update initramfs using
+
+    $sudo update-initramfs -c -k 3.4.7 # substitute 3.4.7 with your version
+
+# Find network card information
+
+    #lspci | grep -i eth
+    02:05.0 Ethernet controller: Intel Corporation 82546EB Gigabit Ethernet
+    Controller (Copper) (rev 01)
+    02:05.1 Ethernet controller: Intel Corporation 82546EB Gigabit Ethernet
+    Controller (Copper) (rev 01)
+    03:07.0 Ethernet controller: Intel Corporation 82541GI Gigabit Ethernet
+    Controller (rev 05)
+
