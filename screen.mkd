@@ -4,3 +4,12 @@ Get screen source code.
     sudo apt-get install libncurses5-dev
     ./configure && make
     sudo make install
+
+# Cannot find terminfo entry for 'xterm-256color'
+
+    $ screen
+    Cannot find terminfo entry for 'xterm-256color'
+    $ echo $TERM
+    xterm-256color
+    $ export TERM='linux'
+    $ screen

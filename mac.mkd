@@ -1,0 +1,19 @@
+# cut and paste
+
+    command+drag = move
+    option+drag=copy
+    option=command+drag=make alias(shortcut)
+
+# screen Wuff wuff
+http://benmabey.com/2007/12/13/wuff-wuff.html
+
+If you use OSx as your dev box, SSH into linux servers and then use the screen
+command the above phrase should look familiar to you. For whatever reason when
+ever I use screen on a linux box coming from my OSx box the backspace button
+does not send the correct signal and so I am always greeted with screen’s
+visual bell of “Wuff — Wuff!!” on the lower part of my shell. I finally looked
+into it and found a solution. You simply need to place this in your
+.bashrc/.bash_profile on each of your servers and you will no longer be barked
+at when trying to use the backspace key:
+
+    alias screen='TERM=screen screen'

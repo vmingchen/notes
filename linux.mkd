@@ -188,8 +188,90 @@ and the amount of disk space they require, from smallest to largest.
 
 	$ hdparm -I
 
+
 # logrotate
 http://www.thegeekstuff.com/2010/07/logrotate-examples/
 
 	/etc/logrotate.conf
 	man logrotate
+
+# mount debugfs 
+
+  # mount -t debugfs none /sys/kernel/debug/
+
+# Install development man pages
+
+    $ sudo apt-cache search manpages
+    $ sudo apt-get install manpages-dev
+    $ sudo apt-get install manpages-posix
+
+# dev_t
+dev_t typedef as an unsigned bit-or of major and minor dev no.
+
+    MAJORBITS
+    MAJOR
+    MINOR
+
+# Disable terminal bell in bash and vim
+
+    $ echo "set bell-style none" >> ~/.inputrc
+    $ echo "set vb" >> ~/.vimrc
+
+# Decompress bz2 file
+
+    # bunzip2 file.bz2
+
+# Block analysis
+
+    blktrace
+    blkparse
+    btrecord
+    btreplay
+
+# Check if user is root
+
+    if [[ $UID -ne 0 ]]; then
+      echo "$0 must run as root"
+      exit 1
+    fi
+
+# gid of grouped pipeline command
+
+    $ echo -e '#!/bin/bash -\n sleep 120' > sleep-1.sh
+    $ echo -e '#!/bin/bash -\n sleep 120' > sleep-2.sh
+    $ chmod +x ./sleep-*.sh
+    $ (./sleep-1.sh | ./sleep-2.sh) &
+    [4]
+    14794
+    $ echo $!
+    14794
+    $ ps -ef | grep slee-
+    mchen    14795 14794  0 17:49 pts/2    00:00:00 /bin/bash - ./sleep-1.sh
+    mchen    14796 14794  0 17:49 pts/2    00:00:00 /bin/bash - ./sleep-2.sh
+    mchen    14800 11348  0 17:49 pts/2    00:00:00 grep --color=auto sleep- 
+
+# Make, missing separator
+As indicated in the online manual, the most common cause for that error is
+that lines are indented with whitespaces when make expects tab characters.
+
+    Correct
+    target: 
+    \tcmd
+    where \t is TAB
+
+    Wrong
+    target:
+        cmd
+
+# reboot machine using BMC
+
+    $ ipmitool -U root -H i-chevron8 chassis power reset
+
+# Cannot find terminfo entry for 'xterm-256color'
+
+    sudo apt-get install ncurses-term
+
+# Find file of installation
+
+    apt-get install apt-file
+    apt-file search file_name
