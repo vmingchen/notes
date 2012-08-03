@@ -187,3 +187,9 @@ and the amount of disk space they require, from smallest to largest.
 # hdparm, get disk information
 
 	$ hdparm -I
+
+# logrotate
+http://www.thegeekstuff.com/2010/07/logrotate-examples/
+
+	/etc/logrotate.conf
+	man logrotate
