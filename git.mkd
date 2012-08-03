@@ -1,6 +1,7 @@
 # Git
 Checking out a git repository from a remote to your local storage
 
+    git clone https://github.com/brianchenming/profile.git
     git clone git@github.com:brianchenming/notes.git
 
 This also works for local git repo
@@ -149,3 +150,24 @@ Create alias
 # Set core edit
 
     git config core.editor vim
+
+# Show changes of commit
+
+    git show commit-hash-string
+
+# Use tag
+From http://learn.github.com/p/tagging.html
+
+    git tag
+    git tag -a v1.4 -m 'version 1.4'
+    git tag
+    git show v1.4
+    # Tag previous commit, when 9fceb02 is the commit's md5
+    git tag -a v1.2 9fceb02
+    # Share tags
+    git push --tags
+
+# Use diff to patch
+
+    git diff --no-prefix 9fceb02 f4e270d > dest_dir/diff.patch
+    cd dest && patch -p1 < diff.patch
