@@ -1,0 +1,5 @@
+# cut and paste
+
+  command+drag = move
+  option+drag=copy
+  option=command+drag=make alias(shortcut)
