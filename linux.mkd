@@ -243,3 +243,15 @@ dev_t typedef as an unsigned bit-or of major and minor dev no.
     mchen    14796 14794  0 17:49 pts/2    00:00:00 /bin/bash - ./sleep-2.sh
     mchen    14800 11348  0 17:49 pts/2    00:00:00 grep --color=auto sleep- 
 
+# Make, missing separator
+As indicated in the online manual, the most common cause for that error is
+that lines are indented with whitespaces when make expects tab characters.
+
+    Correct
+    target: 
+    \tcmd
+    where \t is TAB
+
+    Wrong
+    target:
+        cmd
