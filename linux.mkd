@@ -255,3 +255,16 @@ that lines are indented with whitespaces when make expects tab characters.
     Wrong
     target:
         cmd
+
+# reboot machine using BMC
+
+    $ ipmitool -U root -H i-chevron8 chassis power reset
+
+# Cannot find terminfo entry for 'xterm-256color'
+
+    sudo apt-get install ncurses-term
+
+# Find file of installation
+
+    apt-get install apt-file
+    apt-file search file_name
