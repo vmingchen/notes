@@ -172,6 +172,12 @@ From http://learn.github.com/p/tagging.html
     git diff --no-prefix 9fceb02 f4e270d > dest_dir/diff.patch
     cd dest && patch -p1 < diff.patch
 
+# Git pull remote branch to new branch
+
+	git checkout -b <new_branch> origin/<new_branch>
+
+	git checkout -b newdesign origin/newdesign
+
 # Use stash
 http://ariejan.net/2008/04/23/git-using-the-stash/
 Stash your current changes
