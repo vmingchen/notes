@@ -1,0 +1,68 @@
+# methodology 
+start from simple targets in the source code
+
+# REQ_DISCARD
+to implement:
+refere dm-stripe.c
+
+	if (unlikely(bio->bi_rw & REQ_DISCARD)) {
+		target_request_nr = map_context->target_request_nr;
+		BUG_ON(target_request_nr >= sc->stripes);
+		return stripe_map_discard(sc, bio, target_request_nr);
+	}
+
+# REQ_FLUSH
+## bio-based
+Call stack
+
+	__split_and_process_bio(struct mapped_device *md, struct bio *bio)
+	static int __clone_and_map_empty_flush(struct clone_info *ci)
+	__issue_target_requests(ci, ti, ti->num_flush_requests, 0);
+	__issue_target_request(ci, ti, request_nr, len);
+
+bio passed:
+
+	struct mapped_device {
+		...
+		struct bio flush_bio;
+	};
+
+	bio_init(&md->flush_bio);
+	md->flush_bio.bi_bdev = md->bdev;
+	md->flush_bio.bi_rw = WRITE_FLUSH;
+
+to implement:
+refer dm-stripe.c
+	
+	static int stripe_map(struct dm_target *ti, struct bio *bio,
+				  union map_info *map_context)
+	{
+		...
+		if (bio->bi_rw & REQ_FLUSH) {
+			target_request_nr = map_context->target_request_nr;
+			BUG_ON(target_request_nr >= sc->stripes);
+			bio->bi_bdev = sc->stripe[target_request_nr].dev->bdev;
+			return DM_MAPIO_REMAPPED;
+		}
+		...
+	}
+
+## request-based
+	
+# Split I/O
+
+	struct dm_target *ti;
+    ti->split_io = ext_size;
+
+# union  map_info 
+Use for per-bio-specific data, used in both map and endio.
+
+	union map_info {
+		void *ptr;
+		unsigned long long ll;
+		unsigned target_request_nr;
+	};
+
+# reference
+## request-based device mapper
+http://lwn.net/Articles/215058/, rqbased-dm: request-based device-mapper

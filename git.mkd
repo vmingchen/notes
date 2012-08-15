@@ -177,3 +177,41 @@ From http://learn.github.com/p/tagging.html
 	git checkout -b <new_branch> origin/<new_branch>
 
 	git checkout -b newdesign origin/newdesign
+
+# Use stash
+http://ariejan.net/2008/04/23/git-using-the-stash/
+Stash your current changes
+
+	$ git stash save 
+	Saved "WIP on master: e71813e..."
+
+List current stashes.  Yes, you can have more than one!! The stash works like a
+stack. Every time you save a new stash, it's put on top of the stack.
+
+	$ git stash list
+	stash@{0}: WIP on master: e71813e..."
+
+Note the stash@{0} part? That's your stash ID, you'll need it to restore it
+later on. Let's do that right now. The stash ID changes with every stash
+you make. stash@{0} refers to the last stash you made.
+
+Apply a stash
+
+	$ git stash apply stash@{0}
+
+You may notice the stash is still there after you have applied it. You can
+drop it if you don't need it any more.
+
+	$ git stash drop stash@{0}
+
+If you want to wipe all your stashes away, run the 'clear' command:
+
+	$ git stash clear
+
+It may very well be that you don't use stashes that often. If you just want to
+quickly stash your changes to restore them later, you can leave out the stash
+ID.
+
+	$ git stash
+	...
+	$ git stash pop
