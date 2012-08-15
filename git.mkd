@@ -209,3 +209,57 @@ ID.
 	$ git stash
 	...
 	$ git stash pop
+
+# git rebase
+Forward-port local commits to the updated upstream head.  Assume the following
+history exists and the current branch is "topic":
+
+      A---B---C topic
+     /
+    D---E---F---G master
+
+From this point, the result of either of the following
+commands:
+
+    git rebase master
+    git rebase master topic
+
+would be:
+
+                  A'--B'--C' topic
+                 /
+    D---E---F---G master
+
+# git reset
+Reset current HEAD to the specified state
+
+Undo add:
+
+    $ edit                                     <1>
+    $ git add frotz.c filfre.c
+    $ mailx                                    <2>
+    $ git reset                                <3>
+    $ git pull git://info.example.com/ nitfol  <4>
+
+Undo a commit and redo
+
+    $ git commit ...
+    $ git reset --soft HEAD^      <1>
+    $ edit                        <2>
+    $ git commit -a -c ORIG_HEAD  <3>
+
+# git merge squash
+http://sandofsky.com/blog/git-workflow.html
+Imagine I create a feature branch and create a series of checkpoint commits
+over the next hour:
+
+    git checkout -b private_feature_branch
+    touch file1.txt
+    git add file1.txt
+    git commit -am "WIP"
+
+When I’m done, instead of a vanilla git merge, I’ll run:
+
+    git checkout master
+    git merge --squash private_feature_branch
+    git commit -v
