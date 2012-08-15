@@ -243,3 +243,15 @@ dev_t typedef as an unsigned bit-or of major and minor dev no.
     mchen    14796 14794  0 17:49 pts/2    00:00:00 /bin/bash - ./sleep-2.sh
     mchen    14800 11348  0 17:49 pts/2    00:00:00 grep --color=auto sleep- 
 
+# linux ACPI, CPU governor and frequency
+Check available settings:
+
+	$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors
+	conservative ondemand userspace powersave performance
+	$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+	2661000 2660000 2527000 2394000 2261000 2128000 1995000 1862000 1729000 1596000
+
+Set governor and frequency
+
+	$ echo "conservative" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governors
+	$ echo "2661000" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_frequencies
