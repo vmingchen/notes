@@ -17,3 +17,10 @@ First, add all the directories, but not any named "CVS":
 Then add all the files, excluding anything in a CVS directory:
 
     find . \( -type d -name CVS -prune \) -o \( -type f -exec cvs add '{}' \; \)
+
+# remove empty folders
+CVS checkout and update will always check out empty directories; that's
+just the way CVS is built. Do an update with "-P" -- "prune" -- to remove
+empty directories:
+
+    cvs update -dP

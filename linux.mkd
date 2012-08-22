@@ -288,3 +288,19 @@ that lines are indented with whitespaces when make expects tab characters.
 
     apt-get install apt-file
     apt-file search file_name
+
+#  Passing an argument through a Makefile
+
+    $ cat Makefile
+    OVERRIDING=default
+    run:
+            echo running with $(ARG) and $(OVERRIDING)
+    $ make run
+    echo running with  and default
+    running with and default
+    $ make run ARG=a
+    echo running with a and default
+    running with a and default
+    $ make run ARG=a OVERRIDING="a little more"
+    echo running with a and a little more
+    running with a and a little more

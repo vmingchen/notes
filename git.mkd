@@ -269,3 +269,7 @@ When I’m done, instead of a vanilla git merge, I’ll run:
     git checkout master
     git merge --squash private_feature_branch
     git commit -v
+
+# git list all remote branches
+
+    git branch -a
