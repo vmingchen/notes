@@ -288,3 +288,10 @@ that lines are indented with whitespaces when make expects tab characters.
 
     apt-get install apt-file
     apt-file search file_name
+
+# Change default os after install ubuntu 12
+
+    $sudo vim /etc/default/grub # change default index to the desired one
+    $sudo update-grub2
+
+
