@@ -63,6 +63,10 @@ Use for per-bio-specific data, used in both map and endio.
 		unsigned target_request_nr;
 	};
 
+# dmsetup message
+
+    dmsetup message /dev/name sector_number message_content
+
 # reference
 ## request-based device mapper
 http://lwn.net/Articles/215058/, rqbased-dm: request-based device-mapper

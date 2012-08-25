@@ -19,8 +19,7 @@ Local
 
     cd folder/to/become/local/repository
     git init
-    git remote add remote_name
-    ssh://$username@remote.hostname/folder/to/repository.git
+    git remote add remote_name ssh://$username@remote.hostname/folder/to/repository.git
     git pull remote_name master
 
 # Undo git add before commit
@@ -269,3 +268,7 @@ When I’m done, instead of a vanilla git merge, I’ll run:
     git checkout master
     git merge --squash private_feature_branch
     git commit -v
+
+# git list all remote branches
+
+    git branch -a
