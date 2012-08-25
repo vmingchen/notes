@@ -19,8 +19,7 @@ Local
 
     cd folder/to/become/local/repository
     git init
-    git remote add remote_name
-    ssh://$username@remote.hostname/folder/to/repository.git
+    git remote add remote_name ssh://$username@remote.hostname/folder/to/repository.git
     git pull remote_name master
 
 # Undo git add before commit
