@@ -1,0 +1,4 @@
+# load mat data from matlab
+
+	import scipy.io
+	mat = scipy.io.loadmat('file.mat')
