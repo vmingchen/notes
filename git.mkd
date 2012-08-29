@@ -209,3 +209,45 @@ ID.
 	$ git stash
 	...
 	$ git stash pop
+
+# view changes of a file
+
+	$ git log -- filename
+	$ git show SHA1 filename
+
+Or
+
+	$ git log -p filename
+
+Example
+
+	$git log -- videoserver.f
+	commit 61ef08057a8d815a04a7816f04297d9ffc0e9f4f
+	Author: brianchenming <brianchenming@gmail.com>
+	Date:   Mon Aug 6 01:21:29 2012 -0400
+
+		1, test videoserver.f; 2, fix a bug in format_and_mount.sh
+
+	commit c38abe41a9bd7cce8225c5996546727c2229c361
+	Author: Zhichao Li <zhicli@fsl.cs.sunysb.edu>
+	Date:   Wed May 16 17:30:35 2012 -0400
+
+		add files/dirs from cse595g3
+
+	$git show 61ef08057a8d815a04a7816f04297d9ffc0e9f4f videoserver.f
+	commit 61ef08057a8d815a04a7816f04297d9ffc0e9f4f
+	Author: brianchenming <brianchenming@gmail.com>
+	Date:   Mon Aug 6 01:21:29 2012 -0400
+
+		1, test videoserver.f; 2, fix a bug in format_and_mount.sh
+
+	diff --git a/traces/videoserver.f b/traces/videoserver.f
+	index 451b27b..ade1f90 100644
+	--- a/traces/videoserver.f
+	+++ b/traces/videoserver.f
+	@@ -33,34 +33,38 @@
+	 # 10 seconds. Thus the write bandwidth will be set as $filesize/$repintval.
+	 #
+
+	-set $dir=/mnt/exp
+	+
