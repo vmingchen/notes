@@ -309,3 +309,10 @@ When I’m done, instead of a vanilla git merge, I’ll run:
 #git list all remote branches
 
     git branch -a
+
+#git diff to include added files
+http://stackoverflow.com/questions/855767/can-i-use-git-diff-on-untracked-files
+Use a new version of git, which supports `git add -N`
+
+    git add -N newfile
+    git diff

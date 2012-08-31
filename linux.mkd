@@ -309,3 +309,25 @@ that lines are indented with whitespaces when make expects tab characters.
     $ make run ARG=a OVERRIDING="a little more"
     echo running with a and a little more
     running with a and a little more
+
+# Easy way to find UID and GID
+
+    cd ~
+    ls -ln
+
+# Check linux distribution
+
+    cat /etc/*release*
+
+# Install autopilot
+
+    yum install perl
+    yum install perl-CPAN
+
+# Get block size
+
+    /sbin/dumpe2fs /dev/sda | grep 'Block size'
+
+# Get block capacity
+
+    blockdev --getsize /dev/sda
