@@ -215,6 +215,41 @@ ID.
 	...
 	$ git stash pop
 
+# view changes of a file
+
+	$ git log -- filename
+	$ git show SHA1 filename
+
+Or
+
+	$ git log -p filename
+
+Example
+
+	$git log -- videoserver.f
+	commit 61ef08057a8d815a04a7816f04297d9ffc0e9f4f
+	Author: brianchenming <brianchenming@gmail.com>
+	Date:   Mon Aug 6 01:21:29 2012 -0400
+		1, test videoserver.f; 2, fix a bug in format_and_mount.sh
+	commit c38abe41a9bd7cce8225c5996546727c2229c361
+	Author: Zhichao Li <zhicli@fsl.cs.sunysb.edu>
+	Date:   Wed May 16 17:30:35 2012 -0400
+		add files/dirs from cse595g3
+	$git show 61ef08057a8d815a04a7816f04297d9ffc0e9f4f videoserver.f
+	commit 61ef08057a8d815a04a7816f04297d9ffc0e9f4f
+	Author: brianchenming <brianchenming@gmail.com>
+	Date:   Mon Aug 6 01:21:29 2012 -0400
+		1, test videoserver.f; 2, fix a bug in format_and_mount.sh
+	diff --git a/traces/videoserver.f b/traces/videoserver.f
+	index 451b27b..ade1f90 100644
+	--- a/traces/videoserver.f
+	+++ b/traces/videoserver.f
+	@@ -33,34 +33,38 @@
+	 # 10 seconds. Thus the write bandwidth will be set as $filesize/$repintval.
+	 #
+	-set $dir=/mnt/exp
+	+
+
 # git rebase
 Forward-port local commits to the updated upstream head.  Assume the following
 history exists and the current branch is "topic":
@@ -235,6 +270,7 @@ would be:
                  /
     D---E---F---G master
 
+
 # git reset
 Reset current HEAD to the specified state
 
@@ -253,6 +289,7 @@ Undo a commit and redo
     $ edit                        <2>
     $ git commit -a -c ORIG_HEAD  <3>
 
+
 # git merge squash
 http://sandofsky.com/blog/git-workflow.html
 Imagine I create a feature branch and create a series of checkpoint commits
@@ -269,6 +306,13 @@ When I’m done, instead of a vanilla git merge, I’ll run:
     git merge --squash private_feature_branch
     git commit -v
 
-# git list all remote branches
+#git list all remote branches
 
     git branch -a
+
+#git diff to include added files
+http://stackoverflow.com/questions/855767/can-i-use-git-diff-on-untracked-files
+Use a new version of git, which supports `git add -N`
+
+    git add -N newfile
+    git diff

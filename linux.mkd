@@ -310,6 +310,7 @@ that lines are indented with whitespaces when make expects tab characters.
     echo running with a and a little more
     running with a and a little more
 
+
 # bash case fail through
 Fail through of bash is only available after bash 4.0
 
@@ -326,3 +327,25 @@ Fail through of bash is only available after bash 4.0
 # set printk level
 
     $ echo 7 > /proc/sys/kernel/printk
+
+# Easy way to find UID and GID
+
+    cd ~
+    ls -ln
+
+# Check linux distribution
+
+    cat /etc/*release*
+
+# Install autopilot
+
+    yum install perl
+    yum install perl-CPAN
+
+# Get block size
+
+    /sbin/dumpe2fs /dev/sda | grep 'Block size'
+
+# Get block capacity
+
+    blockdev --getsize /dev/sda
