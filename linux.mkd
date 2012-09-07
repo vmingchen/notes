@@ -309,3 +309,20 @@ that lines are indented with whitespaces when make expects tab characters.
     $ make run ARG=a OVERRIDING="a little more"
     echo running with a and a little more
     running with a and a little more
+
+# bash case fail through
+Fail through of bash is only available after bash 4.0
+
+    case a in 
+    1) echo ;&
+    2) echo ;;
+    esac
+
+# user and group
+
+    $ groups  # view groups belongs to
+    $ id      # view groups names and numeric values
+
+# set printk level
+
+    $ echo 7 > /proc/sys/kernel/printk
