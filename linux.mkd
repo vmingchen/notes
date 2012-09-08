@@ -349,3 +349,17 @@ Fail through of bash is only available after bash 4.0
 # Get block capacity
 
     blockdev --getsize /dev/sda
+
+# Fix slow ssh login
+debug:
+
+    ssh -vvv user@host
+
+On ssh server
+
+    echo "UseDNS no" >> /etc/ssh/sshd_config
+    echo "GSSAPIAuthentication=no" >> /etc/ssh/sshd_config
+
+# Fix encoding problem when ssh
+
+     alias ghadoop='luit -encoding gbk ssh -o GSSAPIAuthentication=no ime@10.12.11.200'

@@ -24,3 +24,7 @@ Edit /etc/grub.cfg, and add "crashkernel=128M"
     $ cd ~/linux
     $ find . -iname vmlinux
     ./arch/x86/boot/compressed/vmlinux
+
+# All registered file sytems
+
+    $ cat /proc/filesystems
