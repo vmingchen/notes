@@ -1,0 +1,104 @@
+# Keep eyes on pipeline
+
+    weights=(1 2 3)     # global variable
+
+    # cannot change global weights
+    function setweights() { 
+        local i=0 
+        echo "$1" | tr ',' '\n' | while read type; do  
+            weights[$i]="$type"; 
+            echo "weights[$i]: ${weights[$i]}" 
+            let ++i; 
+        done 
+    }
+
+    # change global weights
+    function setweights() { 
+        tmp=`mktemp`
+        echo "$1" | tr ',' '\n' > $tmp
+        while read type; do 
+            weights[$i]="$type";
+            echo "${weights[$i]}"
+            let ++i;
+        done < $tmp
+        rm -f $tmp
+    }
+
+# tty
+tty is a Unix device file that handles input and output for your terminal, window, etc.
+
+    % tty
+    /dev/tty07
+
+# create and delete temp file or dir
+
+    TMPDIR=`mktemp -d`
+    trap "rm -rf $TMPDIR" EXIT
+
+# Bash substitute
+
+    $ echo Chenming
+    Chenming
+    $ ^C^c
+    echo chenming
+    chenming
+    $ echo Chenming
+    Chenming
+    $ ^C^c^ chenjun
+    echo chenming chenjun
+    chenming chenjun
+    $ echo !:1:p
+    echo chenming
+
+# Make your terminal sane again
+
+    $ stty sane
+
+# Use the -n argument to bash to test syntax often
+
+    $ bash -n myscript
+
+# Bash getopts, parsing arguments and data
+
+    while getopts 'W:ch' opt; do
+        case "$opt" in
+            W) setweights "$OPTARG" ;;
+            c) run_classify=true; ;;
+            ?) usage; exit 1; ;;
+        esac
+    done
+    shift $(($OPTIND - 1))
+
+    # leading ':' v---here to silence getopts.
+    #   ':' argument missing
+    #   '?' unknown option
+    while getopts :W:ch opt; do
+        case "$opt" in
+            \:) echo "argument missing from -$OPTARG option"; exit 1; ;;
+            \?) echo "unknown option: -$OPTARG"; exit 1; ;;
+        esac
+    done
+
+    # parse output with a function call
+    function lsparts ( )
+    {
+        PERMS=$1
+        LCOUNT=$2
+        OWNER=$3
+        GROUP=$4
+        SIZE=$5
+        CRDATE=$6
+        CRTIME=$7
+        FILE=$8
+    }
+    lsparts $(ls -l "$1")
+
+    # parse output with read
+    ls -l "$1" | { read PERMS LCOUNT OWNER GROUP SIZE CRDATE CRTIME FILE ;
+        echo $FILE has $LCOUNT 'link(s)' and is $SIZE bytes long. ;
+    }
+
+# Exit shell immediately if a simple command exits with a nonzero exit value.
+
+    $ set -e    
+

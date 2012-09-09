@@ -44,3 +44,23 @@ surroundit
 # View current filetype
 
 	:set filetype?
+
+
+# open file at particular position
+
+    $ vim +num file     # open file at a specified line
+    $ vim -t main       # open file at a specified tag (ctags)
+
+# scroll windows
+
+    :set scrollbind     # scb, set in window 1
+    :set scrollbind     # scb, set in window 2
+
+# compare open windows
+
+    :diffthis           # difft, in window 1
+    :diffthis           # in window 2
+    :diffoff            # diffo
+
+    :diffs file_to_compare
+    :vert diffs file_to_compare
