@@ -17,3 +17,7 @@ into it and found a solution. You simply need to place this in your
 at when trying to use the backspace key:
 
     alias screen='TERM=screen screen'
+
+# Take screenshot
+
+    grab

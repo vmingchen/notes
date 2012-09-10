@@ -316,3 +316,7 @@ Use a new version of git, which supports `git add -N`
 
     git add -N newfile
     git diff
+
+# Compare the changes, and diff
+
+    git diff previous-commit last-commit interesting_files
