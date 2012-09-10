@@ -306,6 +306,25 @@ When I’m done, instead of a vanilla git merge, I’ll run:
     git merge --squash private_feature_branch
     git commit -v
 
+# git add, rename, remove remote repo
+
+    $ git remote
+    origin
+    $ git remote add pb git://github.com/paulboone/ticgit.git
+    $ git remote -v
+    origin	git://github.com/schacon/ticgit.git
+    pb	git://github.com/paulboone/ticgit.git
+
+    $ git remote rename pb paul
+    $ git remote
+    origin
+    paul
+
+    $ git remote rm paul
+    $ git remote
+    origin
+
+
 #git list all remote branches
 
     git branch -a
