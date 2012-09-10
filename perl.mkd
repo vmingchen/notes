@@ -1,0 +1,4 @@
+# perldoc
+
+    $ perldoc List::Util
+    $ perldoc perltoc

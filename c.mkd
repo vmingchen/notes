@@ -1,0 +1,8 @@
+# pthread cancel
+pthread_cancel cannot control where in the child thread we can kill it,
+even 
+
+    pthread_setcancaltype(PTHREAD_CANCEL_DEFERRED, NULL);
+    pthread_testcancel();
+
+cannot guarantee so. It is tested, and is at least true on 2.6.32 ubuntu.
