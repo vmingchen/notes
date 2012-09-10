@@ -57,3 +57,8 @@ you see cumulative results for 10, 20, 30, etc. seconds.
 `psrun -10 60` - (notice the minus before 10) -  same as above, but do
 reset counters. In this case, every 10 seconds you see performance for
 the last 10 seconds.
+
+# Max number of files we can preallocate
+By default the max number of files we can preallocate is `1024*1024`. This can
+be changed by setting FILEBENCH_NFILESETENTRIES in ipc.h, but it will require
+more memory.
