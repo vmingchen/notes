@@ -566,3 +566,13 @@ Automatically log out. Set the $TMOUT environment variable in /etc/bashrc or
         date -d "$refdate $num days ago" +'%Y%m%d'
     }
 
+# install deb package
+
+    $ sudo dpkg -i package.deb
+
+# check memory usage
+
+    $ top
+    $ cat /proc/meminfo
+    $ free
+
