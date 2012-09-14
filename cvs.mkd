@@ -24,3 +24,11 @@ just the way CVS is built. Do an update with "-P" -- "prune" -- to remove
 empty directories:
 
     cvs update -dP
+
+# discard local change
+
+    cvs update -C filename
+
+# compare local file with server file
+
+    cvs diff -up original.php
