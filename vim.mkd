@@ -64,3 +64,42 @@ surroundit
 
     :diffs file_to_compare
     :vert diffs file_to_compare
+
+# Vim windows
+
+    $ vim -O file1 file2    # split window vertically
+    $ vim -o file1 file2    # split window horizontally
+    $ vimdiff -o file1 file2
+
+    CTRL-W s    
+    :sp
+    CTRL-W v
+    :vs
+    CTRL-W n
+    :new
+    CTRL-W j    # move cursor to window below
+    CTRL-W k    # move cursor to window above
+    CTRL-W h    # move cursor to window left
+    CTRL-W l    # move cursor to window right
+    CTRL-W t    # move cursor to top-left window
+    CTRL-W b    # move cursor to bottom-right window
+    CTRL-W p    # go to previsou window
+    CTRL-W o    # make current window the only one
+    :hid        # quit current window
+    :sv         # split and view (readonly)
+    :sf {file}  # search for file in 'path' and split if found
+
+# misc tips
+
+    :h \_p      # any printable character including newline
+    ;           # next f, F, t, T command
+    ,           # next f, F, t, T command in opposite direction
+    @:          # next command-mode command
+    CTRL-a      # inc number
+    CTRL-x      # dec number
+    *,#         # find word under cursor
+    ["x]S       # delete [into register x] and start insert, same to cc
+    gD          # go to global definition
+    C-d, C-t    # indent in insert mode, very useful
+    C-w         # delete previous word in insert mode
+

@@ -13,3 +13,7 @@ Get screen source code.
     xterm-256color
     $ export TERM='linux'
     $ screen
+
+# clear screen
+
+    C-a Z   # clear screen 

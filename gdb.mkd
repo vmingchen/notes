@@ -9,3 +9,23 @@ For example
 
     $ gdb dm-green.ko
     (gdb) list *(green_map + 0x34)
+
+# set exec-wrapper wrapper 
+When 'exec-wrapper' is set, the specified wrapper is used to launch programs
+for debugging. gdb starts your program with a shell command of the form exec
+wrapper program. Quoting is added to program and its arguments, but not to
+wrapper, so you should add quotes if appropriate for your shell. The wrapper
+runs until it executes your program, and then gdb takes control.
+
+You can use any program that eventually calls execve with its arguments as a
+wrapper. Several standard Unix utilities do this, e.g. env and nohup. Any Unix
+shell script ending with exec "$@" will also work.
+
+For example, you can use env to pass an environment variable to the debugged
+program, without setting the variable in your shell's environment:
+
+    (gdb) set exec-wrapper env 'LD_PRELOAD=libtest.so'
+    (gdb) run
+    (gdb) where     # where
+    (gdb) finish    # finish
+

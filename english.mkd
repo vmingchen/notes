@@ -295,3 +295,19 @@ silhouette icon that Twitter assigns you when you create your account.
 
 Come off is to succeed; triumph. John *came off* with flying colors in his final
 exams at college.
+
+Jukebox is a machine in a pub, bar, etc. that plays music when you put coins
+into it. Their favourite song was playing on the *jukebox*.
+
+Lore is knowledge and information related to a particular subject, especially
+when this is not written down; the stories and traditions of a particular group
+of people.  Tribal *lore* and custom have been passed down orally.
+
+svelte: (approving) (of a person, especially a woman) thin in a graceful and
+attractive way.
+
+That is both a blessing and a curse since you can, in essence, violate the
+encapsulation of the outer class by *mucking up* the outer class's protected and
+private fields. 
+
+If something is *slated*, it is criticized very severely.

@@ -13,3 +13,6 @@ specify the username you want to use to the repository.
 
     $ svn commit -m 'comments' --username chenming 
 
+# SVN add external package dependency
+
+    $ svn propedit svn:externals 
