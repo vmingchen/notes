@@ -36,3 +36,12 @@
     # to continue other plots, we should unset previous multiplot first
     unset multiplot
 
+# Using column 1 as X-axis and column 2 as Y-axis
+
+    gnuplot> set output 'figure.png'
+    gnuplot> set term png size 1200, 900
+    gnuplot> set output 'figure.png' 
+    gnuplot> set title 'Distribution of Length of Webpy Query'
+    gnuplot> plot 'data.txt' using 1:2 with lines
+
+

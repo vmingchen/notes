@@ -1,0 +1,30 @@
+# set printk level
+
+    echo 7 > /proc/sys/kernel/printk
+
+# magic SysRq
+enable it in kernel option:
+
+    CONFIG_MAGIC_SYSRQ=y
+    $cat /proc/sys/kernel/sysrq 
+    1
+
+see http://kernel.org/doc/Documentation/sysrq.txt.
+
+# enable kdump
+
+    yum install kexec-tools
+
+Edit /etc/grub.cfg, and add "crashkernel=128M"
+
+    kernel /boot/vmlinuz-2.6.18-128.1.16.el5 ro root=LABEL=/ rhgb quiet crashkernel=128M
+
+# uncompressed vmlinux file
+
+    $ cd ~/linux
+    $ find . -iname vmlinux
+    ./arch/x86/boot/compressed/vmlinux
+
+# All registered file sytems
+
+    $ cat /proc/filesystems

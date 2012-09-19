@@ -37,3 +37,38 @@ directory. If they do not exist they can be created later with the creatfile
 flowop. When used with a file, the prealloc attribute specifies that the file
 should actually exist. When used with a fileset, it specifies the percentage of
 files that should actually exist, with a default value of 100%. 
+
+# finishonbytes
+Stops the filebench run when the number of bytes of I/O specified by value have
+been read and/or written. If a target flowop is specified than the i/o
+bandwidth produced by that particular flowop (separately for each thread)
+determines when to stop.
+
+	flowop finishonbytes name=<name>,value=<bytes>,[target=<io-producing-flowop]
+
+# psrun
+`psrun` does the same thing as `run` command, but periodically prints
+statistics. Here are the examples:
+
+`psrun 10 60` - run for 60 seconds, snapshot statistics every 10
+seconds. Notice, that counters are not reset after every period, so
+you see cumulative results for 10, 20, 30, etc. seconds.
+
+`psrun -10 60` - (notice the minus before 10) -  same as above, but do
+reset counters. In this case, every 10 seconds you see performance for
+the last 10 seconds.
+
+# Max number of files we can preallocate
+By default the max number of files we can preallocate is `1024*1024`. This can
+be changed by setting FILEBENCH_NFILESETENTRIES in ipc.h, but it will require
+more memory.
+
+# use randvar
+`randvar` in Filebench can generate pesudo random values when the random source
+is set to 'rand48'. See testrandvar.f for details.
+
+	define randvar name=$fileidx2, type=gamma, seed=17, mean=250, gamma=50000, min=0, randsrc=rand48
+	flowop openfile name=openfile2,filesetname=bigfileset,fd=1,indexed=$fileidx2
+
+BTW, it is not possible to eval a randvar and save its value into an ordinary
+variable. So to get the same value, we can use the trick in testrandvar.f.

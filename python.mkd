@@ -1,0 +1,19 @@
+# load mat data from matlab
+
+	import scipy.io
+	mat = scipy.io.loadmat('file.mat')
+
+# Profile python scripts
+`
+python -m cProfile program.py params
+`
+
+# Get min value and index
+
+    min_index, min_value = min(enumerate(values), key=operator.itemgetter(1))
+
+
+# select nsmallest
+
+    import heapq
+    heapq.nsmallest(N, iterable)

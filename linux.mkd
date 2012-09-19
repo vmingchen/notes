@@ -188,6 +188,13 @@ and the amount of disk space they require, from smallest to largest.
 
 	$ hdparm -I
 
+
+# logrotate
+http://www.thegeekstuff.com/2010/07/logrotate-examples/
+
+	/etc/logrotate.conf
+	man logrotate
+
 # mount debugfs 
 
   # mount -t debugfs none /sys/kernel/debug/
@@ -243,6 +250,19 @@ dev_t typedef as an unsigned bit-or of major and minor dev no.
     mchen    14796 14794  0 17:49 pts/2    00:00:00 /bin/bash - ./sleep-2.sh
     mchen    14800 11348  0 17:49 pts/2    00:00:00 grep --color=auto sleep- 
 
+# linux ACPI, CPU governor and frequency
+Check available settings:
+
+	$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors
+	conservative ondemand userspace powersave performance
+	$ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+	2661000 2660000 2527000 2394000 2261000 2128000 1995000 1862000 1729000 1596000
+
+Set governor and frequency
+
+	$ echo "conservative" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governors
+	$ echo "2661000" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_frequencies
+
 # Make, missing separator
 As indicated in the online manual, the most common cause for that error is
 that lines are indented with whitespaces when make expects tab characters.
@@ -259,4 +279,304 @@ that lines are indented with whitespaces when make expects tab characters.
 # join multiple lines into one
 
 	ls  | xargs echo
+
+# reboot machine using BMC
+
+    $ ipmitool -U root -H i-chevron8 chassis power reset
+
+# Cannot find terminfo entry for 'xterm-256color'
+
+    sudo apt-get install ncurses-term
+
+# Find file of installation
+
+    apt-get install apt-file
+    apt-file search file_name
+
+# Change default os after install ubuntu 12
+
+    $sudo vim /etc/default/grub # change default index to the desired one
+    $sudo update-grub2
+
+#  Passing an argument through a Makefile
+
+    $ cat Makefile
+    OVERRIDING=default
+    run:
+            echo running with $(ARG) and $(OVERRIDING)
+    $ make run
+    echo running with  and default
+    running with and default
+    $ make run ARG=a
+    echo running with a and default
+    running with a and default
+    $ make run ARG=a OVERRIDING="a little more"
+    echo running with a and a little more
+    running with a and a little more
+
+
+# bash case fail through
+Fail through of bash is only available after bash 4.0
+
+    case a in 
+    1) echo ;&
+    2) echo ;;
+    esac
+
+# user and group
+
+    $ usermod -G groupname username
+    $ groups username # view groups belongs to
+    $ id username     # view groups names and numeric values
+    $ cat /etc/group
+
+Set group
+
+    $ usermod -G groupname username
+
+# set printk level
+
+    $ echo 7 > /proc/sys/kernel/printk
+
+# Easy way to find UID and GID
+
+    cd ~
+    ls -ln
+
+# Check linux distribution
+
+    cat /etc/*release*
+
+# Install autopilot
+
+    yum install perl
+    yum install perl-CPAN
+
+# Get block size
+
+    /sbin/dumpe2fs /dev/sda | grep 'Block size'
+
+# Get block capacity
+
+    blockdev --getsize /dev/sda
+
+# Fix slow ssh login
+debug:
+
+    ssh -vvv user@host
+
+On ssh server
+
+    echo "UseDNS no" >> /etc/ssh/sshd_config
+    echo "GSSAPIAuthentication=no" >> /etc/ssh/sshd_config
+
+# Fix encoding problem when ssh
+
+     alias ghadoop='luit -encoding gbk ssh -o GSSAPIAuthentication=no ime@10.12.11.200'
+
+# creat user account
+
+    useradd loginname
+    passwd loginname
+
+# move home dir
+
+    usermod -d /search/chenming -m chenming
+
+# Verify that Google Public DNS can resolve the selected hostname
+
+    dig @8.8.8.8 hostname
+    nslookup -debug hostname 8.8.8.8
+    host hostname
+    cat /etc/resolv.conf
+
+# search package
+
+    apt-cache search package_regex
+    yum search package_regex
+
+# convert rpm to deb
+
+    sudo apt-get install alien
+    sudo alien -i /path/to/file.rpm
+
+# Cross-compiling 
+
+    ./configure --help
+    --build=BUILD     configure for building on BUILD [guessed]
+    --host=HOST       cross-compile to build programs to run on HOST [BUILD]
+    --target=TARGET   configure for building compilers for TARGET [HOST]
+
+# Identifying Open Ports
+Find open ports
+
+    $ grep port /etc/services
+    $ grep 2432 /etc/services
+
+Few quick methods/programs that we can use to find out running processes and
+associated ports
+
+    $ netstat -tulpn
+
+fuser to view process occupying given port
+
+    $ fuser port_num/tcp_or_udp
+    $ fuser 50075/tcp
+    50075/tcp:            7535
+
+To make `usermod` take effect, the user involved should logout and re-login
+
+    # groupadd -g 503 ime
+    # usermod -g 'init_login_gid' -G 'group1, group2' loginname
+    # usermod -g ime -G ime,root chenming
+    # chown -R chenming:ime /home/chenming
+    # id chenming
+
+# shells
+Bourne-type shells, such as bash , usually have $ in the prompt. The C shell
+uses % (but tcsh users often use `>`). 
+
+The shell doesn't start a separate process to run internal commands (such as
+cd). External commands require the shell to fork and exec (such as ls) a
+new subprocess.
+
+# Linux/Unix booting
+When you first log in to a Unix system, the login program performs various
+security measures. First, login checks to see if you are not the root user and
+whether the file /etc/nologin exists \(it is created by the shutdown command to
+indicate that the system is being brought down for maintenance\). If both of
+these conditions are true, the login program prints the contents of that file to
+the terminal, and the login fails. 
+
+Second, login checks to see if there are any special conditions on your login
+attempt (which may be defined in /etc/usertty or /etc/securetty), such as on
+which tty you're coming in. Linux systems do this, for example. Some systems
+(such as Darwin and other BSD-based systems) also check /etc/fbtab and may
+restrict your access to any devices listed in that file. These systems may also
+log failed login attempts to a file, such as /var/log/failedlogin, if it exists.
+login may also record the time of login in the file /var/log/lastlog, make an
+entry in the file /var/run/utmp, showing that you are successfully logged in
+\(it is removed once you log out\), and append the utmp entry to the file
+/var/log/wtmp , showing that you logged in. This wtmp record will be updated on
+logout, showing the duration of your login session.
+
+If the file .hushlogin exists in the user's home directory, the login will be
+quiet; otherwise, the following sequence of events will occur. If the system has
+any special copyright information to display, it will be printed to the
+terminal, followed by the message of the day (usually stored in /etc/motd ), and
+the user's last login time and system of origin \(from the wtmp file, as
+discussed in the previous paragraph\). 
+
+Finally, if all other checks have passed and restrictions have been performed,
+login starts a shell for you. Which shell depends on what is set in your
+user database entry (/etc/passwd, NIS, or possibly NetInfo under Darwin). If
+the shell specified for you is not interactive (Section 3.4), you may well
+be denied a command line.  This is common for POP and ftp-only user
+accounts, where /bin/true and /bin/false are often specified as shells to
+disallow shell logins from those accounts. 
+
+# rlogin
+Don't have a terminal with multiple windows or another terminal close to your
+desk? You can get the same result by using rlogin, su or telnet to log in to
+your host again from the same terminal. 
+
+    % vi .cshrc 
+    ...Make edits to the file...
+    % rlogin localhost 
+    ...Logs you in to your same account...
+    An error message 
+    % logout 
+    Connection closed.
+    % vi .cshrc 
+    ...Edit to fix mistake...
+
+# Grep
+
+    $ grep -v        # reVersed, find items without pattern
+    $ grep -q        # quiet, answer found or not by $?
+    $ grep -h        # do not print filename 
+    $ grep -l        # just print filename 
+    $ zgrep regex xxx.gz    # search compressed file
+    $ zcat                  # cat compressed file
+    $ rm -i $(grep -l 'This file is obsolete' * )
+
+# Linux hostname
+/etc/hosts is for mapping IP addresses to hosts.  To change the hostname, it
+depends on the distro you're running. it's usually /etc/hostname or
+/etc/HOSTNAME or /etc/sysconfig/network. hostname command can temporary change
+hostname.
+
+# Awesome Linux commands
+
+    $ mkisofs -V LABEL -r dir | gzip > cdrom.iso.gz 
+    #Create cdrom image from contents of dir
+
+    $ mount -o loop cdrom.iso /mnt/dir 
+    #Mount the cdrom image at /mnt/dir (read only)
+
+    $ gzip -dc cdrom.iso.gz | cdrecord -v dev=/dev/cdrom - 
+    #Burn cdrom image (use dev=ATAPI -scanbus to confirm dev)
+
+# awk tips
+
+    split(string, chars, "")        # convert string into array of chars
+    split("", array)                # empty array
+    split(string, fields, "[ ]")    # use a single blank as separator
+
+# ls commands 
+
+    $ ls -u             # access time, visit time
+    $ ls -c             # modify time, time of inode metadata modified
+    $ ls -l             # change time, time of file content changed 
+    $ cp -p             # preserve change time of file
+    $ chroot            # prevent malicious escape to the parent directory
+    $ bash -n scriptname    # check bash script syntax
+
+# sudo
+Take the time to learn a bit about sudo itself and the /etc/sudoers file. You
+should always use visudo to edit your /etc/sudoers file. Like vipw, visudo
+locks the file so that only one person can edit it at a time, and it performs
+some syntax sanity checks before replacing the production file so that you
+don’t accidentally lock yourself out of your system.
+
+ssh: mkdir -m 0700 -p ~/.ssh. Your ~/.ssh directory must be mode 0700 or OpenSSH
+will complain. It’s not a bad idea to use chmod 0600 ~/.ssh/authorized_keys as
+well.
+
+Automatically log out. Set the $TMOUT environment variable in /etc/bashrc or
+~/.bashrc to the number of seconds of inactivity before ending the session.
+
+    $ declare -r TMOUT=3600     # or
+    $ readonly TMOUT=3600
+
+# View CPU information
+
+    $ less /proc/cpuinfo
+    $ pstree
+    $ ps -u chenming
+
+# date
+
+    $ refdate="2007-09-03"
+    $ sec=`date -d "$refdate" +s`
+    $ let sec=$((sec - N*24*60*60))
+    $ date -d "1970-01-01 UTC $sec seconds" +'%Y%m%d'
+    $ date -d "$refdate $N day ago" +'%Y%m%d'   
+
+    function prevdate() {
+        local ref="$1"
+        local num="${2:-1}"
+        local refdate=`date -d "${ref}" +'%Y-%m-%d'`
+        date -d "$refdate $num days ago" +'%Y%m%d'
+    }
+
+# install deb package
+
+    $ sudo dpkg -i package.deb
+
+# check memory usage
+
+    $ top
+    $ cat /proc/meminfo
+    $ free
 

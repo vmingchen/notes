@@ -1,0 +1,8 @@
+# hostname
+
+    Use hostname in conf files. Hostname like `zw_139_171` is illegal, do not
+    contain `_`. 
+
+# HADOOP_CLASSPATH
+
+    Use HADOOP_CLASSPATH in HADOOP_HOME/conf/hadoop-env.sh to add extra library

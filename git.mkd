@@ -19,8 +19,7 @@ Local
 
     cd folder/to/become/local/repository
     git init
-    git remote add remote_name
-    ssh://$username@remote.hostname/folder/to/repository.git
+    git remote add remote_name ssh://$username@remote.hostname/folder/to/repository.git
     git pull remote_name master
 
 # Undo git add before commit
@@ -171,3 +170,172 @@ From http://learn.github.com/p/tagging.html
 
     git diff --no-prefix 9fceb02 f4e270d > dest_dir/diff.patch
     cd dest && patch -p1 < diff.patch
+
+# Git pull remote branch to new branch
+
+	git checkout -b <new_branch> origin/<new_branch>
+
+	git checkout -b newdesign origin/newdesign
+
+# Use stash
+http://ariejan.net/2008/04/23/git-using-the-stash/
+Stash your current changes
+
+	$ git stash save 
+	Saved "WIP on master: e71813e..."
+
+List current stashes.  Yes, you can have more than one!! The stash works like a
+stack. Every time you save a new stash, it's put on top of the stack.
+
+	$ git stash list
+	stash@{0}: WIP on master: e71813e..."
+
+Note the stash@{0} part? That's your stash ID, you'll need it to restore it
+later on. Let's do that right now. The stash ID changes with every stash
+you make. stash@{0} refers to the last stash you made.
+
+Apply a stash
+
+	$ git stash apply stash@{0}
+
+You may notice the stash is still there after you have applied it. You can
+drop it if you don't need it any more.
+
+	$ git stash drop stash@{0}
+
+If you want to wipe all your stashes away, run the 'clear' command:
+
+	$ git stash clear
+
+It may very well be that you don't use stashes that often. If you just want to
+quickly stash your changes to restore them later, you can leave out the stash
+ID.
+
+	$ git stash
+	...
+	$ git stash pop
+
+# view changes of a file
+
+	$ git log -- filename
+	$ git show SHA1 filename
+
+Or
+
+	$ git log -p filename
+
+Example
+
+	$git log -- videoserver.f
+	commit 61ef08057a8d815a04a7816f04297d9ffc0e9f4f
+	Author: brianchenming <brianchenming@gmail.com>
+	Date:   Mon Aug 6 01:21:29 2012 -0400
+		1, test videoserver.f; 2, fix a bug in format_and_mount.sh
+	commit c38abe41a9bd7cce8225c5996546727c2229c361
+	Author: Zhichao Li <zhicli@fsl.cs.sunysb.edu>
+	Date:   Wed May 16 17:30:35 2012 -0400
+		add files/dirs from cse595g3
+	$git show 61ef08057a8d815a04a7816f04297d9ffc0e9f4f videoserver.f
+	commit 61ef08057a8d815a04a7816f04297d9ffc0e9f4f
+	Author: brianchenming <brianchenming@gmail.com>
+	Date:   Mon Aug 6 01:21:29 2012 -0400
+		1, test videoserver.f; 2, fix a bug in format_and_mount.sh
+	diff --git a/traces/videoserver.f b/traces/videoserver.f
+	index 451b27b..ade1f90 100644
+	--- a/traces/videoserver.f
+	+++ b/traces/videoserver.f
+	@@ -33,34 +33,38 @@
+	 # 10 seconds. Thus the write bandwidth will be set as $filesize/$repintval.
+	 #
+	-set $dir=/mnt/exp
+	+
+
+# git rebase
+Forward-port local commits to the updated upstream head.  Assume the following
+history exists and the current branch is "topic":
+
+      A---B---C topic
+     /
+    D---E---F---G master
+
+From this point, the result of either of the following
+commands:
+
+    git rebase master
+    git rebase master topic
+
+would be:
+
+                  A'--B'--C' topic
+                 /
+    D---E---F---G master
+
+
+# git reset
+Reset current HEAD to the specified state
+
+Undo add:
+
+    $ edit                                     <1>
+    $ git add frotz.c filfre.c
+    $ mailx                                    <2>
+    $ git reset                                <3>
+    $ git pull git://info.example.com/ nitfol  <4>
+
+Undo a commit and redo
+
+    $ git commit ...
+    $ git reset --soft HEAD^      <1>
+    $ edit                        <2>
+    $ git commit -a -c ORIG_HEAD  <3>
+
+
+# git merge squash
+http://sandofsky.com/blog/git-workflow.html
+Imagine I create a feature branch and create a series of checkpoint commits
+over the next hour:
+
+    git checkout -b private_feature_branch
+    touch file1.txt
+    git add file1.txt
+    git commit -am "WIP"
+
+When I’m done, instead of a vanilla git merge, I’ll run:
+
+    git checkout master
+    git merge --squash private_feature_branch
+    git commit -v
+
+# git add, rename, remove remote repo
+
+    $ git remote
+    origin
+    $ git remote add pb git://github.com/paulboone/ticgit.git
+    $ git remote -v
+    origin	git://github.com/schacon/ticgit.git
+    pb	git://github.com/paulboone/ticgit.git
+
+    $ git remote rename pb paul
+    $ git remote
+    origin
+    paul
+
+    $ git remote rm paul
+    $ git remote
+    origin
+
+
+#git list all remote branches
+
+    git branch -a
+
+#git diff to include added files
+http://stackoverflow.com/questions/855767/can-i-use-git-diff-on-untracked-files
+Use a new version of git, which supports `git add -N`
+
+    git add -N newfile
+    git diff
+
+# Compare the changes, and diff
+
+    git diff previous-commit last-commit interesting_files

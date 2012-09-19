@@ -1,0 +1,9 @@
+# Manipulate directory
+
+    M-x find-dired
+
+# Emacs shortcuts
+
+    delete the previous character ^H 
+    delete the current character ^D
+    delete the last word ^W
