@@ -62,3 +62,13 @@ the last 10 seconds.
 By default the max number of files we can preallocate is `1024*1024`. This can
 be changed by setting FILEBENCH_NFILESETENTRIES in ipc.h, but it will require
 more memory.
+
+# use randvar
+`randvar` in Filebench can generate pesudo random values when the random source
+is set to 'rand48'. See testrandvar.f for details.
+
+	define randvar name=$fileidx2, type=gamma, seed=17, mean=250, gamma=50000, min=0, randsrc=rand48
+	flowop openfile name=openfile2,filesetname=bigfileset,fd=1,indexed=$fileidx2
+
+BTW, it is not possible to eval a randvar and save its value into an ordinary
+variable. So to get the same value, we can use the trick in testrandvar.f.

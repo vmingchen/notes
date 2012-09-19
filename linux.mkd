@@ -276,6 +276,10 @@ that lines are indented with whitespaces when make expects tab characters.
     target:
         cmd
 
+# join multiple lines into one
+
+	ls  | xargs echo
+
 # reboot machine using BMC
 
     $ ipmitool -U root -H i-chevron8 chassis power reset
