@@ -255,3 +255,8 @@ that lines are indented with whitespaces when make expects tab characters.
     Wrong
     target:
         cmd
+
+# join multiple lines into one
+
+	ls  | xargs echo
+
