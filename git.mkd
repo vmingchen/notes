@@ -153,6 +153,8 @@ Create alias
 # Show changes of commit
 
     git show commit-hash-string
+    git show --stat --oneline commit-hash-string
+    git show --name-only commit-hash-string
 
 # Use tag
 From http://learn.github.com/p/tagging.html
@@ -339,3 +341,4 @@ Use a new version of git, which supports `git add -N`
 # Compare the changes, and diff
 
     git diff previous-commit last-commit interesting_files
+

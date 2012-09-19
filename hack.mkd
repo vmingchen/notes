@@ -28,3 +28,20 @@ Edit /etc/grub.cfg, and add "crashkernel=128M"
 # All registered file sytems
 
     $ cat /proc/filesystems
+
+# Linux thread
+In old Linux, using a pthread_create to create a new thread will actually
+create two new processes, one for the new thread, one for a manager thread. The
+manager thread is created the first time a program calls pthread_create to
+create a new thread.
+
+This is true until NPTL (Native Posix Threads Library) was introduced in kernel
+2.6.
+
+# Linux documentation
+http://www.scribd.com/doc/24220666/52/Thread-API
+
+# malloc
+glibc's malloc uses the data segment to satisfy small allocations (128K, but
+configurable) and anonymous memory mappings to satisfy large allocations
+(mapped to /dev/zero).
