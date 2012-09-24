@@ -3,8 +3,8 @@ dgamma(x, shape, rate) = (x<0)? 0 :	(x==0)? ((shape<1)? 1/0 : (shape==1)? rate :
 pgamma(x, shape, rate) = (x<0)? 0 : igamma(shape, x*rate)
 
 set samples 1001
-set terminal postscript eps noenhanced color 
-set output "gamma.eps"
+#set terminal postscript eps noenhanced color 
+#set output "gamma.eps"
 set border 3
 
 set xtics 0,2
@@ -23,4 +23,5 @@ plot [0:20] \
     f(x,2,2.0) title "k = 2, θ = 2.0", \
     f(x,3,2.0) title "k = 3, θ = 2.0", \
     f(x,5,1.0) title "k = 5, θ = 1.0", \
+    f(x,4,0.25) title "k = 4, θ = 0.25", \
     f(x,9,0.5) title "k = 9, θ = 0.5" lt 7
