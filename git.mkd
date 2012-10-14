@@ -342,3 +342,7 @@ Use a new version of git, which supports `git add -N`
 
     git diff previous-commit last-commit interesting_files
 
+# Permanently remove files
+Remove files permanently between commits from 8c2b5c2 .
+
+	git filter-branch --tree-filter 'rm -f results/web_server/webserver-8g-*/out/*.out' 8c2b5c2..HEAD
