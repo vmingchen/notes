@@ -6,3 +6,175 @@ even
     pthread_testcancel();
 
 cannot guarantee so. It is tested, and is at least true on 2.6.32 ubuntu.
+
+# minor differences
+
+    char c[] = "hello";
+    const char *c = "hello";
+
+## in-order-traversal without recurrence
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        stack<int> nvisits;
+        stack<TreeNode *> ancestors;
+        vector<int> results;
+        
+        if (root == NULL)
+            return results;
+        
+        ancestors.push(root);
+        nvisits.push(0);
+        
+        TreeNode *p = NULL;
+        while (! ancestors.empty()) {
+            p = ancestors.top();
+            int n = nvisits.top();
+            if (n == 0) {
+                nvisits.pop();
+                nvisits.push(n+1);
+                
+                if (p->left) {
+                    ancestors.push(p->left);
+                    nvisits.push(0);                    
+                }
+            } else if (n == 1) {
+                results.push_back(p->val);
+                
+                nvisits.pop();
+                nvisits.push(n+1);
+                
+                if (p->right) {
+                    ancestors.push(p->right);
+                    nvisits.push(0);
+                }
+            } else {
+                ancestors.pop();
+                nvisits.pop();
+            }
+        }
+        
+        return results;
+    }
+};
+
+# level traversal
+
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int> > levelOrder(TreeNode *root) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        vector< vector<int> > results;
+        vector< vector<TreeNode *> > queue;
+        
+        if (! root) return results;
+        
+        queue.push_back(vector<TreeNode *>(1, root));
+        results.push_back(vector<int>(1, root->val));
+        
+        for (int i = 0; i < queue.size(); ++i) {
+            vector<int> newResults;
+            vector<TreeNode *> newNodes;
+            for (int j = 0; j < queue[i].size(); ++j) {
+                if (queue[i][j]->left) {
+                    newResults.push_back(queue[i][j]->left->val);
+                    newNodes.push_back(queue[i][j]->left);
+                }
+                if (queue[i][j]->right) {
+                    newResults.push_back(queue[i][j]->right->val);
+                    newNodes.push_back(queue[i][j]->right);
+                }
+            }
+            if (newResults.size() > 0) {
+                results.push_back(newResults);
+                queue.push_back(newNodes);
+            }
+        }
+        
+        return results;
+    }
+};
+
+#  Jump Game 1
+
+class Solution {
+public:
+    bool canJump(int A[], int n) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if (n == 0) return true;
+        if (A[0] >= n) return true;
+        
+        int furthest = 0;
+        int evenFurther = 0;
+        for (int i = 0; i <= furthest; ++i) {
+            int newVal = i + A[i];
+            if (newVal > furthest)
+                furthest = newVal;
+            if (furthest >= n - 1)
+                return true;
+        }
+        
+        return false;
+    }
+};
+
+# Maximal Rectangle
+
+	class Solution {
+	    int maxColumns(const vector<int> &columns, int weight) {
+		int maxLength = 0;
+		
+		int curLength = 0;        
+		for (unsigned i = 0; i < columns.size(); ++i) {
+		    if (columns[i] == weight) {
+		        if (++curLength > maxLength)
+		            maxLength = curLength;
+		    } else {
+		        curLength=0;
+		    }
+		}
+		
+		return maxLength * weight;
+	    }
+	public:
+	    int maximalRectangle(vector<vector<char> > &matrix) {
+		// Start typing your C/C++ solution below
+		// DO NOT write int main() function
+		int mr = 0;
+		
+		for (unsigned bi = 0; bi < matrix.size(); ++bi) {
+		    vector<int> columns(matrix[bi].size(), 0);
+		    for (unsigned ei = bi; ei < matrix.size(); ++ei) {
+		        for (unsigned j = 0; j < columns.size(); ++j) {
+		            columns[j] += (matrix[ei][j] - '0');
+		        }
+		        int mc = maxColumns(columns, ei - bi + 1);
+		        if (mc > mr) mr = mc;
+		    }
+		}
+		
+		return mr;
+	    }
+	};
