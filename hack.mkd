@@ -59,3 +59,9 @@ To free pagecache, dentries and inodes:
 
     echo 3 > /proc/sys/vm/drop_caches
 
+# stack
+The kernel, instead, has a very small stack; it can be as small as a
+single, 4096-byte page. Your functions must share that stack with the
+entire kernel-space call chain. Thus, it is never a good idea to declare
+large automatic variables; if you need larger structures, you should
+allocate them dynamically at call time.

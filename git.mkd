@@ -346,3 +346,9 @@ Use a new version of git, which supports `git add -N`
 
     git tag v1.0
     git describe —always
+
+# Permanently remove files
+Remove files permanently between commits from 8c2b5c2 .
+
+	git filter-branch --tree-filter 'rm -f results/web_server/webserver-8g-*/out/*.out' 8c2b5c2..HEAD
+

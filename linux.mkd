@@ -580,3 +580,7 @@ Automatically log out. Set the $TMOUT environment variable in /etc/bashrc or
     $ cat /proc/meminfo
     $ free
 
+# remove no longer needed packages
+
+	sudo apt-get autoremove
+

@@ -7,3 +7,14 @@
     delete the previous character ^H 
     delete the current character ^D
     delete the last word ^W
+
+# dired shortcuts
+
+    j: go to file
+    +newolder: create newfolder
+    m: mark files
+    R newfolder: move marked files into newfolder
+    d: delete file
+    x: execute delete
+    !: execute bash cmd
+

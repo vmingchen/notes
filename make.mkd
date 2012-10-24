@@ -1,0 +1,217 @@
+# rule
+A simple makefile consists of “rules” with the following shape:
+
+     target ... : prerequisites ...
+                  recipe
+
+     .DEFAULT_GOAL := foo
+
+# concepts
+
+Makefiles contain five kinds of things: explicit rules, implicit rules,
+variable definitions, directives, and comments.
+
+A directive is an instruction for make to do something special while reading
+the makefile. These include:
+
+    1. Reading another makefile (see Including Other Makefiles).
+    2. Deciding (based on the values of variables) whether to use or ignore a
+       part of the makefile (see Conditional Parts of Makefiles).
+    3. Defining a variable from a verbatim string containing multiple lines
+       (see Defining Multi-Line Variables). 
+
+By default, when make looks for the makefile, it tries the following names, in
+order: GNUmakefile, makefile and Makefile. You should only use GNUmakefile if
+you have a makefile that is specific to GNU make, and will not be understood by
+other versions of make. '-f' to use other names.
+
+# include
+
+    include filenames...
+
+If you want make to simply ignore a makefile which does not exist or cannot be
+remade, with no error message, use the -include directive instead of include,
+like this:
+
+    -include filenames...  # or
+    sinclude filenames...
+
+If the environment variable MAKEFILES is defined, make considers its value as a
+list of names (separated by whitespace) of additional makefiles to be read
+before the others.
+
+To continue 'Section 3.5' ....
+
+# define variables
+
+    VAR = value
+    VAR := value    # allows recursion
+
+    VAR := $(VAR) foo   # wrong
+    VAR := $(VAR) foo   # correct
+
+    VAR += foo      # GNU extension
+
+    define VAR
+    FOO
+    BAR
+    endef
+
+# pesudo target is a name without corresponding file
+
+    .PHONY: clean
+
+# Implicit rule enable make be used without a Makefile
+`make -p` to list all implicit rules.
+
+Use implicit rule for c file:
+
+    $ cat hello.c 
+    #include        <stdio.h>
+    int main ( int argc, char *argv[] ) { 
+        printf("hello world\n");
+        return 0;
+    }
+
+    $ make CFLAGS='-g -O0' hello
+    cc -g -O0    hello.c   -o hello
+
+Use implicit rule for shell file:
+
+    $ cat hello.sh 
+    #!/bin/bash -
+    echo "hello world"
+
+    $ make hello
+    cat hello.sh >hello 
+    chmod a+x hello
+
+    $ ./hello
+    hello world
+
+Custom Implicit Rules
+
+    %.o : %.cc
+        $(CXX) -c $(CPPFLAGS) $(CXXFLAGS) $<
+
+# Conditions
+
+    [ifeq | ifneq | ifdef | ifndef] tests
+    ...
+    else
+    ...
+    endif
+
+    ifdef (debug)
+    CFLAGS += -g -O0
+    else
+    CFLAGS += -O2
+    endif
+
+
+# Automatic variables
+
+    $@    target name
+    $%    target member name, when the target is an archive member.
+    $+    all prerequisites
+    $^    all unique prerequisites
+    $<    first prerequisite
+    $?    all prerequisites newer than the target
+    lib: foo.o bar.o lose.o win.o
+          ar r lib $?
+    $|    names of all the order-only prerequisites, with spaces between them. 
+    $*    base name of wildcard match
+
+#Functions
+
+    $(subst from,to,text) 	Replace from with to in text.
+
+    $(patsubst pattern,replacement,text) 	Replace words matching pattern with replacement in text.
+    OBJS:=$(patsubst %.c, %.o, $(SRCS)))
+
+    $(strip string) 	Remove excess whitespace characters from string.
+    $(findstring find,text) 	Locate find in text.
+    $(filter pattern...,text) 	Select words in text that match one of the pattern words.
+    $(filter-out pattern...,text) 	Select words in text that do not match any of the pattern words.
+    $(sort list) 	Sort the words in list lexicographically, removing duplicates.
+    $(dir names...) 	Extract the directory part of each file name.
+    $(notdir names...) 	Extract the non-directory part of each file name.
+    $(suffix names...) 	Extract the suffix (the last dot and following characters) of each file name.
+
+    $(basename names...) 	Extract the base name of each file name.
+    $(addsuffix suffix,names...) 	Append suffix to each word in names.
+    OBJS:=$(addsuffix .o, $(basename $(SRCS)))
+
+    $(addprefix prefix,names...) 	Prepend prefix to each word in names.
+    $(join list1,list2) 	Join two parallel lists of words.
+    $(word n,text) 	Extract the nth word (one-origin) of text.
+    $(words text) 	Count the number of words in text.
+    $(wordlist s,e,text) 	Returns the list of words in text from s to e.
+    $(firstword names...) 	Extract the first word of names.
+
+    $(wildcard pattern...) 	Find file names matching a shell file name pattern (not a `%' pattern).
+    LIBSRCS=$(wildcard src/*.cpp)
+
+    $(error text...) 	When this function is evaluated, make generates a fatal error with the message text.
+    $(warning text...) 	When this function is evaluated, make generates a warning with the message text.
+
+    $(shell command) 	Execute a shell command and return its output.
+    SUBDIRS=$(shell find src tests -type d)
+    BUILD=$(shell git log | head -n 1 | sed "s/commit //")
+    DATE=$(shell date)  # evaluated once, and replaced in multiple occurences
+    DATE=`date`         # evaluated in multiple occurences
+
+    $(origin variable) 	Return a string describing how the make variable variable was defined.
+    $(foreach var,words,text) 	Evaluate text with var bound to each word in words, and concatenate the results.
+    $(call var,param,...) 	Evaluate the variable var replacing any references to $(1),$(2) with the first, second, etc. param values.
+    add = @echo $(1) + $(2) | bc
+    sum = $(call add,3,6)
+
+# Substitution
+
+    LIBSRCS=$(wildcard src/*.cpp)
+    OBJDIR=bin/objs
+    IBOBJS=$(LIBSRCS:%.cpp=$(OBJDIR)/%.o)
+
+# VPATH
+
+    $ cat Makefile
+    VPATH=../src    # extra folder to search for files if not found in PWD
+    foo: foo.c
+        $(CC) -o $@ $^
+
+    $ make
+    gcc -o foo ../src/foo.c
+
+    # search file of particular suffix
+    vpath %.sh ../scripts
+
+# Special built-in target names
+
+.SUFFIXES
+    The prerequisites of the special target .SUFFIXES are the list of suffixes
+    to be used in checking for suffix rules.
+
+.DEFAULT
+    The recipe specified for .DEFAULT is used for any target for which no rules
+    are found (either explicit rules or implicit rules).o
+
+.SECONDARY
+    The targets which .SECONDARY depends on are treated as intermediate files,
+    except that they are never automatically deleted.
+
+.DELETE_ON_ERROR
+    If .DELETE_ON_ERROR is mentioned as a target anywhere in the makefile, then
+    make will delete the target of a rule if it has changed and its recipe
+    exits with a nonzero exit status, just as it does when it receives a
+    signal.
+
+.IGNORE
+    If you specify prerequisites for .IGNORE, then make will ignore errors in
+    execution of the recipe for those particular files. The recipe for .IGNORE
+    (if any) is ignored. 
+
+.SILENT
+    If you specify prerequisites for .SILENT, then make will not print the
+    recipe used to remake those particular files before executing them. The
+    recipe for .SILENT is ignored. 
