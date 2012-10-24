@@ -45,3 +45,17 @@ http://www.scribd.com/doc/24220666/52/Thread-API
 glibc's malloc uses the data segment to satisfy small allocations (128K, but
 configurable) and anonymous memory mappings to satisfy large allocations
 (mapped to /dev/zero).
+
+# drop VFS cache
+To free pagecache:
+
+    echo 1 > /proc/sys/vm/drop_caches
+
+To free dentries and inodes:
+
+    echo 2 > /proc/sys/vm/drop_caches
+
+To free pagecache, dentries and inodes:
+
+    echo 3 > /proc/sys/vm/drop_caches
+

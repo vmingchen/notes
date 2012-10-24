@@ -21,3 +21,8 @@ at when trying to use the backspace key:
 # Take screenshot
 
     grab
+
+# Firefox is already running
+Remove the lock file:
+
+    /home/mchen/Library/Application Support/Firefox/Profiles/3arunadv.default/.parentlock

@@ -342,3 +342,7 @@ Use a new version of git, which supports `git add -N`
 
     git diff previous-commit last-commit interesting_files
 
+# Add Git version number
+
+    git tag v1.0
+    git describe —always
