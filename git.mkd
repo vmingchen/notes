@@ -352,3 +352,12 @@ Remove files permanently between commits from 8c2b5c2 .
 
 	git filter-branch --tree-filter 'rm -f results/web_server/webserver-8g-*/out/*.out' 8c2b5c2..HEAD
 
+# submodule
+Add
+
+    git submodule add git://github.com/chneukirchen/rack.git rack
+
+Clone
+
+    git submodule init
+    git submodule update
