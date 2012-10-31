@@ -17,3 +17,28 @@ python -m cProfile program.py params
 
     import heapq
     heapq.nsmallest(N, iterable)
+
+# rsplit
+
+    str.rsplit([sep[, maxsplit]])
+
+Return a list of the words in the string, using sep as the delimiter string. If
+maxsplit is given, at most maxsplit splits are done, the rightmost ones. If sep
+is not specified or None, any whitespace string is a separator. Except for
+splitting from the right, rsplit() behaves like split() which is described in
+detail below.
+
+# generator
+A generator is a function that produces a sequence of results instead of a
+single value.
+http://www.dabeaz.com/generators/index.html
+
+# os.walk()
+From http://www.dabeaz.com/generators/index.html
+A very useful function for searching the file system
+
+    import os
+    for path, dirlist, filelist in os.walk(topdir):
+        # path : Current directory
+        # dirlist : List of subdirectories
+        # filelist : List of files

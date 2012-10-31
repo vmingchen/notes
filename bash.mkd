@@ -102,3 +102,7 @@ tty is a Unix device file that handles input and output for your terminal, windo
 
     $ set -e    
 
+# Change relative path to absolute path
+
+    $ abpath=`readlink -m $1`
+

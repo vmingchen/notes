@@ -580,6 +580,7 @@ Automatically log out. Set the $TMOUT environment variable in /etc/bashrc or
     $ cat /proc/meminfo
     $ free
 
+<<<<<<< HEAD
 # Change relative path to absolute path
 
     $ abpath=`readlink -m $1`
@@ -653,4 +654,8 @@ on '.c'.
 
     $ sort -T ~/tmp
     $ export TMPDIR=~/tmp
+	
+# remove no longer needed packages
+
+	sudo apt-get autoremove
 

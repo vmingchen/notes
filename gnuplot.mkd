@@ -45,3 +45,11 @@
     gnuplot> plot 'data.txt' using 1:2 with lines
 
 
+# gamma distribution
+http://en.wikipedia.org/wiki/File:Gamma_distribution_pdf.svg
+See gamma.gnuplot
+
+# rotate xtics label
+http://gnuplot.sourceforge.net/demo/histograms.html
+
+    set xtics nomirror rotate by -45 font ",8"

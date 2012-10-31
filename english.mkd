@@ -1,4 +1,9 @@
 # Words
+He had previously conducted his own informal survey, putting red stickers on
+servers he believed to be *comatose* — the term engineers use for servers that
+are plugged in and using energy even as their processors are doing little if
+any computational work. 
+
 An *acrostic* is a poem or other form of writing in which the first letter,
 syllable or word of each line, paragraph or other recurring feature in the
 text spells out a word or a message.

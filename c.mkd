@@ -6,3 +6,251 @@ even
     pthread_testcancel();
 
 cannot guarantee so. It is tested, and is at least true on 2.6.32 ubuntu.
+
+# minor differences
+
+    char c[] = "hello";
+    const char *c = "hello";
+
+## in-order-traversal without recurrence
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        stack<int> nvisits;
+        stack<TreeNode *> ancestors;
+        vector<int> results;
+        
+        if (root == NULL)
+            return results;
+        
+        ancestors.push(root);
+        nvisits.push(0);
+        
+        TreeNode *p = NULL;
+        while (! ancestors.empty()) {
+            p = ancestors.top();
+            int n = nvisits.top();
+            if (n == 0) {
+                nvisits.pop();
+                nvisits.push(n+1);
+                
+                if (p->left) {
+                    ancestors.push(p->left);
+                    nvisits.push(0);                    
+                }
+            } else if (n == 1) {
+                results.push_back(p->val);
+                
+                nvisits.pop();
+                nvisits.push(n+1);
+                
+                if (p->right) {
+                    ancestors.push(p->right);
+                    nvisits.push(0);
+                }
+            } else {
+                ancestors.pop();
+                nvisits.pop();
+            }
+        }
+        
+        return results;
+    }
+};
+
+# level traversal
+
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int> > levelOrder(TreeNode *root) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        vector< vector<int> > results;
+        vector< vector<TreeNode *> > queue;
+        
+        if (! root) return results;
+        
+        queue.push_back(vector<TreeNode *>(1, root));
+        results.push_back(vector<int>(1, root->val));
+        
+        for (int i = 0; i < queue.size(); ++i) {
+            vector<int> newResults;
+            vector<TreeNode *> newNodes;
+            for (int j = 0; j < queue[i].size(); ++j) {
+                if (queue[i][j]->left) {
+                    newResults.push_back(queue[i][j]->left->val);
+                    newNodes.push_back(queue[i][j]->left);
+                }
+                if (queue[i][j]->right) {
+                    newResults.push_back(queue[i][j]->right->val);
+                    newNodes.push_back(queue[i][j]->right);
+                }
+            }
+            if (newResults.size() > 0) {
+                results.push_back(newResults);
+                queue.push_back(newNodes);
+            }
+        }
+        
+        return results;
+    }
+};
+
+#  Jump Game 1
+
+class Solution {
+public:
+    bool canJump(int A[], int n) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if (n == 0) return true;
+        if (A[0] >= n) return true;
+        
+        int furthest = 0;
+        int evenFurther = 0;
+        for (int i = 0; i <= furthest; ++i) {
+            int newVal = i + A[i];
+            if (newVal > furthest)
+                furthest = newVal;
+            if (furthest >= n - 1)
+                return true;
+        }
+        
+        return false;
+    }
+};
+
+# Maximal Rectangle
+
+	class Solution {
+	    int maxColumns(const vector<int> &columns, int weight) {
+		int maxLength = 0;
+		
+		int curLength = 0;        
+		for (unsigned i = 0; i < columns.size(); ++i) {
+		    if (columns[i] == weight) {
+		        if (++curLength > maxLength)
+		            maxLength = curLength;
+		    } else {
+		        curLength=0;
+		    }
+		}
+		
+		return maxLength * weight;
+	    }
+	public:
+	    int maximalRectangle(vector<vector<char> > &matrix) {
+		// Start typing your C/C++ solution below
+		// DO NOT write int main() function
+		int mr = 0;
+		
+		for (unsigned bi = 0; bi < matrix.size(); ++bi) {
+		    vector<int> columns(matrix[bi].size(), 0);
+		    for (unsigned ei = bi; ei < matrix.size(); ++ei) {
+		        for (unsigned j = 0; j < columns.size(); ++j) {
+		            columns[j] += (matrix[ei][j] - '0');
+		        }
+		        int mc = maxColumns(columns, ei - bi + 1);
+		        if (mc > mr) mr = mc;
+		    }
+		}
+		
+		return mr;
+	    }
+	};
+
+
+# Maximum Subarray
+
+	class Solution {
+	public:
+	    int maxSubArray(int A[], int n) {
+		// Start typing your C/C++ solution below
+		// DO NOT write int main() function
+		int max = -INT_MAX;
+		int sum = 0;
+		for (int i = 0; i < n; ++i) {
+		    sum += A[i];
+		    if (sum > max) max = sum;
+		    if (sum < 0) sum = 0;
+		}
+		return max;
+	    }
+	};
+
+# median of two sorted array
+
+class Solution {
+    double findMedian(const int *A, int len) {
+        if (odd(len))
+            return A[len/2];
+        else
+            return (A[len/2 - 1] + A[len/2]) / 2.0;
+    }
+    bool odd(int a) { return a & 0x1; }
+public:
+    double findMedianSortedArrays(int A[], int m, int B[], int n) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        //if ((m + n) & 0x1) 
+        //    return findRth(A, m, B, n, (m + n) / 2);
+        //else
+        //    return (findRth(A, m, B, n, (m + n) / 2) 
+        //        + findRth(A, m, B, n, (m + n) / 2 - 1)) / 2;
+        if (m == 0) return findMedian(B, n);
+        if (n == 0) return findMedian(A, m);
+        if (m + n <= 10) {
+            int T[10];
+            int *p = T;
+            copy(A, A+m, p);
+            copy(B, B+n, p+m);
+            sort(T, T+m+n);
+            return findMedian(T, m+n);
+        }
+        int am = A[m/2];
+        int bm = B[n/2];
+        if (am == bm) {
+            if (! odd(m) && ! odd(n)) {
+                int T[4];
+                T[0] = A[m/2 - 1];
+                T[1] = B[n/2 - 1];
+                T[2] = T[3] = am;
+                sort(T, T+4);
+                return findMedian(T, 4);
+            } else
+                return am;
+        } else if (am > bm) {
+            int rtrim_len = m - m/2;
+            int ltrim_len = n/2 + 1;
+            int trim_len = min(rtrim_len, ltrim_len);
+            if (2*trim_len >= m+n) --trim_len;
+            return findMedianSortedArrays(A, m - trim_len, B + trim_len, n - trim_len);
+        } else {
+            int rtrim_len = n - n/2;
+            int ltrim_len = m/2 + 1;
+            int trim_len = min(rtrim_len, ltrim_len);
+            if (2*trim_len >= m+n) --trim_len;
+            return findMedianSortedArrays(A + trim_len, m - trim_len, B, n - trim_len);
+        }
+    }
+};

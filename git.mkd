@@ -153,6 +153,8 @@ Create alias
 # Show changes of commit
 
     git show commit-hash-string
+    git show --stat --oneline commit-hash-string
+    git show --name-only commit-hash-string
 
 # Use tag
 From http://learn.github.com/p/tagging.html
@@ -339,3 +341,23 @@ Use a new version of git, which supports `git add -N`
 # Compare the changes, and diff
 
     git diff previous-commit last-commit interesting_files
+
+# Add Git version number
+
+    git tag v1.0
+    git describe —always
+
+# Permanently remove files
+Remove files permanently between commits from 8c2b5c2 .
+
+	git filter-branch --tree-filter 'rm -f results/web_server/webserver-8g-*/out/*.out' 8c2b5c2..HEAD
+
+# submodule
+Add
+
+    git submodule add git://github.com/chneukirchen/rack.git rack
+
+Clone
+
+    git submodule init
+    git submodule update
