@@ -47,7 +47,7 @@ To continue 'Section 3.5' ....
     VAR = value
     VAR := value    # allows recursion
 
-    VAR := $(VAR) foo   # wrong
+    VAR = $(VAR) foo   # wrong
     VAR := $(VAR) foo   # correct
 
     VAR += foo      # GNU extension
@@ -215,3 +215,62 @@ Custom Implicit Rules
     If you specify prerequisites for .SILENT, then make will not print the
     recipe used to remake those particular files before executing them. The
     recipe for .SILENT is ignored. 
+
+# Read makefile
+GNU make does its work in two distinct phases. During the first phase it reads
+all the makefiles, included makefiles, etc. and internalizes all the variables
+and their values, implicit and explicit rules, and constructs a dependency
+graph of all the targets and their prerequisites. During the second phase, make
+uses these internal structures to determine what targets will need to be
+rebuilt and to invoke the rules necessary to do so. 
+
+We say that expansion is immediate if it happens during the first phase: in this
+case make will expand any variables or functions in that section of a construct
+as the makefile is parsed. We say that expansion is deferred if expansion is
+not performed immediately. Expansion of a deferred construct is not performed
+until either the construct appears later in an immediate context, or until the
+second phase. 
+
+    immediate = deferred
+    immediate ?= deferred
+    immediate := immediate
+    immediate += deferred or immediate
+
+    define immediate
+    deferred
+    endef
+
+    define immediate =
+    deferred
+    endef
+
+    define immediate ?=
+    deferred
+    endef
+
+    define immediate :=
+    immediate
+    endef
+
+    define immediate +=
+    deferred or
+    immediate
+    endef
+
+A rule is always expanded the same way, regardless of the form: 
+
+     immediate : immediate ; deferred
+            deferred
+
+# secondary expansion
+
+    .SECONDEXPANSION:
+    ONEVAR = onefile
+    TWOVAR = twofile
+    myfile: $(ONEVAR) $$(TWOVAR)
+
+    .SECONDEXPANSION:
+    main_OBJS := main.o try.o test.o
+    lib_OBJS := lib.o api.o
+    main lib: $$($$@_OBJS)
+
