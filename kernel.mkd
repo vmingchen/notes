@@ -10,3 +10,14 @@ http://lwn.net/Articles/334546/
 
     int scnprintf(char *buf, size_t size, const char *format, ...);
     int vscnprintf(char *buf, size_t size, const char *format, va_list args);
+
+# verify_area
+All, looks like verify_area is no longer in this kernel version.  Some
+architectures have redefined it for their convenience.  See:
+
+    http://lxr.fsl.cs.sunysb.edu/linux/source/arch/mn10300/include/asm/uaccess.h#L75
+
+You can do the same, or call access_ok as follows
+
+    if (!access_ok(VERIFY_READ, ptr, len))
+        return -EFAULT;
