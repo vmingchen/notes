@@ -15,9 +15,13 @@ see http://kernel.org/doc/Documentation/sysrq.txt.
 
     yum install kexec-tools
 
-Edit /etc/grub.cfg, and add "crashkernel=128M"
+Edit /etc/grub.cfg, and add "crashkernel=128M" or "crashkernel=128M@0"
 
     kernel /boot/vmlinuz-2.6.18-128.1.16.el5 ro root=LABEL=/ rhgb quiet crashkernel=128M
+
+Check:
+
+    service kdump status
 
 # uncompressed vmlinux file
 
@@ -65,3 +69,15 @@ single, 4096-byte page. Your functions must share that stack with the
 entire kernel-space call chain. Thus, it is never a good idea to declare
 large automatic variables; if you need larger structures, you should
 allocate them dynamically at call time.
+
+# Linux time
+
+    # ls /usr/share/zoneinfo/
+    # rm /etc/localtime
+    # ln –s /usr/share/zoneinfo/EST /etc/localtime
+
+    # yum install ntp
+    # chkconfig ntpd on
+    # ntpdate pool.ntp.org
+    # /etc/init.d/ntpd start
+

@@ -584,3 +584,10 @@ Automatically log out. Set the $TMOUT environment variable in /etc/bashrc or
 
 	sudo apt-get autoremove
 
+# tty
+tty stands for teletypewriter, an early form of terminal.
+
+The first text editors were "line-oriented", such as "ed" and later "ex". "Vi"
+was developed later, based on "ex", and was screen-oriented. It used the
+redrawable ability of cathode ray tube (CRT) displays to show text one screen
+at a time.

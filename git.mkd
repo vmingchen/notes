@@ -361,3 +361,12 @@ Clone
 
     git submodule init
     git submodule update
+
+# git compare files in two branches
+
+    git diff mybranch master -- myfile.cs
+
+# ignore untraced files when status
+
+	git status -uno
+
