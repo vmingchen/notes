@@ -584,3 +584,9 @@ Automatically log out. Set the $TMOUT environment variable in /etc/bashrc or
 
 	sudo apt-get autoremove
 
+# security coding
+
+  set "system" function showld never be used from a set-user-ID or a
+  set-group-ID program
+
+
