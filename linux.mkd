@@ -589,4 +589,14 @@ Automatically log out. Set the $TMOUT environment variable in /etc/bashrc or
   set "system" function showld never be used from a set-user-ID or a
   set-group-ID program
 
+# tty
+tty stands for teletypewriter, an early form of terminal.
 
+The first text editors were "line-oriented", such as "ed" and later "ex". "Vi"
+was developed later, based on "ex", and was screen-oriented. It used the
+redrawable ability of cathode ray tube (CRT) displays to show text one screen
+at a time.
+
+# errno in signal handler
+When call functions that changes errno in signal handler, we should save and
+restore error.

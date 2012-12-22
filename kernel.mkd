@@ -21,3 +21,6 @@ You can do the same, or call access_ok as follows
 
     if (!access_ok(VERIFY_READ, ptr, len))
         return -EFAULT;
+	
+# kenerl crypto example of using scatterlist
+http://lxr.fsl.cs.sunysb.edu/linux/source/net/ceph/crypto.c#L197
