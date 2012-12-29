@@ -600,3 +600,21 @@ at a time.
 # errno in signal handler
 When call functions that changes errno in signal handler, we should save and
 restore error.
+
+# ssh-copy-id
+install your public key in a remote machine's authorized_keys
+
+    $ ssh-copy-id mchen@msl.cewit.stonybrook.edu
+
+# setup ssh tunnel
+
+    $ cat >> ~/.ssh/config
+    Host msl
+    HostName msl.cewit.stonybrook.edu
+    User mchen
+
+    Host chevron8
+    User mchen
+    ProxyCommand ssh msl -W %h:%p
+    $
+    $ ssh-copy-id chevron8
