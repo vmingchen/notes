@@ -53,3 +53,25 @@ details for classes.
 # update python pacakge
 
     sudo easy_install -U numpy
+
+# install python package w/o root access
+    1. Install python_setuptools
+    http://pypi.python.org/pypi/setuptools
+
+    wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg#md5=fe1f997bc722265116870bc7919059ea
+    sh setuptools-XXX.egg --prefix=/home/mchen/software
+
+    2. Install package with easy_install
+
+    $ easy_install --prefix=/home/mchen/software ipython
+
+# debug within ipython
+
+    import pdb
+    pdb.run('statements')
+
+# use magic in ipython
+
+    %lsmagic
+    %sx?
+

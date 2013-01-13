@@ -370,3 +370,9 @@ Clone
 
 	git status -uno
 
+# checkout file or directory from another branch
+Therefore, to update the working tree with files or directories from another
+branch, you can use the branch name pointer in the git checkout command.
+
+	git checkout <branch_name> -- <paths>
+

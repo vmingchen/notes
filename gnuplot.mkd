@@ -53,3 +53,11 @@ See gamma.gnuplot
 http://gnuplot.sourceforge.net/demo/histograms.html
 
     set xtics nomirror rotate by -45 font ",8"
+
+# adjust margin and label position
+
+	# move ylabel to the right by 3
+	set ylabel "Throughput (mb/sec)" offset 3,0
+
+	# set left margin to be 4-character wide
+	set lmarg 4
