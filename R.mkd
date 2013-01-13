@@ -207,7 +207,7 @@ R objects can also have names
     > m <- matrixx(1:4, nrow = 2, ncol=2)
     > dimnames(m) <- list(c("a", "b"), c("c", "d"))
     > m
-      c d
+        c d
       a 1 3
       b 2 4
 
@@ -718,3 +718,7 @@ arguments. For example, apply to two list
 
     [[5]]
     [1] 6.272310 7.357791 6.088927 4.691448 3.334791
+
+# optimization
+optim, nlm, optimize require you to pass a function whose argument is a vector
+of parameters. (Find minimum)
