@@ -1,0 +1,720 @@
+# types
+atomic classes: numeric, logical, character, integer, complex
+vectors (vector() creates an empty vector), lists, matrix
+factors
+missing values
+data frames
+names
+
+R's index starts from 1 NOT 0.
+
+# subsetting
+
+    [ always return an object of the same class as the original
+
+    [[ is used to extract elements of a list or a data frame; it can only be
+    used to extract a single element and the class of the returned object will
+    not necessarily be a list or data frame.
+    [[ can take an integer sequence
+
+    $ is used to extract element of a list or data by name
+
+    > x <- list(a = list(10, 12, 14), b = c(3.14, 2.81))
+    > x
+    $a
+    $a[[1]]
+    [1] 10
+
+    $a[[2]]
+    [1] 12
+
+    $a[[3]]
+    [1] 14
+
+
+    $b
+    [1] 3.14 2.81
+
+    > x[[c(1, 3)]]
+    [1] 14
+    > x[[c(2, 1)]]
+    [1] 3.14
+    > x[["a", exact = FALSE]]
+
+    > x <- c(1, 2, NA, NA, NA, 5)
+    > y <- c("a", "b", NA, "d", NA, "f")
+    > good <- complete.cases(x, y)
+    > x[good]
+    [1] 1 2 5
+    > y[good]
+    [1] "a" "b" "f"
+
+# create vector, which every element is of the same type
+
+    a <- 1:10
+    b <- c(1, 2, 3, 4)
+
+# ones and matrix of same value
+
+    > y <- matrix(rep(1, 4), 2, 2)
+    > y
+         [,1] [,2]
+     [1,]    0    0
+     [2,]    0    0
+
+# reshape matrix
+
+    > a = 1:10
+    > a
+     [1]  1  2  3  4  5  6  7  8  9 10
+    > dim(a) <- c(2,5)
+    > a  
+        [,1] [,2] [,3] [,4] [,5]
+        [1,]    1    3    5    7    9
+        [2,]    2    4    6    8   10
+
+# subset matrix
+
+    > x <- matrix(1:6, 2, 3)
+    > x[1,2]
+    [1] 3
+    > x
+       [,1] [,2] [,3]
+       [1,]    1    3    5
+       [2,]    2    4    6
+    > x[1,]
+    [1] 1 3 5
+    > x[1, 2]
+    [1] 3
+    > x[2, 2, drop = FALSE]
+          [,1]
+    [1,]    4
+
+
+# cbind, rbind
+
+    > a = 1:3
+    > b = 4:6
+    > a
+    [1] 1 2 3
+    > b
+    [1] 4 5 6
+    > cbind(a, b)
+         a b
+    [1,] 1 4
+    [2,] 2 5
+    [3,] 3 6
+    > rbind(a, b)
+        [,1] [,2] [,3]
+    a    1    2    3
+    b    4    5    6
+
+# list
+
+    > x <- list(1, "a", TRUE, 1 + 4i)
+    > x
+    [[1]]
+    [1] 1
+
+    [[2]]
+    [1] "a"
+
+    [[3]]
+    [1] TRUE
+
+    [[4]]
+    [1] 1+4i
+
+# NA and NaN
+
+    > is.na(NA)
+    [1] TRUE
+    > is.na(NaN)
+    [1] TRUE
+    > is.nan(NA)
+    [1] FALSE
+    > x <- c(1, 2, NaN, NA, 4)
+    > is.na(x)
+    [1] FALSE FALSE  TRUE  TRUE FALSE
+    > is.nan(x)
+    [1] FALSE FALSE  TRUE FALSE FALSE
+
+# factors represent categorical data like enum
+
+    > x <- factor(c("yes", "yes", "no", "yes", "no"))
+    > x
+    [1] yes yes no  yes no 
+    Levels: no yes
+    > table(x)
+    x
+     no yes 
+       2   3 
+    > unclass(x)
+    [1] 2 2 1 2 1
+    attr(,"levels")
+    [1] "no"  "yes"
+
+    > y <- factor(c("yes", "yes", "no", "yes", "no"), levels = c("yes", "no"))
+    > y
+    [1] yes yes no  yes no 
+    Levels: yes no
+
+# Data Frames
+read.table() or read.csv(), attribute row.names, converted to matrix by
+data.matrix().
+
+    > x <- data.frame(foo = 1:4, bar = c(T, T, F, F))
+    > x
+      foo   bar
+      1   1  TRUE
+      2   2  TRUE
+      3   3 FALSE
+      4   4 FALSE
+
+# Object Names
+R objects can also have names
+
+    > x <- 1:3
+    > names(x)
+    NULL
+    > names(x) <- c("foo", "bar", "baz")
+    > x
+      foo bar baz 
+      1   2   3 
+    > names(x)
+    [1] "foo" "bar" "baz"
+    > x['foo']
+    foo 
+      1
+
+    > x <- list(a = 1, b = 2, c = 3)
+    > x
+    $a
+    [1] 1
+
+    $b
+    [1] 2
+
+    $c
+    [1] 3
+
+    > x.a
+    Error: object 'x.a' not found
+    > x['a']
+    $a
+    [1] 1
+
+    > m <- matrixx(1:4, nrow = 2, ncol=2)
+    > dimnames(m) <- list(c("a", "b"), c("c", "d"))
+    > m
+      c d
+      a 1 3
+      b 2 4
+
+# exercise
+set all elements of this vector that are greater than 10 to be equal to 4
+
+    > x <- c(17, 14, 4, 5, 13, 12, 10)
+    > x[x > 10] <- 4
+    > x
+    [1]  4  4  4  5  4  4 10
+
+
+# read/write data
+read.table, read.csv for reading tabular data, returns DataFrame
+readLines: read lines of text file
+source: for reading in R code file (inverse of dump)
+dget: create R code for reconstructing data. e.g., dput(y, file = "y.R")
+load: for reading binary in saved workspaces
+unserialize, for reading single R objects in binary form
+
+# read.table
+arguments:
+file: name of file
+header: logical w/ or w/o header
+sep: separator
+colClasses: a character vector indicating the class of each column
+nrows: # of rows
+comment.char: a character indicating the comment character
+skip: the # of lines to skip from the beginning
+stringsAsFactors: should character variables be codes as factors?
+
+# Data are read in using connection interface
+
+    > str(file)
+      function (description = "", open = "", blocking = TRUE, 
+          encoding = getOption("encoding"), raw = FALSE) 
+
+    con <- file("foo.txt", "r")
+    data <- read.csv(con)
+    close(con)
+
+same as
+
+    data <- read.csv("foo.txt")
+
+Read gzfile
+
+    con <- gzfile("words.gz")
+    x <- readLines(con, 10)       # read 10 lines
+
+Read html
+
+    con <- url("http://www.jhsph.edu", "r")
+    x <- readLines(con)
+    > head(x)
+
+# str: what is in this object
+show object details
+
+    > m <- matrix(rnorm(100), 10, 10)
+    > str(m)
+    num [1:10, 1:10] -1.01 -0.684 1.479 -0.457 -1.131 ...
+
+# summary
+Show overall summary of an object
+
+    > summary(1:20)
+     Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+     1.00    5.75   10.50   10.50   15.25   20.0
+
+# split (similar to groupby)
+create multiple DataFrame from one DataFrame
+
+# head and tail
+
+    > data = read.csv("hw1_data.csv")
+    > str(data)
+    'data.frame':   153 obs. of  6 variables:
+    $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
+    $ Solar.R: int  190 118 149 313 NA NA 299 99 19 194 ...
+    $ Wind   : num  7.4 8 12.6 11.5 14.3 14.9 8.6 13.8 20.1 8.6 ...
+    $ Temp   : int  67 72 74 62 56 66 65 59 61 69 ...
+    $ Month  : int  5 5 5 5 5 5 5 5 5 5 ...
+    $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...
+    > head(data, 2)
+    Ozone Solar.R Wind Temp Month Day
+    1    41     190  7.4   67     5   1
+    2    36     118  8.0   72     5   2
+    > tail(data, 2)
+    Ozone Solar.R Wind Temp Month Day
+    152    18     131  8.0   76     9  29
+    153    20     223 11.5   68     9  30
+
+# select rows
+
+    df[nrow, ]
+
+# How many missing values are in the Ozone column of this data frame?
+
+    sum(as.numeric(is.na(data[,"Ozone"])))
+
+# mean of the Ozone column in this dataset
+
+    > summary(data[,"Ozone"])
+       Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+       1.00   18.00   31.50   42.13   63.25  168.00   37.00
+
+# select
+Extract the subset of rows of the data frame where Ozone values are above
+31 and Temp values are above 90. What is the mean of Solar.R in this
+subset?
+
+    > ozone_rows = data[,"Ozone"] > 31
+    > temp_rows = data[, "Temp"] > 90
+    > rows = ozone_rows & temp_rows
+    > rows[is.na(rows)] = F
+    > mean(data[rows, 'Solar.R'])
+
+What is the mean of "Temp" when "Month" is equal to 6? 
+
+    > mean(data[data[,"Month"] == 6, "Temp"])
+    
+# seq
+
+    seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)),
+                length.out = NULL, along.with = NULL, ...)
+
+    seq.int(from, to, by, length.out, along.with, ...)
+
+    seq_along(along.with)
+    seq_len(length.out)
+
+# flip coin
+
+    coin <- rbinom(1, 1, 0.5)
+
+# repeat
+equivalent to while(TRUE):
+
+    repeat {
+        break;
+    }
+
+# next
+as continue
+
+# function
+function is stored as R objects, can be used an argument to other function.
+Function can have arguments missing or with default values.
+
+    f <- function(<arguments>) {
+        
+    }
+
+`formals` function returns a list of all the formal argument of a function
+
+    > sd # stand deviation
+    > args(sd)
+    function (x, na.rm = FALSE) 
+    NULL
+    > mydata <- rnorm(100)
+    > sd(mydata)
+    > sd(x = mydata)
+    > sd(x = mydata, na.rm = FALSE)
+    > sd(na.rm = FALSE, x = mydata)   # works, but not good
+
+Order of operations when given an argument is
+
+1. exact match
+2. partial match
+3. positional match
+
+Arguments to functions are evaluated lazily
+
+    f <- function(a, b) {
+        a^2
+    }
+    f(2) # this works
+
+# "..." argument
+Often used when extending another function
+
+    myplot <- function(x, y, type = "1", ...) {
+        plot(x, y, type = type, ...)
+    }
+
+    > args(mean)
+    function (x, ...) 
+
+    > args(paste)     # like python join
+    function(..., sep = " ", collapse = NULL)
+
+When there is "...", all arguments appear after it have to be specified in full
+name:
+
+    > paste("a", "b", sep = ":")
+    [1] "a:b"
+
+    > paste("a", "b", se = ":")
+    [1] "a b :"
+
+# binding values to symbol
+On command line, the order of search value for symbols is
+
+1. search the global environment
+2. search the each of the packages in the order in the list
+
+    > search()
+    [1] ".GlobalEnv"        "package:stats"     "package:graphics" 
+    [4] "package:grDevices" "package:utils"     "package:datasets" 
+    [7] "package:methods"   "Autoloads"         "package:base"  
+    > library(lattice)
+    > search()
+    [1] ".GlobalEnv"        "package:lattice"   "package:stats"    
+    [4] "package:graphics"  "package:grDevices" "package:utils"    
+    [7] "package:datasets"  "package:methods"   "Autoloads"        
+    [10] "package:base" 
+
+R has separate namespaces for functions and non-functions so it's possible to
+have an object named c and function also named c.
+
+# lm
+
+    > args(lm)
+    function (formula, data, subset, weights, na.action, method = "qr", 
+          model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, 
+          contrasts = NULL, offset, ...) 
+    NULL
+
+# lexical scoping
+Determine how 'z' is binded.
+
+    f <- function(x, y) {
+        x^2 + y / z
+    }
+
+Lexical scoping means that
+
+    the values of free variables are searched for in the environment in which
+    the function was defined
+
+What is an environment?
+
+- collection of (symbol, value) pairs
+
+- every environment has a parent environment; can have multiple "children"
+
+- function + an environment = closure
+
+Searching for the value for a free variable:
+
+- search from where it is defined,  continued in the parent environment until
+  we hit the empty environment
+
+Function can be defined within another function.
+
+    make.power <- function(n) {
+        pow <- function(x) {
+            x^n
+        }
+        pow   # returns function pow
+    }
+
+# runif
+generate random uniform numbers
+
+    > runif
+    function (n, min = 0, max = 1)
+    .Internal(runif(n, min, max))
+    <bytecode: 0x252bca8>
+    <environment: namespace:stats>
+    > x <- 1:4
+    > lapply(x, runif)
+    [[1]]
+    [1] 0.4254778
+
+    [[2]]
+    [1] 0.4616501 0.9269558
+
+    [[3]]
+    [1] 0.6055529 0.3280899 0.7467521
+
+    [[4]]
+    [1] 0.23323177 0.58598117 0.03390105 0.09933142
+
+    > lapply(x, runif, min = 0, max = 10)
+    [[1]]
+    [1] 4.656703
+
+    [[2]]
+    [1] 2.405306 7.017753
+
+    [[3]]
+    [1] 7.226503 2.926340 5.812426
+
+    [[4]]
+    [1] 4.385134 3.703074 6.908426 5.562864
+
+# looping functions
+lapply: loop over a list and evaluate a function on each element; return a list
+sapply: same as lapply but try to simplify the result
+apply: apply a function over the margins of an array
+tapply: apply a function over subsets of a vector
+mapply: multivariate version of lapply
+split: 
+
+    x <- list(a = matrix(1:4, 2, 2), b = matrix(1:6, 3, 2))
+    lapply(x, function(elt) elt[,1])
+    $a
+    $a
+    [1] 1 2
+
+    $b
+    [1] 1 2 3
+
+sapply try to organism result into vector or matrix.
+
+# apply
+apply often used to apply a function to the rows or columns of a matrix
+
+    > x <- matrix(rnorm(200), 20, 10)
+    > apply(x, 2, mean)
+    [1]  0.05125066  0.06677969  0.20006294 -0.06924840  0.07237307 -0.12992996
+    [7] -0.20581626 -0.13953999  0.59729429 -0.04623223
+    > apply(x, 1, mean)
+    [1]  0.31215143 -0.26474732  0.67487338 -0.08540884 -0.41225955  0.57960448
+    [7] -0.21883155  0.24598976  0.04965708 -0.23403897 -0.05304990 -0.16877716
+    [13]  0.14359491 -0.17714952 -0.41860079  0.38081252 -0.04522151 0.05849134
+    [19]  0.12744430  0.29945352
+
+rowSums, rowMeans, colSums, colMeans
+
+    > a <- array(rnorm(2 * 2 * 10), c(2, 2, 10))
+    > apply(a, c(1, 2), mean)
+    > apply(a, c(1, 2), mean)
+    [,1]        [,2]
+    [1,]  0.1733275  0.18820411
+    [2,] -0.1135702 -0.08764929
+    > rowMeans(a)
+    [1]  0.1807658 -0.1006098
+    > rowMeans(a, dims = 2)
+    [,1]        [,2]
+    [1,]  0.1733275  0.18820411
+    [2,] -0.1135702 -0.08764929
+
+# gl
+
+    > str(gl)
+    function (n, k, length = n * k, labels = 1:n, ordered = FALSE)  
+    > gl(2, 3)
+    [1] 1 1 1 2 2 2
+    Levels: 1 2
+
+# tapply
+apply function over subsets of a vector. gl separate vector to several groups
+and the function is applied to each group.
+
+    > str(tapply)
+    function (X, INDEX, FUN = NULL, ..., simplify = TRUE)
+
+    > a <- rnorm(2)
+    > a
+    [1] 1.724846 0.228982
+    > b <- rnorm(4)
+    > b
+    [1] -0.8211058 -0.3874317  0.4459739  0.1195148
+    > x <- c(a, b)
+    > f <- gl(2, 3)
+    > tapply(x, f, sum)
+    1        2 
+    1.132723 0.178057 
+    > sum(a[1], a[2], b[1])
+    [1] 1.132723
+    [1] 0.178057
+
+# split
+split takes a vector and splits it into groups determined by a factor or list
+of factors. It returns a list.
+
+    > library(datasets)
+    > head(airquality)
+      Ozone Solar.R Wind Temp Month Day
+    1    41     190  7.4   67     5   1
+    2    36     118  8.0   72     5   2
+    3    12     149 12.6   74     5   3
+    4    18     313 11.5   62     5   4
+    5    NA      NA 14.3   56     5   5
+    6    28      NA 14.9   66     5   6
+    > s <- split(airquality, airquality$Month)
+    > lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
+    $`5`
+       Ozone  Solar.R     Wind 
+          NA       NA 11.62258 
+
+    $`6`
+        Ozone   Solar.R      Wind 
+           NA 190.16667  10.26667 
+
+    $`7`
+         Ozone    Solar.R       Wind 
+            NA 216.483871   8.941935 
+
+    $`8`
+       Ozone  Solar.R     Wind 
+          NA       NA 8.793548 
+
+    $`9`
+       Ozone  Solar.R     Wind 
+          NA 167.4333  10.1800 
+
+    > sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
+                   5         6          7        8        9
+    Ozone         NA        NA         NA       NA       NA
+    Solar.R       NA 190.16667 216.483871       NA 167.4333
+    Wind    11.62258  10.26667   8.941935 8.793548  10.1800
+    > sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm = TRUE))
+                    5         6          7          8         9
+    Ozone    23.61538  29.44444  59.115385  59.961538  31.44828
+    Solar.R 181.29630 190.16667 216.483871 171.857143 167.43333
+    Wind     11.62258  10.26667   8.941935   8.793548  10.18000
+
+Use multiple levels:
+
+    > x <- rnorm(10)
+    > x
+     [1] -0.1019836 -1.0427596  0.8403431 -1.2094971 -0.2749449 -0.8387804
+     [7]  0.7456518  0.5765791 -1.4923418  0.1906044
+    > f1 <- gl(2, 5)
+    > f2 <- gl(5, 2)
+    > f1
+     [1] 1 1 1 1 1 2 2 2 2 2
+    Levels: 1 2
+    > f2
+     [1] 1 1 2 2 3 3 4 4 5 5
+    Levels: 1 2 3 4 5
+    > interaction(f1, f2)
+     [1] 1.1 1.1 1.2 1.2 1.3 2.3 2.4 2.4 2.5 2.5
+    Levels: 1.1 2.1 1.2 2.2 1.3 2.3 1.4 2.4 1.5 2.5
+    > str(split(x, list(f1, f2)))
+    List of 10
+     $ 1.1: num [1:2] 1.725 0.229
+     $ 2.1: num(0) 
+     $ 1.2: num [1:2] -0.821 -0.387
+     $ 2.2: num(0) 
+     $ 1.3: num 0.446
+     $ 2.3: num 0.12
+     $ 1.4: num(0) 
+     $ 2.4: num(0) 
+     $ 1.5: num(0) 
+     $ 2.5: num(0) 
+    Warning message:
+    In split.default(x, list(f1, f2)) :
+      data length is not a multiple of split variable
+    > str(split(x, list(f1, f2)))
+    List of 10
+     $ 1.1: num [1:2] -0.102 -1.043
+     $ 2.1: num(0) 
+     $ 1.2: num [1:2] 0.84 -1.21
+     $ 2.2: num(0) 
+     $ 1.3: num -0.275
+     $ 2.3: num -0.839
+     $ 1.4: num(0) 
+     $ 2.4: num [1:2] 0.746 0.577
+     $ 1.5: num(0) 
+     $ 2.5: num [1:2] -1.492 0.191
+
+# mapply
+multivariate apply of sorts which applies a function in parallel over a set of
+arguments. For example, apply to two list
+
+    > noise <- function(n, mean, sd) {
+    + rnorm(n, mean, sd)
+    + }
+    > noise(5, 1, 2)
+    [1] -0.8238649  1.1428740  2.8164333  2.9897430  1.5390232
+    > noise(1:5, 1:5, 2)
+    [1] 2.1525521 0.4382933 4.5465331 3.5241582 8.8541700
+    > mapply(noise, 1:5, 1:5, MoreArgs = [2])
+    Error: unexpected '[' in "mapply(noise, 1:5, 1:5, MoreArgs = ["
+    > mapply(noise, 1:5, 1:5, 2)
+    [[1]]
+    [1] 1.530602
+
+    [[2]]
+    [1] 5.131227 1.606499
+
+    [[3]]
+    [1] 4.616819 4.483898 2.478076
+
+    [[4]]
+    [1] -1.614160  3.283793  5.040885  2.711314
+
+    [[5]]
+    [1] 4.603377 5.940769 4.569846 8.816265 3.518422
+
+    > list(noise(1, 1, 2), noise(2, 2, 2), noise(3, 3, 2), noise(4, 4, 2), noise(5, 5, 2))
+    [[1]]
+    [1] -1.607769
+
+    [[2]]
+    [1] 2.7725862 0.4933129
+
+    [[3]]
+    [1] 2.297043 3.278594 4.990747
+
+    [[4]]
+    [1] 2.379312 5.192006 2.258043 4.414143
+
+    [[5]]
+    [1] 6.272310 7.357791 6.088927 4.691448 3.334791

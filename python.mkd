@@ -42,3 +42,14 @@ A very useful function for searching the file system
         # path : Current directory
         # dirlist : List of subdirectories
         # filelist : List of files
+
+# ipython
+Typing object_name? will print all sorts of details about any object, including
+docstrings, function definition lines (for call arguments) and constructor
+details for classes. 
+
+    %pdoc, %pdef, %psource and %pfile
+
+# update python pacakge
+
+    sudo easy_install -U numpy
