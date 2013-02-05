@@ -376,3 +376,14 @@ branch, you can use the branch name pointer in the git checkout command.
 
 	git checkout <branch_name> -- <paths>
 
+# update git on CentOS
+https://answers.atlassian.com/questions/52498/stash-requires-git-1-7-6-but-rhel6-comes-with-git-1-7-1
+
+    yum -y install zlib-devel openssl-devel cpio expat-devel gettext-devel gcc perl-ExtUtils-MakeMaker
+    cd /usr/local/src
+    wget http://git-core.googlecode.com/files/git-1.8.1.2.tar.gz
+    tar xzvf git-1.8.1.2.tar.gz
+    cd git-1.8.1.2
+    ./configure
+    make
+    make install

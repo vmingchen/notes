@@ -310,3 +310,12 @@ of people.  Tribal *lore* and custom have been passed down orally.
 
 svelte: (approving) (of a person, especially a woman) thin in a graceful and
 attractive way.
+
+In computer science an *in situ* operation is one that occurs without
+interrupting the normal state of a system. For example, a file backup may be
+restored over a running system, without needing to take the system down to
+perform the restore. In the context of a database, a restore would allow the
+database system to continue to be available to users while a restore happened.
+An in situ upgrade would allow an operating system, firmware or application to
+be upgraded while the system was still running, perhaps without the need to
+reboot it, depending on the sophistication of the system.
