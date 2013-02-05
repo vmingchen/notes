@@ -61,3 +61,58 @@ http://gnuplot.sourceforge.net/demo/histograms.html
 
 	# set left margin to be 4-character wide
 	set lmarg 4
+
+# Set user-defined variable
+
+	gnuplot -e "a=2; s='file.png'" input.p
+
+# command line instructions
+To give gnuplot commands directly in the command line, using the "-persist"
+option so that the plot remains on the screen afterwards:
+
+	gnuplot -persist -e "set title ’Sine curve’; plot sin(x)"
+
+# pre and post processing
+To launch an interactive session after an initialization file "header" and
+followed by another command file "trailer":
+
+	gnuplot header - trailer
+
+# Coordinates
+The commands set arrow, set key, set label and set object allow you to draw
+something at an arbitrary position on the graph. This position is specified by
+the syntax:
+
+	{<system>} <x>, {<system>} <y> {,{<system>} <z>}
+
+Each <system> can either be first, second, graph, screen, or character.
+
+- first 
+places the x, y, or z coordinate in the system defined by the left and bottom
+axes; second places it in the system defined by the second axes (top and
+right); 
+
+- graph 
+specifies the area within the axes — 0,0 is bottom left and 1,1 is top right
+(for splot, 0,0,0 is bottom left of plotting area; use negative z to get to the
+base — see set xyplane (p. 163)); 
+
+- screen 
+specifies the screen area (the entire area — not just the portion selected by
+set size), with 0,0 at bottom left and 1,1 at top right; and character gives
+the position in character widths and heights from the bottom left of the screen
+area (screen 0,0)
+
+- character 
+coordinates depend on the chosen font size.  If the coordinate system for x is
+not specified, first is used. If the system for y is not specified, the one
+used for x is adopted.
+
+# use inline data
+
+	plot "-" using 1:2
+	1 6
+	2 4
+	3 2
+	4 5
+	e

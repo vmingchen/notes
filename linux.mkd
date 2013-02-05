@@ -618,3 +618,23 @@ install your public key in a remote machine's authorized_keys
     ProxyCommand ssh msl -W %h:%p
     $
     $ ssh-copy-id chevron8
+
+# split and merge pdf
+
+	$ sudo aptitude install pdftk
+	$ pdftk largepdfile.pdf burst
+	$ pdftk *.pdf cat output onelargepdfile.pdf
+
+# install tmux under home
+
+	$ wget https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
+	$ tar xzf libevent-2.0.21-stable.tar.gz
+	$ cd libevent-2.0.21-stable
+	$ DIR=/home/mchen/software
+	$ ./configure --prefix=$DIR
+	$ make && make install
+
+	$ wget tmux
+	$ ./configure CFLAGS='-I${DIR}/include/' LDFLAGS="-L${DIR}/lib" --prefix=${DIR}
+	$ make && make install
+
