@@ -659,3 +659,5 @@ on '.c'.
 
 	sudo apt-get autoremove
 
+# update ssh
+Download and install openssl and openssh.
