@@ -42,3 +42,81 @@ A very useful function for searching the file system
         # path : Current directory
         # dirlist : List of subdirectories
         # filelist : List of files
+
+# ipython
+Typing object_name? will print all sorts of details about any object, including
+docstrings, function definition lines (for call arguments) and constructor
+details for classes. 
+
+    %pdoc, %pdef, %psource and %pfile
+
+# update python pacakge
+
+    sudo easy_install -U numpy
+
+# install python package w/o root access
+    1. Install python_setuptools
+    http://pypi.python.org/pypi/setuptools
+
+    wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg#md5=fe1f997bc722265116870bc7919059ea
+    sh setuptools-XXX.egg --prefix=/home/mchen/software
+
+    2. Install package with easy_install
+
+    $ easy_install --prefix=/home/mchen/software ipython
+
+# debug within ipython
+
+    import pdb
+    pdb.run('statements')
+
+# use magic in ipython
+
+    %lsmagic
+    %sx?
+
+# calcuate length of iterable
+http://stackoverflow.com/questions/3345785/getting-number-of-elements-in-an-iterator-in-python
+
+	sum(1 for _ in iterable)
+
+# use pythonbrew
+Pythonbrew enable/disable:
+
+	# To switch permanently,
+	pythonbrew switch 2.7.2
+
+	# To use temporarily,
+	pythonbrew use 2.7.2
+
+	# To jump back to system python, just turn off pythonbrew
+	pythonbrew off
+
+Install
+
+	$ curl -kL http://xrl.us/pythonbrewinstall | bash
+	$ [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+	$ pythonbrew list -k
+	$ pythonbrew install 2.7.3
+	$ pythonbrew use 2.7.3
+	$ which python
+	$ pythonbrew venv init	# install virtual environment
+	$ pythonbrew venv create default # create new env
+	$ pythonbrew venv use default	# use default env
+
+	# Quitting a virtual environment to the return to the global environment
+	$ deactivate
+
+	# List all environment on your machine
+	pythonbrew venv list
+
+# workaround bz2 problem when install pandas
+
+	$ easy_install --upgrade pytz
+
+# install pip
+
+	wget http://pypi.python.org/packages/source/p/pip/pip-1.2.1.tar.gz
+	tar xzf pip-1.2.1.tar.gz
+	cd pip-1.2.1
+	python setup.py install

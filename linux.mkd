@@ -580,7 +580,6 @@ Automatically log out. Set the $TMOUT environment variable in /etc/bashrc or
     $ cat /proc/meminfo
     $ free
 
-<<<<<<< HEAD
 # Change relative path to absolute path
 
     $ abpath=`readlink -m $1`
@@ -661,3 +660,62 @@ on '.c'.
 
 # update ssh
 Download and install openssl and openssh.
+
+# security coding
+
+  set "system" function showld never be used from a set-user-ID or a
+  set-group-ID program
+
+# tty
+tty stands for teletypewriter, an early form of terminal.
+
+The first text editors were "line-oriented", such as "ed" and later "ex". "Vi"
+was developed later, based on "ex", and was screen-oriented. It used the
+redrawable ability of cathode ray tube (CRT) displays to show text one screen
+at a time.
+
+# errno in signal handler
+When call functions that changes errno in signal handler, we should save and
+restore error.
+
+# ssh-copy-id
+install your public key in a remote machine's authorized_keys
+
+    $ ssh-copy-id mchen@msl.cewit.stonybrook.edu
+
+# setup ssh tunnel
+
+    $ cat >> ~/.ssh/config
+    Host msl
+    HostName msl.cewit.stonybrook.edu
+    User mchen
+
+    Host chevron8
+    User mchen
+    ProxyCommand ssh msl -W %h:%p
+    $
+    $ ssh-copy-id chevron8
+
+# split and merge pdf
+
+	$ sudo aptitude install pdftk
+	$ pdftk largepdfile.pdf burst
+	$ pdftk *.pdf cat output onelargepdfile.pdf
+
+# install tmux under home
+
+	$ wget https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
+	$ tar xzf libevent-2.0.21-stable.tar.gz
+	$ cd libevent-2.0.21-stable
+	$ DIR=/home/mchen/software
+	$ ./configure --prefix=$DIR
+	$ make && make install
+
+	$ wget tmux
+	$ ./configure CFLAGS='-I${DIR}/include/' LDFLAGS="-L${DIR}/lib" --prefix=${DIR}
+	$ make && make install
+
+# create zip file
+
+	 $ zip archivefile1 doc1 doc2 doc3
+

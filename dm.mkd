@@ -70,3 +70,19 @@ Use for per-bio-specific data, used in both map and endio.
 # reference
 ## request-based device mapper
 http://lwn.net/Articles/215058/, rqbased-dm: request-based device-mapper
+
+# per_request_data in struct dm_target
+http://people.redhat.com/~mpatocka/patches/kernel/per-request-data/dm-introduce-per-request-data.patch
+
+Targets can set this field in the constructor. If a target sets this
+field to non-zero value, "per_request_data" bytes of auxliliary data is
+allocated for each bio submitted to the target. These data can be used
+for any purpose by the target.
+
+Per-request data is accessed with dm_bio_get_per_request_data. The
+argument data_size must be the same as the value per_request_data in
+dm_target.
+
+If the target has a pointer to per request data, it can get a pointer to
+the bio with dm_per_request_data_get_bio function (data_size must be the
+same ast the value passed to dm_bio_get_per_request_data).

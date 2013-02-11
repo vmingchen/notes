@@ -106,3 +106,36 @@ tty is a Unix device file that handles input and output for your terminal, windo
 
     $ abpath=`readlink -m $1`
 
+# expr command
+
+    $ echo `expr 5 % 3`   # modulo
+    2
+    $ echo `expr 5 \> 3`  # logical operators
+    1
+    $ echo `expr 4 \<= 3` 
+    0
+
+    $ str="abcdef"        # string operators
+    $ echo `expr length $str`       # strlen
+    6
+    $ echo `expr index $str bc`     # index of substr
+    2
+    $ echo `expr substr $str 2 2`   # substring
+    bc
+    $ echo ${str:1:2}
+    bc
+    $ echo `expr match 128m '[0-9]*'`
+
+    #  The default behavior of the 'match' operations is to
+    #+ search for the specified match at the BEGINNING of the string.
+    #
+    #       Using Regular Expressions ...
+    b=`expr match "$a" '[0-9]*'`               #  Numerical count.
+    echo Number of digits at the beginning of \"$a\" is $b.
+    b=`expr match "$a" '\([0-9]*\)'`           #  Note that escaped parentheses
+    #                   ==      ==             #+ trigger substring match.
+    echo "The digits at the beginning of \"$a\" are \"$b\"."ck
+
+The : (null) operator can substitute for match. For example, b=`expr $a :
+[0-9]*` is the exact equivalent of b=`expr match $a [0-9]*` in the above
+listing. `expr $string : '.*'` return the length of string.
