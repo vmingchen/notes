@@ -1,0 +1,11 @@
+# NAS Features
+http://go.techtarget.com/r/20488987/15658176/2
+NetApp snagged its second category win, but by the slimmest of margins as it
+outdistanced EMC by a mere 0.01 point. Both product lines fared well on all
+seven statements in the category, with NetApp having the best scores for
+features generally meeting needs (6.97), mirroring features (6.96),
+snapshotting capabilities (6.88) and scaling (6.88). EMC prevailed on the three
+remaining statements: remote replication (6.96), interoperability with other
+vendors' products (6.90) and management features (6.77). IBM's category rating
+score of 6.69 was good for third, highlighted by a 6.78 for "Overall, this
+product's features meet my needs."
