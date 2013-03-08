@@ -72,3 +72,6 @@ is set to 'rand48'. See testrandvar.f for details.
 
 BTW, it is not possible to eval a randvar and save its value into an ordinary
 variable. So to get the same value, we can use the trick in testrandvar.f.
+
+# debug
+add 'debug 100' at the head of the .f files.

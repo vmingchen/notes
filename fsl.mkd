@@ -1,0 +1,3 @@
+# convert eps to jpg
+<cvs>/fsl/scripts/eps2jpg
+ ~ezk/VMWARE/serial-numbers.txt 

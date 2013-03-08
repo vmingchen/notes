@@ -14,7 +14,7 @@ Double quote symbol is almost never used in LaTeX, use the following
 
 Used Separately, they represent left single quote and right single quote,
 respectively. If necessary use "\," to separate adjacent double and single
-quotes. "\," inserts a small space and don't leave any space before or after
+quotes. "\," inserts a small space. But, don't leave any space before or after
 "\," command.
 
 # dashes
@@ -67,7 +67,7 @@ character, is encounted. Most command names have only lowercase letters.
 	\LaTeX \today \ldots
 
 # preventing line breaks
-A tilde ~ present a line break.
+A tilde ~ prevents a line break.
 
 	Mr.~Jones		Figure~\ref{fig:xx}			(1)~gnats
 
