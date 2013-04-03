@@ -1,0 +1,9 @@
+# Crypto magic applications
+Privately outsourcing computation
+Zero knowledge (proof of knowledge)
+
+# Rigorous science
+1. Threat model
+2. Propose a construction
+3. Prove that breaking construction under threat model will solve an underlying
+hard problem

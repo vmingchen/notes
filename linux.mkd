@@ -724,3 +724,16 @@ Similar to screen -D -R
 
 	 $ zip archivefile1 doc1 doc2 doc3
 
+# libevent not found
+By default, libevent install the shared library into /usr/local/lib
+
+	# echo "/usr/local/lib" >> /etc/ld.so.conf
+	# ldconfig
+
+# shows history of logins on the server 
+
+	utmpdump /var/log/wtmp
+
+#  Shutdown a Windows machine from Linux
+
+	net rpc shutdown -I ipAddressOfWindowsPC -U username%password

@@ -1,0 +1,7 @@
+# Malleability
+Malleability is a property of some cryptographic algorithms.An encryption
+algorithm is malleable if it is possible for an adversary to transform a
+ciphertext into another ciphertext which decrypts to a related plaintext. That
+is, given an encryption of a plaintext $m$, it is possible to generate another
+ciphertext which decrypts to $f(m)$, for a known function $f$, without
+necessarily knowing or learning $m$.
