@@ -715,6 +715,11 @@ install your public key in a remote machine's authorized_keys
 	$ ./configure CFLAGS='-I${DIR}/include/' LDFLAGS="-L${DIR}/lib" --prefix=${DIR}
 	$ make && make install
 
+# tmux re-attach
+Similar to screen -D -R
+
+  $ tmux attach -d
+
 # create zip file
 
 	 $ zip archivefile1 doc1 doc2 doc3
