@@ -123,6 +123,7 @@ Install
 
 # tricks
 http://www.quora.com/Python-programming-language-1/What-are-the-Python-features-you-wish-youd-known-earlier#ans2273223
+## counter
 Before:
 
 	counter = dict()
@@ -136,3 +137,77 @@ Now:
 	from collections import Counter
 	counter = Counter(items)
 
+## Quick timer:
+
+    import time
+
+    class Timer:
+        def __enter__(self):
+            self.start = time.clock()
+            return self
+
+        def __exit__(self,*args):
+            self.end = time.clock()
+            self.interval = self.end-self.start
+
+    with Timer() as t:
+        dosomesuch()
+    print t.interval
+
+Or with decorator
+
+    from contextlib import contextmanager
+    import time
+    import sys
+
+    @contextmanager
+    def timeit(msg):
+        start = time.time()
+        yield
+        print >> sys.stderr, msg, 'took %0.3f secs' % (time.time() - start)
+
+    with timeit('myfunc'):
+        myfunc()
+
+## shutil.copyfileobj
+
+    from contextlib import closing
+    from shutil import copyfileobj
+    from urllib2 import urlopen
+
+    with closing(urlopen(someurl)) as res, open('somefile', 'wb') as out:
+        copyfileobj(res, out)
+
+## None is less than any number
+
+    >>> sorted([1, 2, None, 4.5, float('-inf')])
+    [None, -inf, 1, 2, 4.5]
+
+## use pdb to print stack trace
+
+    def foo(bar):
+        baz = bar + 2
+        import pdb; pdb.set_trace()
+
+## codecs.getwriter for automatic encoding
+
+    import codecs
+    import sys
+    out = codecs.getwriter(sys.stdout, 'utf-8')
+    print >> out, '陈明'
+
+## logging for debugging
+
+    import logging
+    def set_logger(cls):
+        log = logging.getLogger(LOGGER_NAME)
+        log.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
+        handler_stream = logging.StreamHandler()
+        handler_stream.setFormatter(formatter)
+        log.addHandler(handler_stream)
+
+        handler_file = logging.FileHandler('errors.txt')
+        handler_file.setFormatter(formatter)
+        handler_file.setLevel(logging.WARNING)
+        log.addHandler(handler_file)

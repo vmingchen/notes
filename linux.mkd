@@ -720,6 +720,10 @@ Similar to screen -D -R
 
   $ tmux attach -d
 
+# tmux
+join-pane -t pane
+break-pane -v pane
+
 # create zip file
 
 	 $ zip archivefile1 doc1 doc2 doc3

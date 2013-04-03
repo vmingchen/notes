@@ -1,9 +1,60 @@
+# What is cryptography
+- A tremendous tool
+- The basis for many security mechanisms
+NOT
+- The solution to all security problems
+- Reliable unless implemented and used properly
+- Something you should try to invent yourself
+
 # Crypto magic applications
-Privately outsourcing computation
-Zero knowledge (proof of knowledge)
+- Digital Signature
+- Anonymous communication
+- Anonymous digital cash
+1. Can I spend a “digital coin” without anyone knowing who I am?
+2. How to prevent double spending?
+- Election and private auction (w/o disclose private information)
+- Privately outsourcing computation
+  eg, as Google to search stuff w/o telling it the keywords
+- Zero knowledge (proof of knowledge)
 
 # Rigorous science
 1. Threat model
 2. Propose a construction
 3. Prove that breaking construction under threat model will solve an underlying
 hard problem
+
+# Cryptography history
+## Caesar Cipher is NOT a cipher because it does not have a key
+
+## Substitution Encryption can be broke using frequency attack
+Use frequency of letter, bigram, trigram etc.
+
+## Vigener cipher
+- Add key with the plaintext.
+- Can also be broke using frequency attack by trying different key length.
+
+## Rotor machines (1870 - 1943)
+
+## Data Encryption Standard (1974)
+key length is 56 (too small), and block size is 64 bits
+
+## Advanced Encryption Standard (2001)
+128-bit key
+
+# Discrete Probability
+## Universe U is a finite set U = {0, 1}^n
+## Probability distribution P over U is a function P: U -> [0, 1]
+## Distribution vector (P(000), P(001), ..., P(111))
+## A subset $A \subseteq U$ is called an event
+## union bound $Pr[A \cup B] \le Pr[A] + Pr[B]$
+## A random variable X is a function X: U -> V. Take value in some set V.
+## random variables X, Y taking values in V are independent if:
+for $\all a, b \in V, Pr[A=a and B=b] = Pr[A=a] Pr[B=b]$
+
+## An important property of XOR
+The XOR of an arbitrary random variables and an independent uniform random
+variable, will be a uniform variable.
+
+## The birthday paradox
+With n iid. random variable, if sampled $\sqrt{U}$, then 
+  Pr[two variables take the same value] > 1/2
