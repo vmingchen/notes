@@ -1,3 +1,30 @@
+# Threats in Networking communications
+## Disclosure
+## Traffic analysis
+Discovery of the pattern of traffic between parties.
+## Masquerade
+Insertion of messages into the network from a fraudulent source.
+
+## Content modification
+## Sequence modification
+Any modification to a sequence of messages between parties, including
+insertion, deletion, and reordering.
+## Timeing modification
+Delay or replay of messages
+## Repudiation
+Denial of receipt of message by destination or denial of transmission of
+message by source.
+
+# Authentication
+## Authenticator
+Three categories of techniques for generating Authenticator:
+1. Message encryption (need way to differentiate plantext and noise)
+2. Message authentication code (MAC)
+	- unlike encryption, it does note have to be reversible
+	- allow authentication to be performed on a seletive basis (flexible)
+	- separation of authentication and confidentiality affords flexibility
+3. Hash function (do have a key as encryption and MAC)
+
 # What is cryptography
 - A tremendous tool
 - The basis for many security mechanisms
@@ -58,3 +85,4 @@ variable, will be a uniform variable.
 ## The birthday paradox
 With n iid. random variable, if sampled $\sqrt{U}$, then 
   Pr[two variables take the same value] > 1/2
+
