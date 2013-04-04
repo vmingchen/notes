@@ -1,0 +1,175 @@
+# tshark
+## Ignore ssh traffic with filter
+	
+	tshark -f "port 2049"
+	tshark -f "not port 22"
+	tshark -- not port 22
+
+## -z option
+To collect data for NFS v4:
+
+	tshark -z rpc,rtt,100003,4 -f "port 2049"
+
+# tcpdump
+http://linux-nfs.org/wiki/index.php/NetworkTracing
+
+Use 
+
+	tcpdump -s0 -w /tmp/nfs-mount.pcap port 2049
+
+Examples
+
+	tcpdump -s0 -w /tmp/dump host server.example.com
+
+Here, we capture all traffic between the local host and the NFS server
+server.example.com, and dump it into the file /tmp/dump in pcap format. The
+"-s0" option asks for all of the bytes in every frame. Notice that we didn't
+specify an Ethernet device on our local host; that's usually OK to do when your
+local host has only one Ethernet device.
+
+The tcpdump command must run as a root user in order to capture traffic.
+Capturing traffic must put the local Ethernet device into "promiscuous" mode,
+which only a root user can do. In this mode, the capture can pick up any
+packets on the local area network that is attached to the host. 
+
+Get NFS only traffic
+
+	 tcpdump -s300 -w /tmp/dump port 2049
+
+Finally, the "-s300" option will pass only the first 300 bytes of every frame
+that matches the port filter. This is useful if you know the NFS traffic is
+UDP-based, and you need to restrict the capture stream to keep your capture
+file managebly small. 
+
+# RPC
+Identifiers: 1) identify the procedure to be called, 2) match each reply
+message to the corresponding request message. 
+boot ID: a number incremented each time the machine reboots.
+
+http://www.ietf.org/rfc/rfc1831.txt
+
+This document discusses clients, calls, servers, replies, services, programs,
+procedures, and versions.  Each remote procedure call has two sides: an active
+client side that makes the call to a server, which sends back a reply.  A
+network service is a collection of one or more remote programs.  A remote
+program implements one or more remote procedures; the procedures, their
+parameters, and results are documented in the specific program's protocol
+specification.  A server may support more than one version of a remote program
+in order to be compatible with changing protocols.
+
+The reply message to a request message has enough information to distinguish
+the following error conditions:
+
+      (1) The remote implementation of RPC does not support protocol
+      version 2.  The lowest and highest supported RPC version numbers
+      are returned.
+
+      (2) The remote program is not available on the remote system.
+
+      (3) The remote program does not support the requested version
+      number.  The lowest and highest supported remote program version
+      numbers are returned.
+
+      (4) The requested procedure number does not exist.  (This is
+      usually a client side protocol or programming error.)
+
+      (5) The parameters to the remote procedure appear to be garbage
+      from the server's point of view.  (Again, this is usually caused
+      by a disagreement about the protocol between client and service.)
+
+      enum auth_flavor {
+         AUTH_NONE       = 0,
+         AUTH_SYS        = 1,
+         AUTH_SHORT      = 2
+         /* and more to be defined */
+      };
+
+      struct opaque_auth {
+         auth_flavor flavor;
+         opaque body<400>;
+      };
+
+      struct call_body {
+         unsigned int rpcvers;       /* must be equal to two (2) */
+         unsigned int prog;
+         unsigned int vers;
+         unsigned int proc;
+         opaque_auth  cred;
+         opaque_auth  verf;
+         /* procedure specific parameters start here */
+      };
+
+# check what ports are open in remote host
+test whether a port number of TCP port 80 is open a host google.com:
+
+	nmap -p 80 -sT google.com
+
+To test a UDP port 80 use:
+
+	nmap -p 80 -sU google.com
+
+other way to test whether a specific port is open on a remote server is to use
+telnet command:
+
+	telnet google.com 443
+
+# NFS components
+The first implementation of NFS on Linux was in a user-level daemon called
+`unfsd`. Since then, NFS implementations under Linux have moved into the kernel,
+where they perform faster and more reliably (`knfsd` or `nfsd`).
+
+mountd: mount daemon
+rpciod: daemon to cluster multiple write operations from the client
+lockd: locking daemon
+statd: To ensure that this state information is not lost upon server reboot,
+	rpc.statd saves its state information on disk, in files under the directory
+	/var/lib/nfs/sm (Network Status Monitor).
+rquotad: implements the RQUOTA protocol.
+
+	[nfsd]
+	  \_ [lockd]
+		   \_ [rpciod]
+
+# rpcinfo
+Querying for all hosts that support an RPC service (program number)
+
+	rpcinfo -b 100021 4
+
+Listing the RPC services running on a host
+
+	rpcinfo -p
+
+Testing the availability of an RPC service. For example, see if host support
+program 100003 version 3 on UDP (-u for udp, -t for tcp):
+
+	rpcinfo -u hostname 100003 3
+
+# exportfs
+The exportfs program informs rpc.mountd of any changes in the list of
+allowed file systems to export.
+
+# security
+Several mechanisms exist for securing network traffic. Two of the more popular
+ones are Secure Socket Layer (SSL) and Internet Protocol Security (IPSEC). The
+problem with these methods is that they only work with connection-oriented
+transport protocols such as TCP. They do not work with UDP, and NFS has to be
+able to use both UDP and TCP.
+
+NFSv4 added a special operation that allows clients to query a server for the
+methods of security that the server supports. This helps clients and servers
+negotiate automatically the types of security mechanisms that they wish to use.
+
+# Filehandles
+- The Current Filehandle
+- The Saved Filehandle (serves as a temporary Filehandle)
+- The Root Filehandle: designates the root (top-level directory) of the
+exported volume.
+- The Public Filehandle: for client to authenticate itself
+
+Types
+- FH4_PERSISTENT: This bit indicates that the filehandle is persistent.
+- FH4_NOEXPIRE_WITH_OPEN: This filehandle cannot expire while a client has the
+file open.
+- FH4_VOLATILE_ANY: This filehandle could expire at any time.
+- FH4_VOL_MIGRATION: This filehandle will expire during file system migration.
+- FH4_VOL_RENAME: This filehandle will expire during file system renaming.
