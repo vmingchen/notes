@@ -254,3 +254,7 @@ public:
         }
     }
 };
+
+# Reverse a linked list
+http://www.quora.com/How-do-you-reverse-a-linked-list
+

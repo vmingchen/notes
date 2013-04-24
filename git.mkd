@@ -387,3 +387,21 @@ https://answers.atlassian.com/questions/52498/stash-requires-git-1-7-6-but-rhel6
     ./configure
     make
     make install
+
+# git subtree
+Checkout another project as a subtree.
+https://help.github.com/articles/working-with-subtree-merge
+
+	$ git remote add -f nfs-ganesha https://ming_chen@bitbucket.org/toponado/nfs-proxy.git
+
+	$ git merge -s ours --squash nfs-ganesha/proxy	# remove old commits
+	or 
+	$ git merge -s ours --no-commit nfs-ganesha/proxy
+
+	$ git read-tree --prefix=nfs-ganesha/ -u nfs-ganesha/proxy
+	$ git commit -m "merged nfs-ganesha as a subtree"
+
+If the merged repo changes in the future, you can pull in its changes by simply
+using the -s subtree flag:
+
+	$ git pull -s subtree nfs-ganesha master

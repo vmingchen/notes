@@ -274,3 +274,7 @@ A rule is always expanded the same way, regardless of the form:
     lib_OBJS := lib.o api.o
     main lib: $$($$@_OBJS)
 
+# cmake show detailed information
+
+	$ cmake .
+	$ make VERBOSE=1

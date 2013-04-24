@@ -12,6 +12,7 @@ To collect data for NFS v4:
 
 # tcpdump
 http://linux-nfs.org/wiki/index.php/NetworkTracing
+http://www.alexonlinux.com/tcpdump-for-dummies
 
 Use 
 
@@ -40,6 +41,14 @@ Finally, the "-s300" option will pass only the first 300 bytes of every frame
 that matches the port filter. This is useful if you know the NFS traffic is
 UDP-based, and you need to restrict the capture stream to keep your capture
 file managebly small. 
+
+# split pcap files
+
+	$ editcap -c <packets per file> infile outprefix
+	
+or 
+	
+	$ editcap -i <seconds per file> infile outprefix
 
 # RPC
 Identifiers: 1) identify the procedure to be called, 2) match each reply
