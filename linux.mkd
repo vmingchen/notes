@@ -741,3 +741,8 @@ By default, libevent install the shared library into /usr/local/lib
 #  Shutdown a Windows machine from Linux
 
 	net rpc shutdown -I ipAddressOfWindowsPC -U username%password
+
+# wget recursive download
+
+    wget -r --no-parent -A.txt http://www.abc.org/folder/
+

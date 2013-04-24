@@ -387,3 +387,59 @@ https://answers.atlassian.com/questions/52498/stash-requires-git-1-7-6-but-rhel6
     ./configure
     make
     make install
+
+# check whitespace
+
+    $ git diff --check
+
+# push local branch A to remote branch B
+Current on local branch A.
+
+    $ git fetch origin
+    $ git merge origin/B
+    $ git push origin A:B
+
+# always work on the HEAD for contributing open source project
+For example, if you want to submit a second topic of work to the project,
+don't continue working on the topic branch you just pushed up — start over from
+the main repository's master branch:
+
+    $ git checkout -b featureB origin/master
+
+or 
+
+    $ git checkout -b smallfix origin/next
+
+Then 
+
+    $ (work)
+    $ git commit
+    $ git push myfork featureB
+
+# pull request
+Fork first:
+
+    $ git remote add myfork url
+    $ git push myfork featureA
+
+Generate pull request:
+
+    $ git request-pull origin/master myfork
+
+# rebase on top of origin/master
+Let's say the project maintainer has pulled in a bunch of other patches and
+tried your first branch, but it no longer cleanly merges. In this case, you can
+try to rebase that branch on top of origin/master, resolve the conflicts for
+the maintainer, and then resubmit your changes:
+
+    $ git checkout featureA
+    $ git rebase origin/master
+    $ git push -f myfork featureA
+
+Because you rebased the branch, you have to specify the -f to your push
+command in order to be able to replace the featureA branch on the server
+with a commit that isn’t a descendant of it.
+
+# find people that have touched a file
+
+    $ git blame -- filepath
