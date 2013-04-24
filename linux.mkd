@@ -782,3 +782,6 @@ http://www.centos.org/modules/newbb/viewtopic.php?topic_id=35275&forum=55
 
 	# yum --nogpgcheck --enablerepo=debug install glibc-debuginfo
 
+# wget recursive download
+
+    wget -r --no-parent -A.txt http://www.abc.org/folder/

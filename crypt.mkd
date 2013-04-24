@@ -1,5 +1,6 @@
 # Threats in Networking communications
 ## Disclosure
+Lost confidentiality.
 ## Traffic analysis
 Discovery of the pattern of traffic between parties.
 ## Masquerade
@@ -73,10 +74,14 @@ key length is 56 (too small), and block size is 64 bits
 ## Probability distribution P over U is a function P: U -> [0, 1]
 ## Distribution vector (P(000), P(001), ..., P(111))
 ## A subset $A \subseteq U$ is called an event
-## union bound $Pr[A \cup B] \le Pr[A] + Pr[B]$
+## union bound 
+
+    $Pr{A \cup B} \le Pr{A} + Pr{B}$
+
 ## A random variable X is a function X: U -> V. Take value in some set V.
 ## random variables X, Y taking values in V are independent if:
-for $\all a, b \in V, Pr[A=a and B=b] = Pr[A=a] Pr[B=b]$
+
+    for $\all a, b \in V, Pr{A=a and B=b} = Pr{A=a} Pr{B=b}$
 
 ## An important property of XOR
 The XOR of an arbitrary random variables and an independent uniform random
@@ -84,5 +89,195 @@ variable, will be a uniform variable.
 
 ## The birthday paradox
 With n iid. random variable, if sampled $\sqrt{U}$, then 
-  Pr[two variables take the same value] > 1/2
 
+    Pr{two variables take the same value} > 1/2
+
+# Cipher
+A cipher contains an encryption algorithm and a decryption algorithm. A pair of
+"efficient" algs (E, D) defined as
+
+    E: K x M -> C             D: K x C -> M
+    
+    D(k, E(k, m)) = m
+
+E is often a randomized algorithm, whereas D is always deterministic.
+
+# One Time Pad Cipher
+
+    C := E(K, M) = K XOR M
+
+## Two time pad is insecure!! Never use stream cipher key more than once!!
+
+    C1 <- m1 XOR PRG(k)
+    C2 <- m2 XOR PRG(k)
+
+Then
+
+    C1 XOR C2 = m1 XOR m2
+
+    m1 XOR m2 can generate m1, m2 because of enough redundance in English or
+    ASCII encoding.
+
+Bad Examples of using Two Time Pad: 
+1. project Venona: key is used for many messages
+2. MS-PPTP (Windows NT): client and server use same key. should use different
+3. 802.11b WEP: same key used for both client and router; RC4 is the PRG in WEP
+4. disk encryption: same pad used for multiple version of the same block data
+
+Never use stream cipher key more than once!!!
+
+## OTP is malleable (no integrity)
+
+## Stream Cipher
+idea: replace "random" key in OTP by "pseudorandom" key.
+PRG (pseudorandom generator) is a function efficienty computable. PRG must be
+unpredictable.
+
+## Bad PRGs:
+Linear Cong. Generator is a weak PRG that cannot be used for crypto.
+glibc random(): don't use this for crypto.
+
+## Pratical Stream Cipher
+Old examples:
+- RC4 (1987): used in HTTPS and WEB
+  Weaknesses: 
+    1. Bias in initial output (discard the first round)
+    2. Prob. of (0, 0) is biased
+    3. Related key attacks (related keys can disclose key)
+- CSS (badly broken): used in DVD, GSM encryption (A5/1,2), Bluetooth (E0)
+  Linear feedback shift register (LFSR), friendly to hardware
+
+Modern examples: eStream (five algorithms)
+- Inputs have a seed and a nounce (unique as long as seed is the same), which
+  makes PRG(k; r) unqiue. 
+- Fast "Salsa 20" on both SW and HW (x86 SSE2): Good security
+                                  
+- Crypto++ 5.6.0
+
+# Information Theoretic Security
+Basic Idea: CT should reveal no "info" about PT. OTP cipher has perfect
+secrecy.
+
+Thm. perfect secrecy: |K| >= |M|
+
+# Negligible and non-negligible
+## In practice
+1/power(2, 30): negligible
+1/power(2, 80): non-negligible
+## In theory
+\epsilon is a function 
+
+# PRG Security Definition
+## Statistical test on {0, 1}^n
+An alg. A s.t. A(x) outputs "0" or "1".
+Examples: 
+- A(x) is 1 iff. |#0(x) - #1(x)| < 10 * sqrt(n)
+- A(x) is 1 iff. |#00(x) - n/4| < 10 * sqrt(n)
+
+## Advantage
+
+## Are there provably secure PRGs?
+Unknown. If known, the P -ne NP.
+
+## A secure PRG is unpredictable
+
+## An unpredictable PRG is secure
+
+## Computationally indistinguishable
+
+# Block Cipher
+## Built by Iteration (round function and round key)
+## Abstractly: PRPs (permutation, reversible PRF) and PRFs (function)
+## Secure PRF and PRP
+Cannot be distingished form a pseudo-random PRF (PRP) and a truely random PRF
+(PRP).
+## An easy application: PRF => PRG
+
+# DES
+## 64 bit block size and 56 bit key length
+## Exhaustive Search for block cipher key
+Lemma: Suppose DES is an ideal cipher, then forall m,c there is at most one key
+s.t. c = DES(k, m) with prob. about 99.5%.
+## triple-DES
+3 times slower than DES
+
+    3E((k1, k2, k3), m) = E(k1, D(k2, E(k3, m)))
+
+simple attack in time 2^118. (2^90 is considered secure)
+
+## Why not double DES?
+
+    2E((k1, k2), m) = E(k1, E(k2, m))
+
+Find (k1, k2) s.t.
+
+    E(k1, E(k2, m)) = c
+
+    E(k2, m) = D(k1, c)
+
+Meet in the middle attack: 2^63 to break the code
+
+## DESX
+Faster than triple-DES, and secure.
+
+    EX((k1, k2,k3), m) = k1 XOR E(k2, m XOR k3)
+
+key length: 64 + 56 + 64 = 184 bits
+easy attack in time 2^(64 + 56) = 2^120
+
+## Do NOT design your own block cipher. Use STANDARDS such as 3DES.
+Do NOT implement your own block cipher. Use existing libraries.
+1. Side Channel Attacks (Use time, power of calculation)
+2. Fault Attacks
+3. Linear Attacks (With plaintex and ciphertext pairs)
+4. Quantum Attacks
+
+# AES
+## Basics
+- Designed in Belgium 
+- key length 128, 256
+- Block size of 128 bits (4 by 4 bytes matrix)
+- Sub-Perm network
+- 10 rounds (ByteSub, ShiftRows, MixColumns) and 1 final XOR
+- Key expansion to 11 sub-keys, each 16 bit long
+
+## Setps
+- ByteSub: a 256 byte table
+- ShiftRows: 
+- MixColumns:
+
+## Support
+AES instructions in Intel Westmere
+- aesenc, aesenclast (aesenc xmm1, xmm2)
+- aeskeygenassist 
+- clain 14X speed-up over openssl on same hardware
+
+Similar on AMD Bulldozer
+
+## Attacks
+- Best key recovery attack: four times better than ex. search
+- Related key attack
+
+# Modes of operations
+Electronic Code Book (ECB) is NOT secure because if m1 = m2, then c1 = c2.
+## One-time Key
+Deterministic counter mode
+
+## Many-time key
+Used in File systems, and IPSec.
+
+nonce-based Encryption
+
+CPA (Chosen Plaintext Attack)
+
+## CBC (Cpher Block Chaining) with random IV (Initialization Vector)
+- after 2^48 AES blocks, must change key
+- CBC where attacker can predict the IV is not CPA-secure
+- Nonce-based IV should be encrypted before use!
+- dummy padding block (ciphertext stealing)
+
+## Randmized Counter Mode
+- better than CBC, should be preferred
+- after 2^64 AES blocks, must change key
+- Parallelizable
+- IV chosen at random for every message
