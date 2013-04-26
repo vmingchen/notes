@@ -182,3 +182,19 @@ file open.
 - FH4_VOLATILE_ANY: This filehandle could expire at any time.
 - FH4_VOL_MIGRATION: This filehandle will expire during file system migration.
 - FH4_VOL_RENAME: This filehandle will expire during file system renaming.
+
+# POSIX permission check
+NFS v3 operations as well as NFS v4 operations performed with a special stateid
+will bypass permission checking if the user is the owner of the file. This is
+in order to support client side POSIX behavior where a file may be opened and
+then the permissions changed without affecting the open (open(O_CREAT) may have
+the same effect).
+
+# Read file which we cannot read but execute
+In all cases, a READ operation, or open for read only is also allowed
+if the user has execute permission but not read permission. This is to
+allow the client to read executables that do not allow read permission.
+The client also has responsibility to make this work. If the client
+makes an ACCESS call, read will be denied if the file is execute only.
+Not all clients handle this condition properly, or do not handle it
+properly for all types of executables.
