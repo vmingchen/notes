@@ -26,6 +26,35 @@ Three categories of techniques for generating Authenticator:
 	- separation of authentication and confidentiality affords flexibility
 3. Hash function (do have a key as encryption and MAC)
 
+## Integrity requires a secret key
+CRC will not work.
+
+## Secure MAC
+- attacker cannot produce a valid tag for a new message
+- given (m,t) attacker cannot even produce (m, t') for 't != t
+- both ECBC-MAC and NMAC have a last encryption w/ an independent key
+- A key can be used to generated a limited number of MACs
+
+### ECBC-MAC
+Encrypted Cipher Block Chaining MAC.
+- Raw CBC-MAC, which w/o a final encryption using an independent key, is not
+  secure.
+
+### NMAC (Nested MAC)
+- Cascade MAC, which w/o a final encryption using an independent key, is also
+  not secure.
+
+## MAC padding
+- Padding all 0 is no secure
+- Padding with "1000..00", and dummy if already multiple of block size
+- CMAC (NIST standard) does not have a dummy block
+
+## Parallel MAC (PMAC)
+
+## Carter-Wegman MAC
+
+## HMAC
+
 # What is cryptography
 - A tremendous tool
 - The basis for many security mechanisms
@@ -270,7 +299,7 @@ nonce-based Encryption
 
 CPA (Chosen Plaintext Attack)
 
-## CBC (Cpher Block Chaining) with random IV (Initialization Vector)
+## CBC (Cipher Block Chaining) with random IV (Initialization Vector)
 - after 2^48 AES blocks, must change key
 - CBC where attacker can predict the IV is not CPA-secure
 - Nonce-based IV should be encrypted before use!
