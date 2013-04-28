@@ -461,3 +461,7 @@ with a commit that isn’t a descendant of it.
 # find people that have touched a file
 
     $ git blame -- filepath
+
+# amend the top commit of the current branch
+
+	git commit --amend
