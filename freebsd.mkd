@@ -1,0 +1,23 @@
+# Setup NFSv4
+http://www.blissfulidiot.com/2012/09/migrating-to-nfsv4-on-freebsd.html
+On the NFS server, the following changes need to be made. These notes assume
+that you already have a working NFSv3 server.
+
+	# /etc/rc.conf changes
+
+	nfsv4_server_enable="YES"
+	nfsuserd_enable="YES"
+
+	# /etc/exports changes
+	# The 'V4' line defines the root of your NFSv4 tree. As I
+	# understand it, the paths you want exported must also be listed
+	# in the exports file, the same way they are for v3.
+	V4: /
+	/home -alldirs -maproot=root: -network=10.0.0.0/24
+
+To mount the filesystem on the client using NFSv4, you must add the nfsv4
+option to the mount command.
+
+	root@client:~-> mount -t nfs -o nfsv4 server:/home /mnt
+	root@client:~-> mount
+	server:/home on /mnt (nfs, nfsv4acls)
