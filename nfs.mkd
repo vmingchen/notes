@@ -198,3 +198,30 @@ The client also has responsibility to make this work. If the client
 makes an ACCESS call, read will be denied if the file is execute only.
 Not all clients handle this condition properly, or do not handle it
 properly for all types of executables.
+
+# Improving the Write Performance of an NFS Server
+## NFSv2 Client
+A client system can have multiple outstanding read and/or write requests. A
+client process blocks whenever a read or write request cannot be satisfied
+locally and must be processed by the server. When it blocks, another process
+can run; that process may also generate a read or write request. A single
+process can have multiple outstanding read and/or write requests if the client
+system is running NFS block I/O (biod(8) or nfsiod(8)) daemons, referred to
+simply as biods from here on. Biods perform client read-ahead and write-behind
+functions asynchronously, allowing the client process to continue execution in
+parallel with client/server communication.
+
+## NFSv2 sync on close
+An NFS server should commit any modified data to stable storage before
+responding to the client that the request is complete.  An asynchronous
+operation carries with it the promise to fully complete that operation at some
+later time. The NFS protocol contains no provisions for recalling past
+promises.
+
+Most NFS clients impose a sync on close semantic where the close(2) call blocks
+until all outstanding writes have received responses.
+
+## NFSv3
+The NFS Version 3 protocol supports reliable asynchronous writes in addition to
+the Version 2 stable storage write semantics. Many V3 clients may opt for the
+simpler kernel implementation of V2 write semantics.
