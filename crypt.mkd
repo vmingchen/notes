@@ -55,6 +55,23 @@ Encrypted Cipher Block Chaining MAC.
 
 ## HMAC
 
+### Collision Resistance
+
+### Generic birthday attack
+
+### SHA-256, SHA-512, Whirlpool
+
+### Merkle-Damgard Paradigm
+Use Collision-Resistant hash of short message, we can get CR hash of long
+message using Merkle-Damgard Paradigm. Its construction looks similar to NMAC.
+
+### Davies-Meyer to construct compressiong functions
+h(H, m) = E(m, H) XOR H
+
+### TLS must support HMAC-SHA1-96
+
+### Timing attacks on MAC verification
+
 # What is cryptography
 - A tremendous tool
 - The basis for many security mechanisms
