@@ -1,0 +1,20 @@
+# setup nfs
+Run server:
+
+    $ su - 
+    $ cd /usr/lib/nfs
+    $ ./mountd
+    $ ./nfsd
+
+Server: share a file system:
+
+    $ share /tmp
+    $ man share_nfs
+
+List all file systems being shared:
+
+    $ share
+
+Client mount:
+
+    # mount -F nfs serverhost:/tmp /mnt 
