@@ -51,3 +51,17 @@ TLB (Translation Lookaside Buffer) is not coherent with memory (tlb_invalidate)
 # Parkinson's law
 To paraphrase Parkinson's law, "Programs expand to fill the memory available to
 hold them."
+
+# block device
+Floppy and hard disks for PCs are divided into 512 byte regions called
+*sectors*.  A sector is the disk's minimum transfer granularity: each read or
+write operation must be one or more sectors in size and aligned on a sector
+boundary.
+
+# exceptions
+Faults: Can generally be corrected; once corrected, the program is allowed to
+restart with no loss of continuity.
+
+Trap: Reported immediately following the execution of the trapping instruction;
+after the kernel returns control to the program, it is allowed to continue its
+execution with no loss of continuity.

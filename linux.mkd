@@ -404,6 +404,16 @@ On ssh server
     sudo apt-get install alien
     sudo alien -i /path/to/file.rpm
 
+# package signature check
+
+    rpm --checksig packagename.rpm
+    rpm -K --nopgp packagename.rpm
+
+The corresponding commands for deb packages are
+
+    dpkg -I | --info packagename.deb
+    dpkg -e | --control packagename.deb
+
 # Cross-compiling 
 
     ./configure --help

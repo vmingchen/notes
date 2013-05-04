@@ -1,3 +1,11 @@
+# compile
+When you compile and link a C program, the compiler transforms each C source
+('.c') file into an object ('.o') file containing assembly language instructions
+encoded in the binary format expected by the hardware. The linker then combines
+all of the compiled object files into a single binary image, which in this case
+is a binary in the ELF format, which stands for "Executable and Linkable
+Format". 
+
 # Get library search path
 Detailed information can be obtained from ld by passing it the --verbose flag.
 For example, an `ld --verbose | grep SEARCH` will illustrate the current search

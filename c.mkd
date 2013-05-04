@@ -300,3 +300,10 @@ Debug Macro
 
     #define DEBUG(...) cprintf("%d (%d): ", __FILE__, __LINE__); \\
             cprintf(__VA_ARGS__);
+
+# cdecl calling convention
+The cdecl calling convention is used by many C systems for the x86 architecture.
+In cdecl, function parameters are pushed on the stack in a right-to-left order.
+Function return values are returned in the EAX register (except for floating
+        point values, which are returned in the x87 register ST0).  Registers
+EAX, ECX, and EDX are available for use in the function.
