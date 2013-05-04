@@ -278,3 +278,7 @@ A rule is always expanded the same way, regardless of the form:
 
 	$ cmake .
 	$ make VERBOSE=1
+
+# cmake debug
+
+    $ cmake -DCMAKE_BUILD_TYPE=Debug 

@@ -1,5 +1,0 @@
-# Algorithm
-Boruvaka's Algorithm
-
-    T = empty
-    While G has more than 1 vertex

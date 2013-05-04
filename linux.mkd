@@ -164,6 +164,10 @@ update initramfs using
     03:07.0 Ethernet controller: Intel Corporation 82541GI Gigabit Ethernet
     Controller (rev 05)
 
+List all PCI hardware info
+
+    # lspci -vv
+
 # Cool linux tools
 http://kkovacs.eu/cool-but-obscure-unix-tools
 http://coolshell.cn/articles/7829.html
@@ -785,3 +789,14 @@ http://www.centos.org/modules/newbb/viewtopic.php?topic_id=35275&forum=55
 # wget recursive download
 
     wget -r --no-parent -A.txt http://www.abc.org/folder/
+
+# imagemagick convert image
+
+    $ convert rose.jpg -resize 50% rose.png  # resize
+    $ convert rose.jpg -rotate 180 rose.png     
+
+# OS
+The kernel handles interrupts by delivering to the current process one of the
+signals familiar to every Unix programmer; handles exceptions to recover from
+the anomalous condition, such as a Page Fault or a request via an assembly
+language instruction such as int or sysenter for a kernel service.

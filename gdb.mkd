@@ -29,3 +29,16 @@ program, without setting the variable in your shell's environment:
     (gdb) where     # where
     (gdb) finish    # finish
 
+# show code along with gdb
+
+    $ gdb -tui
+    $ gdb
+    (gdb)       # press Ctrl-X-A
+
+# use a narrower display width than usual
+
+    (gdb) set width 70
+
+# output assembly code
+
+    (gdb) display /i $pc

@@ -1,5 +1,0 @@
-# Bash
-reverse a line
-
-    $ echo  "toidi deified idyot" | rev
-
