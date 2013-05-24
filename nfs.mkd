@@ -225,3 +225,7 @@ until all outstanding writes have received responses.
 The NFS Version 3 protocol supports reliable asynchronous writes in addition to
 the Version 2 stable storage write semantics. Many V3 clients may opt for the
 simpler kernel implementation of V2 write semantics.
+
+# Check NFS versions
+
+	cat /proc/fs/nfsd/versions
