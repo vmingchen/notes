@@ -1,6 +1,0 @@
-# Linux
-Detect hardware
-
-    # lspci -vv
-
-

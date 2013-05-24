@@ -1,4 +1,34 @@
 # Words
+*Veterinarian* is a person qualified and authorized to practice veterinary
+medicine. 
+
+*Cotillion* is a ballroom dance for couples that resembles the quadrille.
+
+*Lob* for Bosh. Lob is to throw sth so that it goes quite high through the air. 
+
+The Linux File System Structure is a document, which was created to help end
+this *anarchy*.
+
+Bosh controlled the play early, scoring nine of Miami's first 15 points, the
+last of those being an *alley-oop* dunk off a feed from Chalmers for an 11-point
+Heat lead.
+
+*Bassoon* is a double-reed instrument; the tenor of the oboe family. 
+
+The *transcriptome* is the set of all RNA molecules, including mRNA, rRNA, tRNA,
+and other non-coding RNA produced in one or a population of cells.
+
+*Nonchalant* is behaving in a calm and relaxed way; giving the impression that you
+are not feeling any anxiety.
+
+Since Congress could not tax indviduals directly, it could not *shore up* the
+shaky government.
+
+Do *ordain* and establish this Constitution for the United States of America.
+
+*Observance* is the practice of obeying a law, celebrating a festival or
+behaving according to a particular custom.
+
 He had previously conducted his own informal survey, putting red stickers on
 servers he believed to be *comatose* — the term engineers use for servers that
 are plugged in and using energy even as their processors are doing little if
@@ -325,3 +355,5 @@ database system to continue to be available to users while a restore happened.
 An in situ upgrade would allow an operating system, firmware or application to
 be upgraded while the system was still running, perhaps without the need to
 reboot it, depending on the sophistication of the system.
+
+*Smell a rat* is to have a suspicion of somthing wrong.

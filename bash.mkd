@@ -139,3 +139,11 @@ tty is a Unix device file that handles input and output for your terminal, windo
 The : (null) operator can substitute for match. For example, b=`expr $a :
 [0-9]*` is the exact equivalent of b=`expr match $a [0-9]*` in the above
 listing. `expr $string : '.*'` return the length of string.
+
+# reverse a line
+
+    $echo "nehc gnim" | rev
+
+# Generate random string 
+
+    < /dev/urandom tr -dc A-Za-z0-9_ | head -c 100000 > random.txt

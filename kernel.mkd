@@ -24,3 +24,30 @@ You can do the same, or call access_ok as follows
 	
 # kenerl crypto example of using scatterlist
 http://lxr.fsl.cs.sunysb.edu/linux/source/net/ceph/crypto.c#L197
+
+# kernel debugging 
+Obviously, we strongly suggest you to recompile your kernel, so that you can
+enable a number of useful debugging features, such as forced module unloading
+(MODULE_FORCE_UNLOAD): when this option is enabled, you can force the kernel to
+                       unload a module even when it believes it is unsafe, via a
+                       rmmod -f module command. 
+
+# Ring 0
+Ring 0: os operation mode
+
+# X86 modes
+x86 Real mode (state at boot; 20-bit address, no virtual memory; no paging)
+
+x86 Protected mode (VM, segmentation and paging)
+
+x86 Long mode
+
+# control registers
+cr3 (control register 3) point to current paging table
+
+# TLB
+TLB (Translation Lookaside Buffer) is not coherent with memory (tlb_invalidate)
+
+# Parkinson's law
+To paraphrase Parkinson's law, "Programs expand to fill the memory available to
+hold them."
