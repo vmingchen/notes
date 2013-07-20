@@ -327,3 +327,94 @@ CPA (Chosen Plaintext Attack)
 - after 2^64 AES blocks, must change key
 - Parallelizable
 - IV chosen at random for every message
+
+# Encryption secure against tampering (authenticated encryption)
+- Ensuring both confidentiality and integrity
+- CPA security cannot guarantee secrecy under active attacks
+- confidentiality and integrity must be provided together to be secure against
+  active attacker
+
+## authenticated encryption
+Secure against chosen-ciphertext attack (CCA)
+1. semantically secure under CPA
+2. has ciphertext integrity
+
+## Combining MAC and ENC
+1. SSL: mac-then-encrypt
+2. IPSec (secure): encrypt-then-mac
+3. SSH: encyrpt-and-mac
+
+## Standards
+- GCM: CTR mode encryption then CW-MAC (PCLMULQDQ)
+- CCM: CBC-MAC then CTR mode encryption (802.11i)
+- EAX: CTR mode encryption then CMAC
+All support AEAD (auth. enc. with associated data)
+
+## OCB: a direct construction from a PRP
+
+# Key derivation (deriving many key from one)
+## HKDF
+## Password-Based KDF (PBKDF, PKCS#5)
+
+# Key Management
+For parties to communicate securely, every party has to store n keys. With an
+online Trusted Third Party (TTP), every party only need to store one key.
+
+On formal methods of key exchange (sections 7-9) 1999
+
+## Merkle Puzzles (1974)
+Puzzle based. Quadratic  gap is  best  possible  if  we  treat cipher  as black
+box oracle. Not practical.
+
+## Diffie-Hellman (1976)
+For a large prime p, and an integer g in {1, ..., p}. 
+
+    A <- g^a (mod p)
+    B <- g^b (mod p)
+
+Elliptic Curve is more difficult to solve.
+
+Insecure against man-in-the-middle attack.
+
+## RSA (1977)
+Public-key encryption.
+
+## ID-based enc. (BF 2001)
+## Functional enc. (BSW 2011)
+
+# Number Theory
+- Key exchange protocols
+- Digital signatures
+- Public-key encryption
+
+Shoup's book
+
+## GCD Extended Euclid alg.
+For all ints. x, y there exists ints. a, b s.t.:
+
+    ax + by = gcd(x, y)
+
+If gcd(x, y) = 1, then x and y are relative prime.
+
+Modular inversion. x in Z_N has an inverse, iif gcd(x, N) = 1. i.e., x is
+relatively prime to N.
+
+## Fermat
+Generate a large random prime. Choose a random integer p, test if 2^{p-1} = 1
+in Zp.
+
+## Euler
+(Zp)* is a cyclic group {1, g, g^2, g^4, ..., g^{p-2}} = (Zp)* . g is called a
+generator of (Zp)*
+
+# Public-key Chosen Ciphertext Security
+
+# Textbook RSA is insecure (without random, without hash)
+
+# PKCS1 (Public Key Cryptography Standard)
+
+# RSA has fast enc. but slow dec
+
+# key escrow
+
+# Anything that can be done with trusted auth. can also be done w/o.

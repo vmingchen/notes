@@ -476,3 +476,18 @@ with a commit that isn’t a descendant of it.
 # amend the top commit of the current branch
 
 	git commit --amend
+
+# git undo/edit commits
+Use interactive rebase and force push
+
+    $ git pull <remotename> <branchname>
+    $ git rebase -i <commithash>^
+
+Remote unwanted commit in the interactive editor and mark "edit" to the commits
+we would like to change, use
+
+    $ git rebase --continue
+
+until all are done. Then force a push
+
+    $ git push -f <remotename> <branchname>

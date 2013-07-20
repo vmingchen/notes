@@ -225,3 +225,12 @@ until all outstanding writes have received responses.
 The NFS Version 3 protocol supports reliable asynchronous writes in addition to
 the Version 2 stable storage write semantics. Many V3 clients may opt for the
 simpler kernel implementation of V2 write semantics.
+
+# NFSv4 SETCLIENTID
+
+    Once a SETCLIENTID and SETCLIENTID_CONFIRM sequence has successfully
+    completed, the client uses the shorthand client identifier, of type
+    clientid4, instead of the longer and less compact nfs_client_id4
+    structure.  This shorthand client identifier (a clientid) is assigned
+    by the server and should be chosen so that it will not conflict with
+    a clientid previously assigned by the server.
