@@ -1,3 +1,38 @@
+# Install GCC
+
+	# pkg search gcc
+	...
+	basename        dir      opt/gcc	pkg:/developer/illumos-gcc@4.4.4-0.151.1.7
+	...
+	# pkg install pkg:/developer/illumos-gcc@4.4.4-0.151.1.7
+
+Package will be installed in `/opt/gcc`.
+
+# check hard drive
+http://docs.oracle.com/cd/E19166-01/E20792/z400076e1521490.html
+
+iostat -E
+
+	sgdp07$ iostat -E		# executed on solaris
+	sd0       Soft Errors: 0 Hard Errors: 5 Transport Errors: 0
+	Vendor: KVM      Product: vmDisk-CD        Revision: 0.01 Serial No:
+	Size: 0.00GB <0 bytes>
+	Media Error: 0 Device Not Ready: 5 No Device: 0 Recoverable: 0
+	Illegal Request: 1 Predictive Failure Analysis: 0
+	sd1       Soft Errors: 0 Hard Errors: 5 Transport Errors: 0
+	Vendor: TEAC     Product: DVD-ROM DV-28SW  Revision: R.2A Serial No:
+	Size: 0.00GB <0 bytes>
+	Media Error: 0 Device Not Ready: 5 No Device: 0 Recoverable: 0
+	Illegal Request: 0 Predictive Failure Analysis: 0
+	sd2       Soft Errors: 0 Hard Errors: 0 Transport Errors: 0
+	Vendor: DELL     Product: PERC 6/i         Revision: 1.22 Serial No:
+	00158a990fe0ba9
+	Size: 146.16GB <146163105792 bytes>
+	Media Error: 0 Device Not Ready: 0 No Device: 0 Recoverable: 0
+	Illegal Request: 4 Predictive Failure Analysis: 0
+
+Or use ``format``.
+
 # setup nfs
 Run server:
 

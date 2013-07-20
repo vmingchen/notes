@@ -21,3 +21,16 @@ option to the mount command.
 	root@client:~-> mount -t nfs -o nfsv4 server:/home /mnt
 	root@client:~-> mount
 	server:/home on /mnt (nfs, nfsv4acls)
+
+# check hard drive
+
+	sgdp06$ egrep 'mfid' /var/run/dmesg.boot		# executed on freebsd
+	mfid0 on mfi0
+	mfid0: 139392MB (285474816 sectors) RAID volume (no label) is optimal
+	mfid1 on mfi0
+	mfid1: 152064MB (311427072 sectors) RAID volume 'Virtual Disk 3' is optimal
+	mfid2 on mfi0
+	mfid2: 139392MB (285474816 sectors) RAID volume 'Virtual Disk 0' is optimal
+	mfid3 on mfi0
+	mfid3: 237952MB (487325696 sectors) RAID volume 'Virtual Disk 4' is optimal
+	Trying to mount root from ufs:/dev/mfid0p2 [rw]...

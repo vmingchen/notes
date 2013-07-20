@@ -234,3 +234,7 @@ simpler kernel implementation of V2 write semantics.
     structure.  This shorthand client identifier (a clientid) is assigned
     by the server and should be chosen so that it will not conflict with
     a clientid previously assigned by the server.
+
+# Check NFS versions
+
+	cat /proc/fs/nfsd/versions
