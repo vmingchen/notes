@@ -738,6 +738,11 @@ Similar to screen -D -R
 join-pane -t pane
 break-pane -v pane
 
+Adjust pane width:
+
+    Ctrl-A :
+    resize-pane -R adjustments
+
 # create zip file
 
 	 $ zip archivefile1 doc1 doc2 doc3
