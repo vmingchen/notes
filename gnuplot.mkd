@@ -116,3 +116,8 @@ used for x is adopted.
 	3 2
 	4 5
 	e
+
+# plot part of data file
+See /home/mchen/greendm/results_new/online_traces_realtime/parse/thput/thput.py
+
+	plot "<(sed -n '2p' results.dat)" using 2:3:xticlabels(1) with histogram lw 2 notitle

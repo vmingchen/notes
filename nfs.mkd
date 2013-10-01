@@ -42,6 +42,10 @@ that matches the port filter. This is useful if you know the NFS traffic is
 UDP-based, and you need to restrict the capture stream to keep your capture
 file managebly small. 
 
+Split the first 100 packets:
+
+	tcpdump -r result.1.tcpdump -w split.tcpdump -c 100
+
 # split pcap files
 
 	$ editcap -c <packets per file> infile outprefix

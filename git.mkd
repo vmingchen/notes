@@ -491,3 +491,10 @@ we would like to change, use
 until all are done. Then force a push
 
     $ git push -f <remotename> <branchname>
+
+# git shared repo
+
+Put this into <repo>/config
+
+	[core]
+		sharedRepository = group
