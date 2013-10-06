@@ -815,3 +815,26 @@ The kernel handles interrupts by delivering to the current process one of the
 signals familiar to every Unix programmer; handles exceptions to recover from
 the anomalous condition, such as a Page Fault or a request via an assembly
 language instruction such as int or sysenter for a kernel service.
+
+# man
+http://www.thegeekstuff.com/2013/09/man-command/
+
+	$ man man
+
+Search in NAME section
+
+	$ man -f printf
+	printf (3)           - formatted output conversion
+	printf (1)           - format and print data
+
+Search in NAME and DESCRIPTION section
+
+	$ man -k printf
+	asprintf (3)         - print to allocated string
+	dprintf (3)          - print to a file descriptor
+	fprintf (3)          - formatted output conversion
+	fwprintf (3)         - formatted wide-character output conversion
+	printf (1)           - format and print data
+	printf (3)           - formatted output conversion
+	snprintf (3)         - formatted output conversion
+	sprintf (3)          - formatted output conversion
