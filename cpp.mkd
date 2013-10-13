@@ -19,3 +19,9 @@ You will get at the end of a successful installation:
 	The following directory should be added to linker library paths:
 
 	    /home/mchen/software/boost_1_54_0/stage/lib
+
+http://stackoverflow.com/questions/13280823/cmake-not-finding-boost
+
+Debug Boost in CMake:
+
+	-DBoost_DEBUG=ON
