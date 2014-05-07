@@ -1,0 +1,56 @@
+# stap static function
+https://www.sourceware.org/ml/systemtap/2007-q3/msg00132.html
+https://www.sourceware.org/ml/systemtap/2007-q3/msg00134.html
+
+	The result is that parameters to inlined functions are not properly
+	recorded, and inlined functions cannot have .return probes.
+
+	What this all means is that, for now, systemtap probes
+	desired in such functions need to be relocated to somewhere within
+	their callers.
+
+
+# find out function name of function pointer
+For example:
+
+	global addr
+
+	probe kernel.function("__netif_rx_schedule") {
+		addr = sprintf("%p", $dev->poll);
+	}
+
+	probe end {
+		printf("Function address and name are:\n");
+		print_stack(addr);
+	}
+
+Sometimes, the address is in a different module, so the module name, instead of
+the function name, will be printed. In this case, do a grep into
+'/proc/kallsyms' should be able to find out the function name.
+
+
+# find functions that can be instrumented
+
+	# stap -p2 -e 'probe kernel.function("*") {}' 2>&1 | grep ^kernel.fun
+
+
+# generate call graph with function names
+
+	probe module("ext4").function("*").call {
+		printf("%s -> %s\n", thread_indent(1), probefunc());
+	}
+
+	probe module("ext4").function("*").return {
+		printf("%s <- %s\n", thread_indent(-1), probefunc());
+	}
+
+# generate call graph of functions within a file
+
+	probe kernel.function("*@net/core/ethtool.c").call {
+		printf("%s -> %s\n", thread_indent(1), probefunc());
+	}
+
+	probe kernel.function("*@net/core/ethtool.c*").return {
+		printf("%s <- %s\n", thread_indent(-1), probefunc());
+	}
+
