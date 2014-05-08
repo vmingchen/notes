@@ -1,0 +1,9 @@
+# Switch to non-GUI mode
+
+    # ln -sf /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
+
+Restore to GUI mode:
+
+    # ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
+
+
