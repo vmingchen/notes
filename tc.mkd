@@ -1,0 +1,33 @@
+# Delete a filter
+You must at least provide the following:
+
+	dev
+	parent (qdisc or class)
+	prio
+	kind (filter type)
+	handle
+
+For example:
+
+	sgdp06# tc -s filter ls dev em1
+	filter parent 1: protocol ip pref 1 u32
+	filter parent 1: protocol ip pref 1 u32 fh 800: ht divisor 1
+	filter parent 1: protocol ip pref 1 u32 fh 800::800 order 2048 key ht 800 bkt 0
+	terminal flowid ???  (rule hit 193 success 0)
+	  match c0a80003/ffffffff at 16 (success 0 )
+	        action order 1:  skbedit queue_mapping 3 installed 366 sec used 366
+			sec Action statistics:
+			        Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0)
+	        backlog 0b 0p requeues 0
+
+			filter parent 1: protocol ip pref 2 u32
+			filter parent 1: protocol ip pref 2 u32 fh 801: ht divisor 1
+			filter parent 1: protocol ip pref 2 u32 fh 801::800 order 2048 key
+			ht 801 bkt 0 terminal flowid ???  (rule hit 154 success 0)
+	  match c0a80003/ffffffff at 16 (success 0 )
+	        action order 33:  skbedit queue_mapping 3 installed 321 sec used
+			321 sec        Action statistics:
+			        Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0)
+	        backlog 0b 0p requeues 0
+
+	sgdp06# tc filter del dev em1 parent 1: prio 2 u32	

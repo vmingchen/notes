@@ -1,0 +1,76 @@
+# dynamic debug
+https://www.kernel.org/doc/Documentation/dynamic-debug-howto.txt
+
+Enable print from a line file:
+
+	# echo 'file svcsock.c line 1603 +p' > <debugfs>/dynamic_debug/control 
+
+The match rules support wildcards:
+
+	'*' (matches zero or more characters)
+	'?' (matches exactly one character)
+	
+For example, you can match all usb drivers:
+
+	# echo "file drivers/usb/* +p" > <debugfs>/dynamic_debug/control
+
+command ::= match-spec* flags-spec
+
+match-spec ::= 'func' string |
+	       'file' string |
+	       'module' string |
+	       'format' string |
+	       'line' line-range
+
+	// '-' in module names are replaced with '_'
+
+line-range ::= lineno |
+	       '-'lineno |
+	       lineno'-' |
+	       lineno'-'lineno
+
+// Note: line-range cannot contain space, e.g.
+// "1-30" is valid range but "1 - 30" is not.
+
+lineno ::= unsigned-int
+
+The flags specification comprises a change operation followed
+by one or more flag characters.  The change operation is one
+of the characters:
+
+	-    remove the given flags
+	+    add the given flags
+	=    set the flags to the given flags
+
+The flags are:
+
+	p    enables the pr_debug() callsite.
+	f    Include the function name in the printed message
+	l    Include line number in the printed message
+	m    Include module name in the printed message
+	t    Include thread ID in messages not generated from interrupt context
+	_    No flags are set. (Or'd with others on input)
+
+To activate debug messages for core code and built-in modules during the boot
+process, even before userspace and debugfs exists, use dyndbg="QUERY",
+module.dyndbg="QUERY".  On an x86 system for example ACPI enablement is a
+subsys_initcall and dyndbg="file ec.c +p"
+
+## Debug Messages at Module Initialization Time
+
+When "modprobe foo" is called, modprobe scans /proc/cmdline for foo.params,
+ strips "foo.", and passes them to the kernel along with params given in
+ modprobe args or /etc/modprob.d/*.conf files, in the following order:
+
+	1. # parameters given via /etc/modprobe.d/*.conf options foo dyndbg=+pt
+	options foo dyndbg # defaults to +p
+
+	2. # foo.dyndbg as given in boot args, "foo." is stripped and passed
+	foo.dyndbg=" func bar +p; func buz +mp"
+
+	3. # args to modprobe modprobe foo dyndbg==pmf # override previous settings
+
+## enable all messages
+
+	# echo -n '+p' > <debugfs>/dynamic_debug/control
+## print_hex_dump

@@ -7,3 +7,23 @@ Restore to GUI mode:
     # ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
 
 
+systemctl
+=========
+
+Switch to 'runlevel 3' by running
+
+	systemctl isolate multi-user.target 
+
+Or 'runlevel 5' by 
+
+	systemctl isolate graphical.target 
+
+Set default
+
+	systemctl set-default multi-user.target
+	systemctl get-default
+
+
+Manage services:
+
+	systemctl [start|stop|restart|status|enable|disable] foo

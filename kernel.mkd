@@ -65,3 +65,31 @@ restart with no loss of continuity.
 Trap: Reported immediately following the execution of the trapping instruction;
 after the kernel returns control to the program, it is allowed to continue its
 execution with no loss of continuity.
+
+# update kernel module without deleting the old one
+/lib/module/<version>/updates/ directory and depmod
+
+	# cd e1000/src
+	# make (DON.T RUN make install!)
+
+	These steps will create the e1000.k[o] in the e1000/src directory but will not
+	automatically install the kernel module. The remaining steps are:
+	copy the e1000.k[o] file from the e1000/src directory into the
+	/lib/modules/<KERNEL VERSION>/updates directory. If the updates directory
+	doesn.t exist, create it.
+
+	# depmod
+
+	This will not overwrite the old e1000 kernel module. The newest module will be
+	loaded from the updates directory. If you need to roll back, all you would need
+	to do is delete the e1000.k[o] file from the /lib/modules/<KERNEL
+	VERSION>/updates directory and run depmo
+
+# /proc/slabinfo
+
+	#cat /proc/slabinfo | grep delegation
+	nfsd4_delegations      0      0    368   10    1 : tunables   54   27    8 : slabdata      0      0      0
+
+# /proc/kallsyms
+
+	All kernel symbols

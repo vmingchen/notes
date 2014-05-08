@@ -1,0 +1,27 @@
+# install boost
+http://www.boost.org/doc/libs/1_54_0/more/getting_started/unix-variants.html
+
+	$ bootstrap.sh --prefix=path/to/installation/prefix
+	$ ./b2
+
+Download zlib and bzip library; set BZIP2_SOURCE and ZLIB_SOURCE to the folders
+as pointed out by
+http://www.boost.org/doc/libs/1_54_0/libs/iostreams/doc/installation.html
+
+You will get at the end of a successful installation:
+
+	The Boost C++ Libraries were successfully built!
+
+	The following directory should be added to compiler include paths:
+
+		/home/mchen/software/boost_1_54_0
+
+	The following directory should be added to linker library paths:
+
+	    /home/mchen/software/boost_1_54_0/stage/lib
+
+http://stackoverflow.com/questions/13280823/cmake-not-finding-boost
+
+Debug Boost in CMake:
+
+	-DBoost_DEBUG=ON

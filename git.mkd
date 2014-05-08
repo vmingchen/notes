@@ -390,12 +390,12 @@ branch, you can use the branch name pointer in the git checkout command.
 # update git on CentOS
 https://answers.atlassian.com/questions/52498/stash-requires-git-1-7-6-but-rhel6-comes-with-git-1-7-1
 
-    yum -y install zlib-devel openssl-devel cpio expat-devel gettext-devel gcc perl-ExtUtils-MakeMaker
+    yum -y install zlib-devel openssl-devel cpio expat-devel gettext-devel gcc perl-ExtUtils-MakeMaker curl-devel
     cd /usr/local/src
     wget http://git-core.googlecode.com/files/git-1.8.1.2.tar.gz
     tar xzvf git-1.8.1.2.tar.gz
     cd git-1.8.1.2
-    ./configure
+    ./configure --with-curl
     make
     make install
 
@@ -498,3 +498,14 @@ Put this into <repo>/config
 
 	[core]
 		sharedRepository = group
+
+# install git man pages
+http://www.codeography.com/2009/09/15/install-git-man-pages-the-easy-way.html
+	
+	curl -O "http://git-core.googlecode.com/files/git-manpages-`git --version | awk '{print $3}'`.tar.gz"
+	sudo mkdir -p /usr/local/share/man
+	sudo tar xzv -C /usr/local/share/man -f git-manpages-`git --version | awk '{print $3}'`.tar.gz
+
+# check patch
+
+	git show --format=email c2810c | ./src/scripts/checkpatch.pl --no-tree -

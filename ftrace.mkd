@@ -1,0 +1,5 @@
+# enable ftrace
+
+	# mount -t debugfs /sys/kernel/debug
+	# ls /sys/kernel/debug/tracing
+	...

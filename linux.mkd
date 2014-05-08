@@ -716,33 +716,6 @@ install your public key in a remote machine's authorized_keys
 	$ pdftk largepdfile.pdf burst
 	$ pdftk *.pdf cat output onelargepdfile.pdf
 
-# install tmux under home
-
-	$ wget https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
-	$ tar xzf libevent-2.0.21-stable.tar.gz
-	$ cd libevent-2.0.21-stable
-	$ DIR=/home/mchen/software
-	$ ./configure --prefix=$DIR
-	$ make && make install
-
-	$ wget tmux
-	$ ./configure CFLAGS='-I${DIR}/include/' LDFLAGS="-L${DIR}/lib" --prefix=${DIR}
-	$ make && make install
-
-# tmux re-attach
-Similar to screen -D -R
-
-  $ tmux attach -d
-
-# tmux
-join-pane -t pane
-break-pane -v pane
-
-Adjust pane width:
-
-    Ctrl-A :
-    resize-pane -R adjustments
-
 # create zip file
 
 	 $ zip archivefile1 doc1 doc2 doc3
@@ -800,6 +773,8 @@ code in gdb.
 http://www.centos.org/modules/newbb/viewtopic.php?topic_id=35275&forum=55
 
 	# yum --nogpgcheck --enablerepo=debug install glibc-debuginfo
+
+edit /etc/yum.repos.d/CentOS-Debuginfo.repo, set enabled=1
 
 # wget recursive download
 

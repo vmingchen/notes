@@ -288,3 +288,13 @@ It prints out all the commands that would be triggered by a make, without
 actually executing them:
 
     $ make -n
+
+# Use different GCC version or CLang in CMake
+
+	$ export CC=/usr/bin/clang
+	$ export CXX=/usr/bin/clang++
+
+	$ export CC=/opt/gcc-4.8.2/gcc
+	$ export CXX=/opt/gcc-4.8.2/g++
+
+	$ cmake ..

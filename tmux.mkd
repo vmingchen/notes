@@ -1,0 +1,48 @@
+# Move to pane
+Ctrl-b q 
+	Show pane numbers, when the numbers show up type the key to goto that pane
+
+# install with rpm
+CentOS 5 32Bit:
+
+	rpm -Uvh http://pkgs.repoforge.org/tmux/tmux-1.6-1.el5.rf.i386.rpm
+
+CentOS 5 64Bit:
+
+	rpm -Uvh http://pkgs.repoforge.org/tmux/tmux-1.6-1.el5.rf.x86_64.rpm
+
+CentOS 6 32Bit:
+
+	rpm -Uvh http://pkgs.repoforge.org/tmux/tmux-1.6-1.el6.rf.i686.rpm
+
+CentOS 6 64Bit:
+
+	rpm -Uvh http://pkgs.repoforge.org/tmux/tmux-1.6-1.el6.rf.x86_64.rpm
+
+# install tmux under home
+
+	$ wget https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
+	$ tar xzf libevent-2.0.21-stable.tar.gz
+	$ cd libevent-2.0.21-stable
+	$ DIR=/home/mchen/software
+	$ ./configure --prefix=$DIR
+	$ make && make install
+
+	$ wget tmux
+	$ ./configure CFLAGS='-I${DIR}/include/' LDFLAGS="-L${DIR}/lib" --prefix=${DIR}
+	$ make && make install
+
+# tmux re-attach
+Similar to screen -D -R
+
+  $ tmux attach -d
+
+# tmux
+join-pane -t pane
+break-pane -v pane
+
+Adjust pane width:
+
+    Ctrl-A :
+    resize-pane -R adjustments
+

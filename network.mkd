@@ -1,0 +1,13 @@
+# DST Cache
+http://timesinker.blogspot.com/2010/03/linux-networking-secrets.html
+Show DST cache
+
+	ip -s route show table cache
+
+You just flush the DST caching using:
+
+	ip route flush table cache
+
+Or you can disable the DST caching using:
+
+	sysctl -w net.ipv4.tcp_no_metrics_save=1
