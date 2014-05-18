@@ -42,3 +42,10 @@ program, without setting the variable in your shell's environment:
 # output assembly code
 
     (gdb) display /i $pc
+
+# multi-thread debugging
+
+	'thread apply [threadno] [all] args', a command to apply a command to a list
+	of threads
+
+	(gdb) thread apply all backtrace
