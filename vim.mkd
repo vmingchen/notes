@@ -103,3 +103,33 @@ surroundit
     C-d, C-t    # indent in insert mode, very useful
     C-w         # delete previous word in insert mode
 
+# build ctags for bash scripts w/o suffix
+
+	ctags --language-force=sh mytool
+
+# save file we opened with insufficient previledge
+
+	:w !sudo tee %
+
+# reverte the document back to how it was 15 minutes ago
+
+	:earlier 15m
+	:laster 15m
+
+# put output of external command into current window
+
+	:.! cmd
+
+# hex and back
+	
+	:%!xxd
+	:%!xxd -r
+
+# move (forward, backward) through the changelist
+
+	g;
+	g,
+
+# debug vim settings
+
+	:verbose set cindent?

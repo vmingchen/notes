@@ -242,3 +242,8 @@ simpler kernel implementation of V2 write semantics.
 # Check NFS versions
 
 	cat /proc/fs/nfsd/versions
+
+# NFS-Ganesha
+Install all of the required hooks:
+
+	./src/scripts/git_hooks/install_git_hooks.sh

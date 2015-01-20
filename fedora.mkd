@@ -7,8 +7,7 @@ Restore to GUI mode:
     # ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
 
 
-systemctl
-=========
+# systemctl
 
 Switch to 'runlevel 3' by running
 
@@ -27,3 +26,14 @@ Set default
 Manage services:
 
 	systemctl [start|stop|restart|status|enable|disable] foo
+
+
+# Change hostname
+
+	hostnamectl set-hostname fedora
+
+# firewall-cmd
+
+	firewall-cmd --permanent --zone=home --add-port=29418/tcp
+	firewall-cmd --permanent --zone=home --add-source="130.245.126.112"
+	firewall-cmd --permanent --zone=home --add-service=http

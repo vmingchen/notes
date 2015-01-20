@@ -509,3 +509,8 @@ http://www.codeography.com/2009/09/15/install-git-man-pages-the-easy-way.html
 # check patch
 
 	git show --format=email c2810c | ./src/scripts/checkpatch.pl --no-tree -
+
+# cherry-pick
+Pick the last two commits from master branch:
+
+	git cherry-pick master~1 master

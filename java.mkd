@@ -3,3 +3,20 @@ A static nested class interacts with the instance members of its outer
 class (and other classes) just like any other top-level class. In effect, a
 static nested class is behaviorally a top-level class that has been nested in
 another top-level class for packaging convenience. 
+
+# create eclipse from apache projects
+http://stackoverflow.com/questions/2061094/importing-maven-project-into-eclipse
+use maven to generate eclipse files
+
+        mvn eclipse:eclipse
+
+# tracing java
+
+        jstack
+        jmap
+        jvisualvm
+        jstat
+        javassist
+        jvmtop
+        jvmmonitor
+        ps -aefL | grep java

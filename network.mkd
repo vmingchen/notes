@@ -11,3 +11,25 @@ You just flush the DST caching using:
 Or you can disable the DST caching using:
 
 	sysctl -w net.ipv4.tcp_no_metrics_save=1
+
+
+# enable nic
+
+	ip link set em1 up
+
+# configure firewalld with nfs
+
+	yum install nfs-utils
+	firewall-cmd --permanent --zone=trusted --add-source=130.245.177.0/24
+	firewall-cmd --permanent --zone=trusted --add-source=fe80::21b:21ff:feb5:f398/64
+	systemctl start nfs-server.service
+
+	firewall-cmd --list-all-zones
+	
+cat /etc/exports
+
+	/nfsdata fe80::21b:21ff:feb5:f336/64(rw,fsid=0,sync,root_squash)
+
+on client:
+
+	mount -t nfs [fe80::21b:21ff:feb5:f398%p3p1]:/nfsdata /mnt
