@@ -1,0 +1,53 @@
+# the power of 2
+
+## Loop detection in a singly-linked list
+
+    struct SListNode {
+      int data;
+      struct SListNode* next;
+    };
+    
+    function DetectLoop(SListNode *slist) {
+      int steps = 1;
+      while (p != current) {
+
+      }
+    }
+
+### Locate the list node that begin the loop
+
+    give a node (P) in the loop that is n steps away from the start
+    give a Loop length of L
+
+    support the first node in the loop is x steps away from the start
+
+    n + y = L + x
+
+    cursor A starting from start
+    cursor B starting from P
+
+    1. let B step forward for 
+
+## Find the unmatched integer pair
+Give an array of 2n unsigned integers, only there are n-1 pairs that are the
+same, there is exactly one pair that is not the same
+
+    1. find median
+    2. use median to partition
+    3. xor the first half, and then xor the second half
+       if both xor results are not zero, then the two xor results are the
+       numbers we are looking for
+       if only one is zero, then ignore the half xor to zero, cut the problem
+       size to half
+
+### Great solution
+
+    // then res is the xor of the two different numbers in the pair
+    res = xor of all numbers
+    find a bit that is set in res (the two numbers will differ at that bit)
+    use that bit to separate the numbers into two sets
+    the xor of the 1st set is the one of the unmatched number in the pair
+    the xor of the 2nd set is another
+
+    xor of two same numbers cancels each other
+    

@@ -147,3 +147,7 @@ listing. `expr $string : '.*'` return the length of string.
 # Generate random string 
 
     < /dev/urandom tr -dc A-Za-z0-9_ | head -c 100000 > random.txt
+
+# Read directory contents into an array
+
+    files=(*)
