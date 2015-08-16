@@ -151,3 +151,8 @@ listing. `expr $string : '.*'` return the length of string.
 # Show the dir of the running bash script
 
     DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+# Read directory contents into an array
+
+    files=(*)
+
