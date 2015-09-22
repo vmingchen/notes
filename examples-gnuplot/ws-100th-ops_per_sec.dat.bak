@@ -1,0 +1,7 @@
+Client ws-noseqid-nfsv3-SSD-1cp-*ms-16kfs-5cl-100th:clients:filebench|ops/sec:1,2,3 ws-noseqid-nfsv3-SSD-1cp-*ms-16kfs-5cl-100th:clients:filebench|ops/sec:1,2,3-std ws-noseqid-nfsv4-SSD-1cp-*ms-16kfs-5cl-100th:clients:filebench|ops/sec:1,2,3 ws-noseqid-nfsv4-SSD-1cp-*ms-16kfs-5cl-100th:clients:filebench|ops/sec:1,2,3-std 
+0	119890	413	90406	213
+1	35322	68	36228	113
+2	21058	59	21264	9
+5	9529	39	9694	11
+10	5094	12	5147	4
+40	1397	3	1376	5
