@@ -1,10 +1,19 @@
+##############################################
+# Shows gamma distribution
+# 
+# Original Name: gamma.gnuplot
+# Context: Sigmetrics paper file server figure
+# Source: http://en.wikipedia.org/wiki/File:Gamma_distribution_pdf.svg
+#
+##############################################
+
 _ln_dgamma(x, a, b) = a*log(b) - lgamma(a) + (a-1)*log(x) - b*x
 dgamma(x, shape, rate) = (x<0)? 0 :	(x==0)? ((shape<1)? 1/0 : (shape==1)? rate : 0) :  (rate==0)? 0 : exp(_ln_dgamma(x, shape, rate))
 pgamma(x, shape, rate) = (x<0)? 0 : igamma(shape, x*rate)
 
 set samples 1001
-#set terminal postscript eps noenhanced color 
-#set output "gamma.eps"
+set terminal postscript eps noenhanced color 
+set output "gamma.eps"
 set border 3
 
 set xtics 0,2

@@ -302,6 +302,27 @@ Undo a commit and redo
     $ edit                        <2>
     $ git commit -a -c ORIG_HEAD  <3>
 
+Discard all local changes in your working directory
+
+    $ git reset --hard HEAD
+
+Discard local changes to a specific file
+
+    $ git checkout HEAD <file>
+
+Reset HEAD pointer to a previous commitn and discard all changes since then
+
+    $ git reset --hard <commit>
+
+Reset HEAD pointer to a previous commitn but preserve changes since then as
+unstaged changes:
+
+    $ git reset  <commit>
+
+And also preserve uncommitted local changes
+
+    $ git reset --keep <commit>
+
 
 # git merge squash
 http://sandofsky.com/blog/git-workflow.html

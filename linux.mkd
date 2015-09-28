@@ -829,3 +829,8 @@ flag during linking and do at least one of the following:
 
    $ udevadm info --query=all --name=/dev/sda
 
+# yum
+
+    yum install epel-release
+    yum makecache
+    yum check-update

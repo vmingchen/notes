@@ -148,6 +148,11 @@ listing. `expr $string : '.*'` return the length of string.
 
     < /dev/urandom tr -dc A-Za-z0-9_ | head -c 100000 > random.txt
 
+# Show the dir of the running bash script
+
+    DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
 # Read directory contents into an array
 
     files=(*)
+
