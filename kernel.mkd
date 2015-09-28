@@ -93,3 +93,27 @@ execution with no loss of continuity.
 # /proc/kallsyms
 
 	All kernel symbols
+
+# kdump
+http://www.thegeekstuff.com/2014/05/kdump/
+
+configure:
+
+- install ``yum install kexec-tools``
+
+- append "crashkernel=128M" to the kernel boot parameter
+
+- edit "/etc/kdump.conf" to the correct path
+
+- start kdump
+
+    
+    # chkconfig kdump on
+    # service kdump start
+
+and test
+
+    # cat /proc/cmd-line
+    # service kdump status
+    # echo 1 > /proc/sys/kernel/sysrq
+    # echo c > /proc/sysrq-trigger
