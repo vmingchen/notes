@@ -1,0 +1,26 @@
+# perf stat
+
+    perf stat ./myprog
+
+# perf record
+
+    perf record ./myprog
+    perf report
+
+compile with "-fno-omit-frame-pointer"
+
+    perf record -g ./myprog
+    perf report -g
+    perf report -g "graph,0.5,caller"
+
+# benchmark tips
+
+    static void escape(void *p) {
+      asm volatile("" : : "g"(p) : "memory");
+    }
+
+    static void clobber() {
+      asm volatile("" : : "" : "");
+    }
+
+    #define UNLIKELY(x) __builtin_expect((bool)(x), 0)
