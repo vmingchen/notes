@@ -535,3 +535,13 @@ http://www.codeography.com/2009/09/15/install-git-man-pages-the-easy-way.html
 Pick the last two commits from master branch:
 
 	git cherry-pick master~1 master
+
+# Submodule
+Check that all your submodules have been pushed properly before pushing the
+main project:
+
+	git push --recurse-submodules=check
+
+Push changes in main project as well as sub-projects:
+
+	git push --recurse-submodules=on-demand

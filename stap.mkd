@@ -54,3 +54,66 @@ the function name, will be printed. In this case, do a grep into
 		printf("%s <- %s\n", thread_indent(-1), probefunc());
 	}
 
+# print and count the stacktraces when a function is called
+https://sourceware.org/systemtap/examples/profiling/pf4.stp
+https://sourceware.org/systemtap/examples/profiling/pf4.txt
+
+	# cat proxy_lookup.stp
+	#!/usr/bin/env stap
+	#
+	# Usage:
+	#    stap -d /usr/local/lib64/ganesha/libfsalpcache.so   \
+	#         -d /usr/local/lib64/ganesha/libfsalproxy.so \
+	#         -d /root/stable/fsl-nfs-ganesha/release/MainNFSD/ganesha.nfsd \
+	#         proxy_lookup.stp
+
+	global stacktraces;
+
+	probe
+	process("/usr/local/lib64/ganesha/libfsalproxy.so").function("pxy_lookup") {
+		bt = sprint_ubacktrace()
+		stacktraces[bt] <<< 1
+	}
+
+	probe end {
+		foreach (bt in stacktraces-) {
+			printf("count: %d\n%s\n",
+				@sum(stacktraces[bt]),
+				bt);
+		}
+	}
+
+Example output:
+
+	[root@SGDP04 systemtap]# stap \
+		-d /usr/local/lib64/ganesha/libfsalpcache.so \
+		-d /usr/local/lib64/ganesha/libfsalproxy.so \
+		-d /root/stable/fsl-nfs-ganesha/release/MainNFSD/ganesha.nfsd \
+		proxy_lookup.stp
+	WARNING: Missing unwind data for module, rerun with 'stap -d /usr/lib64/libpthread-2.17.so'
+	^Ccount: 708
+	pxy_lookup+0x15 [libfsalproxy.so.4.2.0]
+	cachefs_lookup+0x4c [libfsalpcache.so.4.2.0]
+	pcachefs_lookup+0x43 [libfsalpcache.so.4.2.0]
+	populate_dirent+0x6a [ganesha.nfsd]
+	pxy_do_readdir+0x29c [libfsalproxy.so.4.2.0]
+	pxy_readdir+0x71 [libfsalproxy.so.4.2.0]
+	read_dirents+0x5c [libfsalpcache.so.4.2.0]
+	cache_inode_readdir_populate+0x1b3 [ganesha.nfsd]
+	cache_inode_readdir+0x717 [ganesha.nfsd]
+	nfs4_op_readdir+0x445 [ganesha.nfsd]
+	nfs4_Compound+0x9f7 [ganesha.nfsd]
+	nfs_rpc_execute+0x1f70 [ganesha.nfsd]
+	worker_run+0x1
+	count: 625
+	pxy_lookup+0x15 [libfsalproxy.so.4.2.0]
+	cachefs_lookup+0x4c [libfsalpcache.so.4.2.0]
+	cachefs_file_unlink+0x28 [libfsalpcache.so.4.2.0]
+	pcachefs_unlink+0x2f [libfsalpcache.so.4.2.0]
+	cache_inode_remove+0x53a [ganesha.nfsd]
+	nfs4_op_remove+0x111 [ganesha.nfsd]
+	nfs4_Compound+0x9f7 [ganesha.nfsd]
+	nfs_rpc_execute+0x1f70 [ganesha.nfsd]
+	worker_run+0x1ba [ganesha.nfsd]
+	fridgethr_start_routine+0xd7 [ganesha.nfsd]
+	0x7f625859adf5 [libpthread-2.17.so+0x7df5]

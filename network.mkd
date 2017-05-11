@@ -87,3 +87,15 @@ http://www.linuxfoundation.org/collaborate/workgroups/networking/netem
 
 	remove -n for full dns hostname:
 	$ netstat -vatc
+
+	$ netstat -tulpn
+	$ netstat -tulpn | grep 9090
+
+# lsof
+Type the following command to see IPv4 port(s), enter:
+
+	# lsof -Pnl +M -i4
+
+Type the following command to see IPv6 listing port(s), enter:
+
+	# lsof -Pnl +M -i6
