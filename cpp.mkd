@@ -25,3 +25,10 @@ http://stackoverflow.com/questions/13280823/cmake-not-finding-boost
 Debug Boost in CMake:
 
 	-DBoost_DEBUG=ON
+
+# random generator
+
+	std::mt19937 rng;
+	rng.seed(std::random_device()());
+	std::uniform_int_distribution<int> dist(0, 255)
+	dist(rng)

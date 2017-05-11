@@ -1,0 +1,16 @@
+# Wild card
+
+    zsh% ls **/009?.xml
+    alfa/0092.xml      alfa/tmp/0097.xml
+    alfa/0093.xml      beta/0096.xml
+    alfa/0095.xml      beta/0098.xml
+    alfa/0097.xml      beta/0099.xml
+    alfa/tmp/0092.xml  beta/tmp/0096.xml
+    alfa/tmp/0093.xml  beta/tmp/0098.xml
+    alfa/tmp/0095.xml  beta/tmp/0099.xml
+
+    zsh% setopt extended_glob
+    zsh% ls **/009?.xml~*/tmp/*
+    alfa/0092.xml  alfa/0097.xml  beta/0099.xml
+    alfa/0093.xml  beta/0096.xml
+    alfa/0095.xml  beta/0098.xml
