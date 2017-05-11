@@ -32,3 +32,16 @@ empty directories:
 # compare local file with server file
 
     cvs diff -up original.php
+
+# See what have changed locally
+
+    cvs -qn up
+
+# See all recent committs
+All commits since 2016-05-03
+
+    cvs history -c -D 2016-05-03 -a
+
+# Compare two version of a file
+
+    cvs diff -r 1.1 -r 1.2 background.tex

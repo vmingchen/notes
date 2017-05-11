@@ -18,3 +18,6 @@
     x: execute delete
     !: execute bash cmd
 
+# Emacs format bibtex
+
+    C-c C-q

@@ -26,3 +26,18 @@ at when trying to use the backspace key:
 Remove the lock file:
 
     /home/mchen/Library/Application Support/Firefox/Profiles/3arunadv.default/.parentlock
+
+# Homebrew
+Update hoembrew
+
+    $ brew update
+
+delete all but the newer version:
+
+    $ brew cleanup node
+    $ brew ls --versions
+    $ brew remove node/0.4.11
+
+then delete package and its dependencies:
+
+    $ brew rmtree

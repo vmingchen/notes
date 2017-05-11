@@ -101,3 +101,40 @@ http://wiki.libvirt.org/page/Networking
 Show networks:
 
     brctl show 
+
+# QEMU image
+http://lnx.cx/docs/vdg-2/html/ch02s04.html
+Convert RAW image to QCOW2 image
+
+Run the following command to convert a vmdk image file to a raw image file.
+
+    $ qemu-img convert -f raw -O qcow2 image.img image.qcow2
+
+Run the following command to convert a vmdk image file to a qcow2 image file.
+
+    $ qemu-img convert -f vmdk -O raw image.vmdk image.img
+    $ qemu-img convert -f vmdk -O qcow2 image.vmdk image.qcow2
+
+Convert QCOW2 to RAW:
+
+    $ qemu-img convert -O raw image-converted.qcow
+    image-converted-from-qcow2.raw
+
+    $ qemu-img info image-converted-from-qcow2.raw
+    image: image-converted-from-qcow2.raw
+    file format: raw
+    virtual size: 10G (10737418240 bytes)
+    disk size: 0
+
+# Detach a disk
+Target name "vdb" can be found in the xml config file
+
+    # virsh dumpxml client.sgdp10 | grep target
+    # virsh detach-disk client.sgdp10 vdb --persistent
+
+
+# Enlarge a disk
+
+    stop the VM
+    run qemu-img resize vmdisk.img +10G to increase image size by 10Gb
+    start the VM, resize the partitions and LVM structure within it normally

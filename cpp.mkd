@@ -32,3 +32,38 @@ Debug Boost in CMake:
 	rng.seed(std::random_device()());
 	std::uniform_int_distribution<int> dist(0, 255)
 	dist(rng)
+
+# more STL algorithms
+https://www.youtube.com/watch?v=h4Jl1fk3MkQ
+
+	template<typename FwIter, typename Func>
+	void adjacent_pair(FwIter first, FwIter last, Func f) {
+		if (first != last) {
+			FwIter trailer = first;
+			++first;
+			for (; first != last; ++first, ++trailer) {
+				f(*trailer, *first);
+			}
+		}
+	}
+
+	template<typename InIter, typename OutIter, typename Pred>
+	std::pair<InIter, OutIter>
+	copy_while(InIter first, InIter last, OutIter result, Pred p) {
+		for (; first != last && p(*first); ++first)
+			*result++ = *first;
+		return std::make_pair(first, result);
+	}
+
+
+	// To split a sequence by a value, e.g., tokenize a string.
+	template<typename InIter, typename T, typename Func>
+	void split(InIter first, InIter last, const T &t, Func f) {
+		while (true) {
+			InIter found = std::find(first, last, t);
+			f(first, found);
+			if (found == last)
+				break;
+			first = ++found;
+		}
+	}

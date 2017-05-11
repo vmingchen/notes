@@ -12,7 +12,7 @@ use maven to generate eclipse files
 
 # tracing java
 
-        jstack
+       jstack
         jmap
         jvisualvm
         jstat
@@ -20,3 +20,70 @@ use maven to generate eclipse files
         jvmtop
         jvmmonitor
         ps -aefL | grep java
+        jps
+        jcmd
+
+Trouble shotting:
+http://tonaconsulting.com/jmap-jstack-not-working-properly-with-openjdk/
+
+        debuginfo-install java-1.8.0-openjdk
+
+# debug using maven
+use mvnDebug command in place of mvn and attach a debugger on port 8000
+
+       jps
+       jmap -heap <pid>
+       jdb -connect sun.jvm.hotspot.jdi.SAPIDAttachingConnector:pid=<pid>
+       > where all
+       > threads
+       > thread
+
+# install the latest java
+
+       rpm -Uvh /path/to/binary/jdk-8u92-linux-x64.rpm
+       alternatives --config java
+
+Also need to update binaries such as "jdb", "jstack", etc.
+
+# Garbage Collection
+
+## Safepoint
+A point that safe to perform garbage collection
+
+## Conservatile vs. Precise GC
+- All commercial GC are precise
+
+## Mark/Sweep/Compact
+### Mark
+- Start from "root" (thread stacks, statics, etc.)
+- "Paint" anything you can reach as "live"
+- At the end of a mark pass:
+       - All reachable objects will be marked "live"
+       - All non-reachable objects will be marked "dead"
+
+### Sweep
+- Scan through the heap, identify "dead" objects and track them
+
+### Compact
+- "relocate" live objects to reclaim contiguous empty space
+- "remap" references to new object locations
+
+"relocate" many objects at a time to amortize the cost of "remap"
+
+## Copy
+Moves all live objects from one place to another place.  Requires twice the
+maximum memory.
+
+## Generational Collection
+
+Keep surviving objects in young generation for a while before *promoting* them
+to the old generation.
+
+Remembered Set: all references into the young generation from the outside.
+
+
+# Profling
+
+## Simple Command-Line profiling
+Simply add "-agentlib:hprof=file=/tmp/hprof.txt,cpu=samples" to your program
+arguments.

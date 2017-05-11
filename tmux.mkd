@@ -1,4 +1,4 @@
-# Move to pane
+# Move to pane using pane number
 Ctrl-b q 
 	Show pane numbers, when the numbers show up type the key to goto that pane
 
@@ -46,3 +46,5 @@ Adjust pane width:
     Ctrl-A :
     resize-pane -R adjustments
 
+# tmux plugins
+https://github.com/tmux-plugins

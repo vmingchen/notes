@@ -87,3 +87,7 @@ http://www.linuxfoundation.org/collaborate/workgroups/networking/netem
 
 	remove -n for full dns hostname:
 	$ netstat -vatc
+
+	$ netstat -tulpn
+	$ ls -l /proc/<pid>/exe
+

@@ -1,5 +1,4 @@
 # convert eps to jpg
 <cvs>/fsl/scripts/eps2jpg
- ~ezk/VMWARE/serial-numbers.txt 
 
 https://avatar.fsl.cs.sunysb.edu/wiki/pages/y2z662y/Test_Equipment_Availablility.html
