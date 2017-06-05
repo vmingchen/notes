@@ -67,3 +67,11 @@ https://www.youtube.com/watch?v=h4Jl1fk3MkQ
 			first = ++found;
 		}
 	}
+
+# undefined symbols during linking due to out-or-order libraries
+See https://stackoverflow.com/questions/45135/why-does-the-order-in-which-libraries-are-linked-sometimes-cause-errors-in-gcc
+
+    LDFLAGS += "-Wl,--start-group"
+
+
+
