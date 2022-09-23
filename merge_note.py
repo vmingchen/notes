@@ -31,5 +31,5 @@ for fnote in sys.argv[1:]:
 
 for header, content in notes.items():
     sys.stdout.write(header)
-    print H_TOKEN
-    print content
+    print(H_TOKEN)
+    print(content)

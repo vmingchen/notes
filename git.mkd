@@ -32,17 +32,6 @@ Local
     git stash save "work in progress for foo feature"
     git stash apply   # apply the change later
 
-# Work with remote repo
-
-    git pull    # get remote changes, need commit local changes first
-    git push    # push local changes to remote repo
-    git push origin branchname
-
-# Autostage existing files during commit
-
-    git commit -a
-    git commit -am 'commit mesg'
-
 # Ignore .gitignore
 git .gitignore
 
@@ -63,10 +52,6 @@ ignore executable and object files
 # create archive
 
     $ git archive master | bzip2 > ~/Dropbox/bio/project.tgz
-
-# See what you've staged that will go into your next commit
-
-    git diff --staged. 
 
 # Git diff
 It's important to note that git diff by itself doesn't show all changes made

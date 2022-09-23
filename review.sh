@@ -23,7 +23,7 @@ IFS=$' \t\n'                            # Reset IFS
 unset -f unalias                        # Make sure unalias is not a function
 \unalias -a                             # Unset all aliases
 
-cd ~/notes/
+cd ~/Downloads/notes/
 mkdir -p obsolete
 oldest_note=`ls [0-9][0-9][0-9][0-9][0-9][0-9].mkd | tr '\t' '\n' | head -n 1`
 oldest_date="${oldest_note%.*}"
